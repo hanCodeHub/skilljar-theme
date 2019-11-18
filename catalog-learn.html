@@ -1,0 +1,195 @@
+<div class="catalog-header">
+    <div id="hero-content">
+        <div id="hero-welcome"><span id="hero-header" style="color: #ffffff;">Welcome to Nintex University!</span>
+            <p id="hero-subheader"><span style="color: #ffffff;">Learn how to manage, automate, optimize any business
+                    process with Nintex</span></p>
+        </div>
+        
+        <a href="">
+            <div id="link-live-training" class="hero-cta-button">
+                <p>Live Training</p>
+            </div>
+        </a>
+        <a href="">
+            <div id="link-get-started" class="hero-cta-button">
+                <p>Get Started</p>
+            </div>
+        </a>
+        <a href="">
+            <div id="link-resources" class="hero-cta-button">
+                <p>Resources</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- ALL STYLES -->
+<div>
+    <style>
+        .top-row {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            margin: auto;
+        }
+
+        .catalog-center-width one-col-full {
+            margin: auto;
+        }
+
+        #hero-content {
+            margin: auto;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            height: 35%;
+        }
+
+        #hero-content a {
+            color: white;
+        }
+
+        #hero-content a:hover {
+            color: #ff6d00;
+        }
+
+        #hero-welcome {
+            padding-top: 60px;
+        }
+
+        #hero-header {
+            font-weight: bold;
+            font-size: 2em;
+        }
+
+        p#hero-subheader {
+            font-weight: normal;
+            font-size: 16pt;
+        }
+
+        .hero-cta-button {
+            display: inline-block;
+            max-width: 250px;
+            border-bottom: solid 5px #ff6d00;
+            margin: 10px 20px 0px;
+            padding: 2px 10px 0px 10px;
+            position: relative;
+        }
+
+        .hero-cta-button::after {
+            content: "";
+            transform: scaleY(0);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: bottom center;
+            background: linear-gradient(142deg, #002a4e, #70beac);
+            transition: transform 0.3s;
+            z-index: -1;
+        }
+
+        .hero-cta-button:hover::after {
+            transform: scaleY(1);
+            z-index: 0;
+        }
+
+        .hero-cta-button p {
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            margin: 5px;
+            font-size: 1.1em;
+            letter-spacing: 0.075em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero-subheading {
+            color: #052332;
+        }
+
+        #catalog-news {
+            padding-top: 10px;
+            padding-bottom: 5px;
+            margin: auto;
+        }
+
+        #catalog-content {
+            position: relative;
+            margin: auto;
+            top: 10px;
+        }
+
+        .catalog-center-width {
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 544px) {
+            .catalog-center-width.one-col-full {
+                padding: 0px;
+            }
+        }
+
+        #ep-footer {
+            position: fixed;
+        }
+
+        /*----- Left Nav Menu display:none -----*/
+        #catalog-filter-menu {
+            display: none;
+        }
+
+        #lpLeftNavBackground {
+            display: none;
+        }
+
+        /*----- Hidden Courses List -----*/
+        #catalog-courses.course-listing [data-course-series="all-courses"],
+        #catalog-courses.course-listing [data-course-series="new-courses"],
+        #catalog-courses.course-listing [data-course-series="nintexworkflowprosharepoint"],
+        #catalog-courses.course-listing [data-course-series="nintexworkflowproo365"],
+        #catalog-courses.course-listing [data-course-series="nintexworkflowprosalesforce"],
+        #catalog-courses.course-listing [data-course-series="certifiedsolutionsprofessionalsharepoint"],
+        #catalog-courses.course-listing [data-course-series="certifiedsolutionsprofessionalo365"],
+        #catalog-courses.course-listing [data-course-series="certifiedsolutionsprofessionalsalesforce"],
+        #catalog-courses.course-listing [data-course-series="nintex-hawkeye"],
+        #catalog-courses.course-listing [data-course-series="nintex-docgen-for-salesforce"],
+        #catalog-courses.course-listing [data-course-series="nintex-for-office-365"],
+        #catalog-courses.course-listing [data-course-series="sharepoint"],
+        #catalog-courses.course-listing [data-course-series="nintex-promapp"],
+        #catalog-courses.course-listing [data-course-series="nintex-workflow-cloud"],
+        #catalog-courses.course-listing [data-course-series="nintex-app-studio"],
+        #catalog-courses.course-listing [data-course-series="nintex-promapp-quickstart"],
+        #catalog-courses>a[title="Introduction: The Nintex Platform"],
+        #catalog-courses.course-listing [data-course-series="nintex-rpa"],
+        #catalog-courses.course-listing [data-course-series="get-started"],
+        #catalog-courses.course-listing [data-course-series="resource-library"] {
+            display: none;
+        }
+
+        /* BANNER IMAGE FOR HOMEPAGE */
+        .catalog-header {
+            text-align: center;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(5, 35, 50, 0.7)),
+                url(https://images.articulate.com/f:jpg|png,a:retain,b:fff,w:1680,q:65/rise/courses/2FUuBDrDT93PedWCiaSpOHY-duiiv0ND/bq5KdMwacfbWoe6l-stock-image.jpg) fixed center;
+
+            background-size: cover;
+            margin: auto;
+            position: relative;
+            top: -25px;
+            left: 0;
+            display: block;
+        }
+
+        #catalog-courses {
+            margin: auto;
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</div>
