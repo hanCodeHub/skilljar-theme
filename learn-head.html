@@ -656,6 +656,16 @@ End: Removed 2/6/19, moved string override into Language Page */
         clip-path: polygon(0% 0%, 50% 20%, 100% 0%, 100% 75%, 50% 95%, 0% 75%);
     }
 
+    #skilljar-content .top-row .section-body-light {
+        background: linear-gradient(to left,#b5d1ee,#fff);
+        padding: 260px 0 100px 0;
+        margin: -250px 0 -50px 0;
+    }
+
+    #skilljar-content .top-row .section-body-block {
+        clip-path: none;
+    }
+
     h1.section-header.text-center {
         font-size: 1.8em;
     }
@@ -663,6 +673,20 @@ End: Removed 2/6/19, moved string override into Language Page */
     @media only screen and (max-width: 767px) {
         #skilljar-content .top-row .section-body-dark {
             clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 88%, 50% 95%, 0% 88%);
+        }
+
+        #skilljar-content .top-row .section-body-block {
+            clip-path: none;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1227px) {
+        #skilljar-content .top-row .section-body-dark {
+            clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
+        }
+
+        #skilljar-content .top-row .section-body-block {
+            clip-path: none;
         }
     }
 
@@ -732,7 +756,7 @@ End: Removed 2/6/19, moved string override into Language Page */
     #live-training > #live-training-body {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     #live-training > #live-training-header > h1 {
@@ -750,20 +774,14 @@ End: Removed 2/6/19, moved string override into Language Page */
         background: transparent;
     }
 
-    #live-training > #live-training-header > .btn-outline > a,
-    #live-training > #live-training-header > .btn-outline > a:link,
-    #live-training > #live-training-header > .btn-outline > a:visited {
+    #skilljar-content .top-row span.btn-outline > a,
+    #skilljar-content .top-row span.btn-outline > a:link,
+    #skilljar-content .top-row span.btn-outline > a:visited {
         color: white;
     }
 
-    #live-training > #live-training-header > .btn-outline:hover {
+    #skilljar-content .top-row span.btn-outline:hover {
         background: linear-gradient(142deg, #002a4e, #70beac);
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1227px) {
-        #skilljar-content .top-row .section-body-dark {
-            clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
-        }
     }
 
     @media only screen and (max-width: 767px) {
@@ -911,14 +929,35 @@ End: Removed 2/6/19, moved string override into Language Page */
     }
 
     @media only screen and (max-width: 1057px) { 
+        #skilljar-content .top-row #get-started.section-body-light {
+            background: linear-gradient(to top,#b5d1ee,#fff);
+        }
+        
         #get-started .tile-row {
             flex-flow: column;
             align-items: center;
         }
 
         #get-started .icon-container {
-            display: none;
+            transform: rotate(90deg) translateX(-15%);
         }
+    }
+
+    /* RESOURCES BLOCK */
+    #skilljar-content .top-row .section-body-dark#resources {
+        padding-top: 50px;
+        padding-bottom: 80px;
+    }
+
+    #resources .tile-row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+
+    #resources .tile-row .image-link-btn {
+        padding: 2em;
+        padding-top: 2.5em;
     }
 
 </style>

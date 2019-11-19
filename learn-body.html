@@ -81,7 +81,7 @@
 </section>
 
 <!-- GET STARTED BLOCK -->
-<section id="get-started" class="catalog-center-width" hidden>
+<section id="get-started" class="catalog-center-width section-body-light" hidden>
     <!-- title -->
     <div id="get-started-header" class="row catalog-center-width">
         <h1 class="section-header text-center">Choose an option to get started with Nintex</h1>
@@ -134,6 +134,31 @@
 
 </section>
 
+<!-- RESOURCES BLOCK -->
+<section id="resources" class="catalog-center-width section-body-dark section-body-block" hidden>
+    <div id="resources-header" class="row catalog-center-width">
+        <h1 class="section-header text-center">Take advantage of additional resources</h1>
+    </div>
+    <div class="tile-row">
+        <div class="image-link-btn">
+            <span class="text-center btn-outline"><a href="http://nintex.skilljar.com/calendar">
+                How-to Videos
+            </a></span>
+        </div>
+        <div class="image-link-btn">
+            <span class="text-center btn-outline"><a href="http://nintex.skilljar.com/calendar">
+                Community Forums
+            </a></span>
+        </div>
+        <div class="image-link-btn">
+            <span class="text-center btn-outline"><a href="http://nintex.skilljar.com/calendar">
+                Help Documentation
+            </a></span>
+        </div>
+    </div>
+
+</section>
+
 <!-- ADDING NEW BLOCKS -->
 <script>
     // CUSTOM BLOCKS - only add to homepage
@@ -147,21 +172,25 @@
         const offerings = document.querySelector('#offerings');
         const liveTraining = document.querySelector('#live-training');
         const getStarted = document.querySelector('#get-started');
-        
+        const resources = document.querySelector('#resources');
+
         // make new blocks visible only on homepage
-        for (sectionElement of [offerings, liveTraining, getStarted])
-            sectionElement.removeAttribute('hidden');
+        for (section of [offerings, liveTraining, getStarted, resources])
+            section.removeAttribute('hidden');
 
         // Insert new blocks
         catalog.insertBefore(offerings, courses);
         topRow.appendChild(liveTraining);
         topRow.appendChild(getStarted);
+        topRow.appendChild(resources);
 
         // scroll to sections from links in banner
-        const liveTrainingHeader = document.querySelector('#live-training-header')
+        const liveTrainingHeader = document.querySelector('#live-training-header');
         const linkLiveTraining = document.querySelector('#link-live-training');
         const linkGetStarted = document.querySelector('#link-get-started');
+        const linkResources = document.querySelector('#link-resources');
 
+        linkResources.addEventListener('click', () => resources.scrollIntoView(true));
         linkLiveTraining.addEventListener('click', () => liveTraining.scrollIntoView(true));
         linkGetStarted.addEventListener('click', () => getStarted.scrollIntoView(true));
     }
