@@ -216,7 +216,9 @@
         background-color: #F7F7F7;
         border-top: 1px solid #d5d5d5;
         bottom: 0;
-        /* position already declared in skilljar */
+        height: 2em;
+        padding-top: .35em;
+        position: fixed !important;
     }
 
     #powered-by {
@@ -791,16 +793,14 @@ End: Removed 2/6/19, moved string override into Language Page */
     }
 
     #private-training-section .card-container:hover .card-image{
-        -webkit-transform: scale(2) translateY(15%);
-        transform: scale(2) translateY(15%);
+        -webkit-transform: scale(2) translateY(-15%);
+        transform: scale(2) translateY(-15%);
         -webkit-filter: blur(2px) brightness(0.5);
         filter: blur(2px) brightness(0.5);
     }
 
     .card-image {
         width: 100%;
-        border-top-left-radius: 7px;
-        border-top-right-radius: 7px;
         transition: all 0.2s ease;
     }
 
@@ -843,10 +843,6 @@ End: Removed 2/6/19, moved string override into Language Page */
         /* table background reset */
         background: none;
         border: none;
-    }
-
-    #live-training #events-table-section table {
-        margin: auto;
     }
 
     #live-training #events-table-section table tr th,
