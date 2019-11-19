@@ -657,7 +657,7 @@ End: Removed 2/6/19, moved string override into Language Page */
     }
 
     #skilljar-content .top-row .section-body-light {
-        background: linear-gradient(to left,#b5d1ee,#fff);
+        background: linear-gradient(to left, #b5d1ee, #fff);
         padding: 260px 0 100px 0;
         margin: -250px 0 -50px 0;
     }
@@ -746,20 +746,20 @@ End: Removed 2/6/19, moved string override into Language Page */
 
     /* LIVE TRAINING BLOCK  */
 
-    #live-training > #live-training-header {
+    #live-training>#live-training-header {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-bottom: 1.4em;
     }
 
-    #live-training > #live-training-body {
+    #live-training>#live-training-body {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
     }
 
-    #live-training > #live-training-header > h1 {
+    #live-training>#live-training-header>h1 {
         margin-bottom: .8em;
     }
 
@@ -774,9 +774,9 @@ End: Removed 2/6/19, moved string override into Language Page */
         background: transparent;
     }
 
-    #skilljar-content .top-row span.btn-outline > a,
-    #skilljar-content .top-row span.btn-outline > a:link,
-    #skilljar-content .top-row span.btn-outline > a:visited {
+    #skilljar-content .top-row span.btn-outline>a,
+    #skilljar-content .top-row span.btn-outline>a:link,
+    #skilljar-content .top-row span.btn-outline>a:visited {
         color: white;
     }
 
@@ -810,7 +810,7 @@ End: Removed 2/6/19, moved string override into Language Page */
         position: relative;
     }
 
-    #private-training-section .card-container:hover .card-image{
+    #private-training-section .card-container:hover .card-image {
         -webkit-transform: scale(2) translateY(-15%);
         transform: scale(2) translateY(-15%);
         -webkit-filter: blur(2px) brightness(0.5);
@@ -888,10 +888,11 @@ End: Removed 2/6/19, moved string override into Language Page */
     #live-training #events-table-section .events-table-row:active {
         transform: scale(1.05);
     }
+
     #live-training #events-table-section .events-table-row:active td {
         color: #70beac;
     }
-    
+
     @media only screen and (max-width: 767px) {
         #live-training #events-table-section .events-table-row {
             display: flex;
@@ -912,7 +913,7 @@ End: Removed 2/6/19, moved string override into Language Page */
         justify-content: center;
     }
 
-    #get-started #get-started-header + .tile-row > .card-container {
+    #get-started #get-started-header+.tile-row>.card-container {
         width: 20em;
         padding-bottom: 0px;
     }
@@ -928,11 +929,11 @@ End: Removed 2/6/19, moved string override into Language Page */
         width: 50%;
     }
 
-    @media only screen and (max-width: 1057px) { 
+    @media only screen and (max-width: 1057px) {
         #skilljar-content .top-row #get-started.section-body-light {
-            background: linear-gradient(to top,#b5d1ee,#fff);
+            background: linear-gradient(to top, #b5d1ee, #fff);
         }
-        
+
         #get-started .tile-row {
             flex-flow: column;
             align-items: center;
@@ -946,18 +947,36 @@ End: Removed 2/6/19, moved string override into Language Page */
     /* RESOURCES BLOCK */
     #skilljar-content .top-row .section-body-dark#resources {
         padding-top: 50px;
-        padding-bottom: 80px;
+        padding-bottom: 60px;
     }
 
     #resources .tile-row {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-evenly;
+        justify-content: center;
+        padding-top: 1em;
     }
 
-    #resources .tile-row .image-link-btn {
-        padding: 2em;
-        padding-top: 2.5em;
+    #resources .tile-row .image-link-container {
+        position: relative;
+        padding: 3.5em 4.5em 3.5em 4.5em;
+    }
+
+    .image-link-icon {
+        position: absolute;
+        top: -.3em;
+        left: 1.2em;
+        transform: translateY(-1em);
+        z-index: 2;
+        width: 30%;
+    }
+
+    #community-icon {
+        transform: translateY(-1.5em);
+    }
+
+    #helpdoc-icon {
+        transform: translateY(-2em);
     }
 
 </style>
