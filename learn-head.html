@@ -680,7 +680,7 @@ End: Removed 2/6/19, moved string override into Language Page */
         }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1227px) {
+    @media only screen and (min-width: 768px) and (max-width: 1459px) {
         #skilljar-content .top-row .section-body-dark {
             clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
         }
@@ -756,7 +756,7 @@ End: Removed 2/6/19, moved string override into Language Page */
     #live-training>#live-training-body {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     #live-training>#live-training-header>h1 {
@@ -791,9 +791,7 @@ End: Removed 2/6/19, moved string override into Language Page */
     }
 
     @media only screen and (max-width: 1300px) {
-        #live-training>#live-training-body {
-            justify-content: center;
-        }
+   
     }
 
     /* private training card */
@@ -863,10 +861,14 @@ End: Removed 2/6/19, moved string override into Language Page */
         border: none;
     }
 
+    #events-table-section {
+        padding: 0 1.5em;
+    }
+
     #live-training #events-table-section table tr th,
     table tr td {
         color: white;
-        font-size: 1.2em;
+        font-size: 1.1em;
         padding: .8em .85em;
     }
 
@@ -893,6 +895,10 @@ End: Removed 2/6/19, moved string override into Language Page */
         color: #70beac;
     }
 
+    #live-training #events-table-section .events-table-row td {
+        line-height: 2em;
+    }
+
     @media only screen and (max-width: 767px) {
         #live-training #events-table-section .events-table-row {
             display: flex;
@@ -900,11 +906,11 @@ End: Removed 2/6/19, moved string override into Language Page */
         }
     }
 
-    @media only screen and (min-width: 1151px) {
+    /* @media only screen and (min-width: 1151px) {
         #live-training #events-table-section .events-table-row td {
             line-height: 2em;
         }
-    }
+    } */
 
     /* GET STARTED BLOCK */
     #get-started .tile-row {
