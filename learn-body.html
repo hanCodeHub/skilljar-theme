@@ -24,44 +24,46 @@
     <div id="live-training-body" class="row catalog-center-width text-center">
 
         <div id="events-table-section" class="text-center">
-            <table id="events-table">
+            <!-- show loader before events data is retrieved -->
+            <div id="events-loader" class="loader">Loading...</div>
+            <table id="events-table" hidden>
 
                 <tr class="events-table-row">
-                    <td>11-23-2019</td>
-                    <td>09:00</td>
-                    <td>Workflow O365 Optimization</td>
-                    <td>10 seats</td>
-                    <td>USD $249</td>
+                    <td></td>
+                    <td></td>
+                    <td class="events-course-name"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 <tr class="events-table-row">
-                    <td>11-23-2019</td>
-                    <td>15:00</td>
-                    <td>Workflow O365 Optimization</td>
-                    <td>5 seats</td>
-                    <td>USD $249</td>
+                    <td></td>
+                    <td></td>
+                    <td class="events-course-name"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 <tr class="events-table-row">
-                    <td>11-24-2019</td>
-                    <td>09:00</td>
-                    <td>Workflow O365 Testing</td>
-                    <td>12 seats</td>
-                    <td>USD $249</td>
+                    <td></td>
+                    <td></td>
+                    <td class="events-course-name"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 <tr class="events-table-row">
-                    <td>11-24-2019</td>
-                    <td>15:00</td>
-                    <td>Workflow O365 Testing</td>
-                    <td>9 seats</td>
-                    <td>USD $249</td>
+                    <td></td>
+                    <td></td>
+                    <td class="events-course-name"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
             </table>
         </div>
 
-        <div id="private-training-section" class="text-center">
+        <div id="private-training-section" class="text-center" hidden>
             <div class="card-container">
                 <a href="" target="_blank">
                     <div class="card-message">
@@ -112,9 +114,13 @@
                     class="card-image" alt="person taping on phone with science graphics">
                 <div class="card-message">
                     <p>Quickly Install And Configure Nintex</p>
+                    <img class="icon-text"
+                        src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fexternal-link-2-128.1574355239195.png"
+                        alt="external link icon">
                 </div>
             </a>
         </div>
+
         <!-- triangles forwards icon -->
         <div class="icon-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Ftriangle-right-orange.1574102756310.png"
@@ -214,8 +220,9 @@
 <script id="api-calls">
 
     if (location.pathname === '/') {
+
         try {
-            getData("https://skilljar-api-test.azurewebsites.net/events/learn.nintex.com")
+            getData("https://skilljar-api-test.azurewebsites.net/events/learn.nintex.com?count=4")
                 .then(res => addLocalDatesToEvents(res.data))
                 .then(events => renderEvents(events))
                 .catch(err => console.log(err));
@@ -250,13 +257,21 @@
             thisRowCols[2].innerText = thisEvent.vilt_session.display_name;
             thisRowCols[3].innerText = String(thisEvent.vilt_session.seats_total -
                 thisEvent.vilt_session.registration_count) + ' seats';
-            thisRowCols[4].innerText = 'USD $249'; // NEEDS UPDATING: include price in API response
+
+            // course price with decimals truncated
+            const price = thisEvent.vilt_session.lesson.course.price;
+            const strPrice = price.substring(0, price.length - 3);
+            thisRowCols[4].innerText = `USD $${strPrice}`;
 
             // URL added to row
             tableRows[i].addEventListener('click', (e) => {
                 location = thisEvent.vilt_session.lesson.course.course_url;
             })
         }
+        // reveal table and remove spinner
+        document.getElementById('events-table').hidden = false;
+        document.getElementById('private-training-section').hidden = false;
+        document.getElementById('events-loader').remove();
     }
 
     const addLocalDatesToEvents = (eventsData) => {

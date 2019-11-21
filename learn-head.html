@@ -363,8 +363,78 @@
         margin-bottom: 10px;
     }
 
-    /* custom css for course pages*/
+    /* spinning loader */
+    .loader {
+        font-size: 10px;
+        margin: 50px auto;
+        text-indent: -9999em;
+        width: 11em;
+        height: 11em;
+        border-radius: 50%;
+        background: #ffffff;
+        background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        position: relative;
+        -webkit-animation: load3 1.4s infinite linear;
+        animation: load3 1.4s infinite linear;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 
+    .loader:before {
+        width: 50%;
+        height: 50%;
+        background: #ffffff;
+        border-radius: 100% 0 0 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+    }
+
+    .loader:after {
+        background: #052332;
+        width: 75%;
+        height: 75%;
+        border-radius: 50%;
+        content: '';
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    @-webkit-keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes load3 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    /* custom css for course pages*/
     .button,
     .medium {
         font-size: 1.2em;
@@ -675,12 +745,17 @@ End: Removed 2/6/19, moved string override into Language Page */
             clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 88%, 50% 95%, 0% 88%);
         }
 
+        #skilljar-content #live-training {
+            padding-bottom: 250px;
+        }
+
         #skilljar-content .top-row .section-body-block {
             clip-path: none;
         }
+
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 1459px) {
+    @media only screen and (min-width: 768px) {
         #skilljar-content .top-row .section-body-dark {
             clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
         }
@@ -784,14 +859,17 @@ End: Removed 2/6/19, moved string override into Language Page */
         background: linear-gradient(142deg, #002a4e, #70beac);
     }
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 1383px) {
         #skilljar-content #live-training {
-            padding-bottom: 250px;
+            padding-bottom: 300px;
+            padding-top: 250px;
         }
     }
 
-    @media only screen and (max-width: 1300px) {
-   
+    @media only screen and (min-width: 900px) and (max-width: 1383px) {
+        #skilljar-content #live-training {
+            padding-bottom: 250px;
+        }
     }
 
     /* private training card */
@@ -828,6 +906,13 @@ End: Removed 2/6/19, moved string override into Language Page */
         color: white;
         font-size: 1.2em;
         padding: .8em .85em;
+    }
+
+    .card-message img.icon-text {
+        width: 1em;
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
     }
 
     .card-message-overlay {
@@ -899,18 +984,20 @@ End: Removed 2/6/19, moved string override into Language Page */
         line-height: 2em;
     }
 
+    #live-training #events-table-section .events-course-name {
+        text-align: left;
+    }
+
     @media only screen and (max-width: 767px) {
         #live-training #events-table-section .events-table-row {
             display: flex;
             flex-direction: column;
         }
-    }
 
-    /* @media only screen and (min-width: 1151px) {
-        #live-training #events-table-section .events-table-row td {
-            line-height: 2em;
+        #skilljar-content #live-training .events-table-row .events-course-name { 
+            text-align: center;
         }
-    } */
+    }
 
     /* GET STARTED BLOCK */
     #get-started .tile-row {
