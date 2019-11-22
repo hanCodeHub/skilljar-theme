@@ -183,8 +183,17 @@
         border-bottom-right-radius: 25px;
     }
 
-    .back-to-catalog {
-        font-size: 1.1em;
+    #header #header-left .back-to-catalog {
+        background: black;
+    }
+
+    #header #header-left .back-to-catalog .fa-arrow-left {
+        font-size: 1.3em;
+        margin-bottom: .3em;
+    }
+
+    #header #header-left .back-to-catalog #backToCatalogShortText {
+        font-size: .8em;
         text-transform: uppercase;
     }
 
@@ -617,12 +626,12 @@
     }
 
 
-    /* Start: Removed 2/6/19, moved string override into Language Page
-a.purchase-button span.purchase-button-text { display: none; }
-a.purchase-button span.purchase-button-price { display: none; }
-a.purchase-button:after { content: 'Start';
- }
-End: Removed 2/6/19, moved string override into Language Page */
+    /* Enroll/Start button for all courses */
+    /* .purchase-button */
+    
+    /* .purchase-button-full-text {
+
+    } */
 
     /* Workflow Pro banner */
     #workflow-professional-banner {
@@ -727,13 +736,15 @@ End: Removed 2/6/19, moved string override into Language Page */
     }
 
     #skilljar-content .top-row .section-body-light {
-        background: linear-gradient(to left, #b5d1ee, #fff);
+        color: black;
+        background: linear-gradient(to left, #bbc3cc, #fff);
         padding: 260px 0 100px 0;
         margin: -250px 0 -50px 0;
     }
 
-    #skilljar-content .top-row .section-body-block {
-        clip-path: none;
+    #skilljar-content .top-row .section-body-dark h1,
+    #skilljar-content .top-row .section-body-dark p {
+        color: white;
     }
 
     h1.section-header.text-center {
@@ -765,9 +776,50 @@ End: Removed 2/6/19, moved string override into Language Page */
         }
     }
 
-    #skilljar-content .top-row .section-body-dark h1,
-    #skilljar-content .top-row .section-body-dark p {
+    /* General component styles */
+
+    .btn-outline {
+        font-size: 1.05em;
+        margin-bottom: 1em;
+        padding: 1em;
+        border: 2px solid white;
+        border-radius: 10px;
+        transition: all .2s ease;
+        cursor: pointer;
+        background: transparent;
+    }
+
+    .outline-dark {
+        border: 2px solid #052332;
+    }
+
+    #skilljar-content .top-row span.btn-outline>a,
+    #skilljar-content .top-row span.btn-outline>a:link,
+    #skilljar-content .top-row span.btn-outline>a:visited {
         color: white;
+    }
+
+    #skilljar-content .top-row span.btn-outline:hover {
+        background: linear-gradient(142deg, #002a4e, #70beac);
+    }
+
+    #skilljar-content .top-row span.outline-dark>a,
+    #skilljar-content .top-row span.outline-dark>a:link,
+    #skilljar-content .top-row span.outline-dark>a:visited {
+        color: #052332;
+    }
+
+    #skilljar-content .top-row span.btn-outline.outline-dark:hover a {
+        color: white;
+    }
+
+    .image-link-icon {
+        position: absolute;
+        top: 0;
+        left: 1.5em;
+        transform: translateY(-1em);
+        z-index: 2;
+        width: 25%;
     }
 
     /* offerings training format tiles */
@@ -836,27 +888,6 @@ End: Removed 2/6/19, moved string override into Language Page */
 
     #live-training>#live-training-header>h1 {
         margin-bottom: .8em;
-    }
-
-    .btn-outline {
-        font-size: 1.05em;
-        margin-bottom: 1em;
-        padding: 1em;
-        border: 2px solid white;
-        border-radius: 10px;
-        transition: all .2s ease;
-        cursor: pointer;
-        background: transparent;
-    }
-
-    #skilljar-content .top-row span.btn-outline>a,
-    #skilljar-content .top-row span.btn-outline>a:link,
-    #skilljar-content .top-row span.btn-outline>a:visited {
-        color: white;
-    }
-
-    #skilljar-content .top-row span.btn-outline:hover {
-        background: linear-gradient(142deg, #002a4e, #70beac);
     }
 
     @media only screen and (max-width: 1383px) {
@@ -999,47 +1030,10 @@ End: Removed 2/6/19, moved string override into Language Page */
         }
     }
 
-    /* GET STARTED BLOCK */
-    #get-started .tile-row {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-    }
-
-    #get-started #get-started-header+.tile-row>.card-container {
-        width: 20em;
-        padding-bottom: 0px;
-    }
-
-    #get-started .icon-container {
-        align-self: center;
-        display: flex;
-        justify-content: center;
-        margin: 0 -2em;
-    }
-
-    #get-started .icon-container img {
-        width: 50%;
-    }
-
-    @media only screen and (max-width: 1057px) {
-        #skilljar-content .top-row #get-started.section-body-light {
-            background: linear-gradient(to top, #b5d1ee, #fff);
-        }
-
-        #get-started .tile-row {
-            flex-flow: column;
-            align-items: center;
-        }
-
-        #get-started .icon-container {
-            transform: rotate(90deg) translateX(-15%);
-        }
-    }
 
     /* RESOURCES BLOCK */
-    #skilljar-content .top-row .section-body-dark#resources {
-        padding-top: 50px;
+    #skilljar-content .top-row #resources {
+        padding-top: 290px;
         padding-bottom: 60px;
     }
 
@@ -1055,19 +1049,20 @@ End: Removed 2/6/19, moved string override into Language Page */
         padding: 3.5em 4.5em 3.5em 4.5em;
     }
 
-    .image-link-icon {
-        position: absolute;
-        top: 0;
-        left: 1.5em;
-        transform: translateY(-1em);
-        z-index: 2;
-        width: 25%;
+    #how-to-icon {
+        transform: translateY(-.3em);
+        left: 2em;
     }
 
-    #how-to-icon {
-        transform: translateY(-.5em);
-        left: 1.8em;
+    #community-icon {
+        transform: translateY(-1.2em);
+        left: 2em;
     }
+
+    #helpdoc-icon {
+        transform: translate(0, -1.5em);
+    }
+
 </style>
 
 <!-- Google Tag Manager -->

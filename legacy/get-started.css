@@ -1,0 +1,37 @@
+    /* GET STARTED BLOCK */
+    #get-started .tile-row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+
+    #get-started #get-started-header+.tile-row>.card-container {
+        width: 20em;
+        padding-bottom: 0px;
+    }
+
+    #get-started .icon-container {
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 -2em;
+    }
+
+    #get-started .icon-container img {
+        width: 50%;
+    }
+
+    @media only screen and (max-width: 1057px) {
+        #skilljar-content .top-row #get-started.section-body-light {
+            background: linear-gradient(to top, #b5d1ee, #fff);
+        }
+
+        #get-started .tile-row {
+            flex-flow: column;
+            align-items: center;
+        }
+
+        #get-started .icon-container {
+            transform: rotate(90deg) translateX(-15%);
+        }
+    }

@@ -26,6 +26,7 @@
         <div id="events-table-section" class="text-center">
             <!-- show loader before events data is retrieved -->
             <div id="events-loader" class="loader">Loading...</div>
+            <!-- loader removed and table shown after data populated -->
             <table id="events-table" hidden>
 
                 <tr class="events-table-row">
@@ -83,66 +84,9 @@
     </div>
 </section>
 
-<!-- GET STARTED BLOCK -->
-<section id="get-started" class="catalog-center-width section-body-light" hidden>
-    <!-- title -->
-    <div id="get-started-header" class="row catalog-center-width">
-        <h1 class="section-header text-center">Choose an option to get started with Nintex</h1>
-    </div>
-    <!-- tiles -->
-    <div class="tile-row">
-        <div class="card-container coursebox-container tile-column">
-            <a href="http://nintex.skilljar.com/intro-to-process-automation" target="_blank">
-                <!-- tile 1 -->
-                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FCapability1_Phone2.1574106590533.jpg"
-                    alt="person holding phone with a sphere of nodes">
-                <div class="card-message">
-                    <p>Intro To Process Automation</p>
-                </div>
-            </a>
-        </div>
-        <!-- triangles forwards icon -->
-        <div class="icon-container">
-            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Ftriangle-right-orange.1574102756310.png"
-                alt="triangles pointing right">
-        </div>
-
-        <div class="card-container coursebox-container tile-column">
-            <a href="https://community.nintex.com/t5/Getting-Started/tkb-p/getting_started" target="_blank">
-                <!-- tile 2 -->
-                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fplatform_1.1574106648181.jpg"
-                    class="card-image" alt="person taping on phone with science graphics">
-                <div class="card-message">
-                    <p>Quickly Install And Configure Nintex</p>
-                    <img class="icon-text"
-                        src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fexternal-link-2-128.1574355239195.png"
-                        alt="external link icon">
-                </div>
-            </a>
-        </div>
-
-        <!-- triangles forwards icon -->
-        <div class="icon-container">
-            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Ftriangle-right-orange.1574102756310.png"
-                alt="triangles pointing right">
-        </div>
-
-        <div class="card-container coursebox-container tile-column">
-            <a href="http://nintex.skilljar.com/series/get-started" target="_blank">
-                <!-- tile 3 -->
-                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FCapability1_Ipad.1574106735695.jpg"
-                    class="card-image" alt="person holding tablet with a sphere of nodes">
-                <div class="card-message">
-                    <p>Learn The Basics Of Your Nintex Product</p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-</section>
 
 <!-- RESOURCES BLOCK -->
-<section id="resources" class="catalog-center-width section-body-dark section-body-block" hidden>
+<section id="resources" class="catalog-center-width section-body-light" hidden>
     <div id="resources-header" class="row catalog-center-width">
         <h1 class="section-header text-center">Take advantage of additional resources</h1>
     </div>
@@ -150,7 +94,7 @@
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fplay-icon.1574190756692.png"
                 id="how-to-icon" class="image-link-icon" alt="how-to videos icon">
-            <span class="text-center btn-outline">
+            <span class="text-center btn-outline outline-dark">
                 <a href="https://www.youtube.com/user/Nintex" target="_blank">
                     How-to Videos
                 </a>
@@ -159,7 +103,7 @@
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcommunity-icon.1574190793235.png"
                 id="community-icon" class="image-link-icon" alt="community icon">
-            <span class="text-center btn-outline">
+            <span class="text-center btn-outline outline-dark">
                 <a href="https://community.nintex.com/" target="_blank">
                     Community Forums
                 </a>
@@ -168,9 +112,9 @@
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fhelp-docs-icon.1574190820917.png"
                 id="helpdoc-icon" class="image-link-icon" alt="help documentation icon">
-            <span class="text-center btn-outline">
+            <span class="text-center btn-outline outline-dark">
                 <a href="https://help.nintex.com/" target="_blank">
-                    Help Documentation
+                    Product Documentation
                 </a>
             </span>
         </div>
@@ -190,28 +134,25 @@
         // New blocks
         const offerings = document.querySelector('#offerings');
         const liveTraining = document.querySelector('#live-training');
-        const getStarted = document.querySelector('#get-started');
         const resources = document.querySelector('#resources');
 
         // make new blocks visible only on homepage
-        for (section of [offerings, liveTraining, getStarted, resources])
+        for (section of [offerings, liveTraining, resources])
             section.removeAttribute('hidden');
 
         // Insert new blocks
         catalog.insertBefore(offerings, courses);
         topRow.appendChild(liveTraining);
-        topRow.appendChild(getStarted);
         topRow.appendChild(resources);
 
         // scroll to sections from links in banner
         const liveTrainingHeader = document.querySelector('#live-training-header');
         const linkLiveTraining = document.querySelector('#link-live-training');
-        const linkGetStarted = document.querySelector('#link-get-started');
         const linkResources = document.querySelector('#link-resources');
 
         linkResources.addEventListener('click', () => resources.scrollIntoView(true));
         linkLiveTraining.addEventListener('click', () => liveTraining.scrollIntoView(true));
-        linkGetStarted.addEventListener('click', () => getStarted.scrollIntoView(true));
+
     }
 
 </script>
@@ -279,9 +220,12 @@
         try {
             for (const event of eventsData) {
                 const dateTime = new Date(event.starts_at);
+                // format as Nov 26, 2019
                 localDate = dateTime.toDateString().slice(4);
-                localDate = localDate.substring(0, 3) + ', ' + localDate.substring(4);
+                localDate = localDate.substring(0, 6) + ', ' + localDate.substring(7);
+                // format time as 13:00
                 localTime = dateTime.toTimeString().slice(0, 5);
+                // attach object to each event 
                 event['local_starts_at'] = { date: localDate, time: localTime };
             }
         } catch (error) {
@@ -307,9 +251,11 @@
         let profilePage = `${urlDomain}/accounts/profile/?next=/`
         window.location.assign(profilePage)
     };
+    // change text
+    document.querySelector('.sj-text-my-profile').firstChild.innerText = "View Transcript";
 
     // Insert profile dropdown links
-    $('#header-drop li:nth-child(1)').after('<li><a href="https://nintex-it.workflowcloud.com/forms/6e677242-5448-421d-a957-4811fccb0572" target="_blank">Feedback</a></li>');
+    $('#header-drop li:nth-child(1)').after('<li><a href="https://nintex-it.workflowcloud.com/forms/6e677242-5448-421d-a957-4811fccb0572" target="_blank">Provide Feedback</a></li>');
     $('#header-drop li:nth-child(2)').after('<li><a href= "https://nintex-training.workflowcloud.com/forms/b013dd22-6173-4298-b48f-852ba1bd3a16" target="_blank">Request Content</a></li>');
 
     // Hide placeholder course
@@ -317,6 +263,10 @@
     if (window.location.pathname === '/series/products') {
         course.setAttribute('style', 'display: none')
     }
+
+    // changes start/enroll button for all courses
+    const startBtn = document.querySelector('.purchase-button-full-text');
+    if (startBtn) startBtn.innerText = 'Enroll';
 
     // Beamr Config
     const urlArr = window.location.href;
