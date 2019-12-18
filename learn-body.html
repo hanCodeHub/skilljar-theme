@@ -145,24 +145,16 @@
         topRow.appendChild(liveTraining);
         topRow.appendChild(resources);
 
-        // scroll to sections from links in banner
-        const liveTrainingHeader = document.querySelector('#live-training-header');
-        const linkLiveTraining = document.querySelector('#link-live-training');
-        const linkResources = document.querySelector('#link-resources');
-
-        linkResources.addEventListener('click', () => resources.scrollIntoView(true));
-        linkLiveTraining.addEventListener('click', () => liveTraining.scrollIntoView(true));
-
     }
 
 </script>
 
-<!-- API CALLS -->
+<!-- API CALLS FOR MAIN PAGE -->
 <script id="api-calls">
 
     if (location.pathname === '/') {
-
-        try {
+        
+        try {  // change domain to location.host for production
             getData("https://skilljar-api-test.azurewebsites.net/events/learn.nintex.com?count=4")
                 .then(res => addLocalDatesToEvents(res.data))
                 .then(events => renderEvents(events))
@@ -170,6 +162,17 @@
         } catch (error) {
             console.log(`Error getting data from api: ${error}`);
         }
+
+        // // FOR LOCAL DEBUGGING
+        // try {
+        //     getData("http://127.0.0.1:5000/events/learn.nintex.com?count=4")
+        //         .then(res => addLocalDatesToEvents(res.data))
+        //         .then(events => renderEvents(events))
+        //         .catch(err => console.log(err));
+        // } catch (error) {
+        //     console.log(`Error getting data from api: ${error}`);
+        // }
+
     }
 
     async function getData(url) {
@@ -285,11 +288,12 @@
 <script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
 
 <script>
+
     // Display "Hello " + Student Name on the homepage
     const getStudent = () => {
         const resScript = document.scripts[9].innerHTML;
         const res = resScript.match("(?<=firstName\: \').*(?=')");
-        helloMsg = res ? `Hello ${res}!` : "Hello!"
+        helloMsg = res ? `Hello ${res}!` : "Hello!";
         $('#hero-header').html(helloMsg);
     }
 
@@ -370,5 +374,57 @@
     if (titleLabel) {
         document.querySelector('.next-lesson-link').innerHTML = titleLabel.innerHTML
     }
+
+</script>
+
+
+<!-- VILT PAGE -->
+<script>
+    // generic fetch function
+    async function getData(url) {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return await response.json();
+    }
+
+    // Fetch user data with id from Skilljar API
+    const callUserData = (userId) => {
+        const domain = "learn.nintex.com"  // change domain to location.host
+        const baseURL = "https://skilljar-api-test.azurewebsites.net"
+        try {
+            getData(`${baseURL}/users/${userId}/${domain}`)
+                .then(res => res.data)
+                .then(userRecords => console.log(userRecords))
+                .catch(err => console.log(err));
+        } catch (error) {
+            console.log(`Error getting data from api: ${error}`);
+        }
+    }
+
+    // obtains user id first before calling API
+    const getUserData = () => {
+        // Poll the script tag for the user id until found
+        const pollUserId = setInterval(getUserId, 50);
+        
+        // inner function checks if id string exists
+        function getUserId() {
+            const scriptText = document.scripts[10].innerText;
+            const userData = scriptText.match("(?<=id\: \').*(?=')");
+            
+            // if found, clear interval and make fetch call
+            if (userData) {
+                userId = userData[0];
+                clearInterval(pollUserId);
+                callUserData(userId);
+            } 
+        }
+    }
+
+    if (location.pathname == "/series/vilt") 
+        getUserData();
 
 </script>
