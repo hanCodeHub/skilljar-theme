@@ -153,7 +153,7 @@
 <script id="api-calls">
 
     if (location.pathname === '/') {
-        
+
         try {  // change domain to location.host for production
             getData("https://skilljar-api-test.azurewebsites.net/events/learn.nintex.com?count=4")
                 .then(res => addLocalDatesToEvents(res.data))
@@ -380,6 +380,17 @@
 
 <!-- VILT PAGE -->
 <script>
+
+    if (location.pathname == "/series/vilt") {
+        const baseUrl = "https://skilljar-api-test.azurewebsites.net";
+        const domain = "learn.nintex.com";  // change domain to location.host
+        callEventsData(baseUrl, domain)
+        .then(events => console.log(events));
+        
+        getUserRecords(baseUrl, domain);  // get user data after rendering VILT view
+         
+    }
+
     // generic fetch function
     async function getData(url) {
         const response = await fetch(url, {
@@ -391,12 +402,10 @@
         return await response.json();
     }
 
-    // Fetch user data with id from Skilljar API
-    const callUserData = (userId) => {
-        const domain = "learn.nintex.com"  // change domain to location.host
-        const baseURL = "https://skilljar-api-test.azurewebsites.net"
+    // fetch user data with id from Skilljar API
+    async function callUserData(baseUrl, domain, userId) {
         try {
-            getData(`${baseURL}/users/${userId}/${domain}`)
+            return await getData(`${baseUrl}/users/${userId}/${domain}`)
                 .then(res => res.data)
                 .then(userRecords => console.log(userRecords))
                 .catch(err => console.log(err));
@@ -405,26 +414,36 @@
         }
     }
 
+    // fetch events data by unique course
+    async function callEventsData(baseUrl, domain) {
+        try {
+            return await getData(`${baseUrl}/events/${domain}?unique_view=True`)
+                .then(res => res.data)
+                .catch(err => console.log(err));
+        } catch (error) {
+            console.log(`Error getting data from api: ${error}`);
+        }
+    }
+
     // obtains user id first before calling API
-    const getUserData = () => {
+    function getUserRecords(baseUrl, domain) {
         // Poll the script tag for the user id until found
-        const pollUserId = setInterval(getUserId, 50);
-        
+        const pollUserId = setInterval(getUserId, 100);
+
         // inner function checks if id string exists
         function getUserId() {
             const scriptText = document.scripts[10].innerText;
             const userData = scriptText.match("(?<=id\: \').*(?=')");
-            
+
             // if found, clear interval and make fetch call
             if (userData) {
-                userId = userData[0];
+                const userId = userData[0];
                 clearInterval(pollUserId);
-                callUserData(userId);
-            } 
+                callUserData(baseUrl, domain, userId);
+            }
         }
     }
 
-    if (location.pathname == "/series/vilt") 
-        getUserData();
+
 
 </script>
