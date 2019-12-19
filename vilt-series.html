@@ -3,97 +3,114 @@
 
     <!-- container for all VILT event cards -->
     <div id="vilt-events" hidden>
-        <!-- template for a VILT event card - render real cards with JS -->
-        <div id="vilt-card" class="card-wide card-container" hidden>
-            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg" alt="event image">
 
-            <div class="card-wide-content">
-                <h4 id="event-title" class="card-wide-title">
-                    Some main title for the course
-                </h4>
-                <p id="event-subtitle" class="card-wide-subtitle">
-                    Some kind of subtitle explaining the goal of this course
-                </p>
-                <div id="event-times-container">
-                   <h5>Available times:</h5>
-                   <div id="event-times">
-                        <div class="pill-outline">
-                            <p id="event-date" class="pill-text">Nov 26, 2019</p>
-                            <p id="event-time" class="pill-text">09:00</p>
+        <div id="vilt-card" class="card-wide card-container" hidden>
+
+                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
+                    alt="event image">
+
+                <div class="card-wide-content">
+                    <h4 id="event-title" class="card-wide-title">
+                        Some main title for the course
+                    </h4>
+                    <p id="event-subtitle" class="card-wide-subtitle">
+                        Some kind of subtitle explaining the goal of this course
+                    </p>
+                    <div id="event-times-container">
+                        <h5>Available times:</h5>
+                        <div id="event-times">
+                            <div class="pill-outline">
+                                <p id="event-date" class="pill-text">Nov 26, 2019</p>
+                                <p id="event-time" class="pill-text">09:00</p>
+                            </div>
                         </div>
-                   </div> 
+                    </div>
+
                 </div>
-                
-            </div> 
 
         </div>
+        <!-- template for a VILT event card - render real cards with JS -->
+
     </div>
 
 </section>
 
 <!-- STYLES -->
 <style>
-#main-container #skilljar-content {
-    margin-left: 0;
-}
-
-#main-container #skilljar-content #vilt-events {
-    width: 80%;
-    margin: auto;
-}
-
-#vilt-section #vilt-events .card-wide {
-    border: 2px solid #052332;
-    display: flex;
-    margin: 2em auto;
-    max-width: 60em;
-}
-
-#vilt-section #vilt-events .card-wide img{
-    max-width: 15em;
-    margin-left: -1px;
-}
-
-@media only screen and (max-width: 1023px) {
-    #vilt-section #vilt-events .card-wide img{
-        display: none;
+    #main-container #skilljar-content {
+        margin-left: 0;
     }
-}
 
-#vilt-section #vilt-events .card-wide .card-wide-content {
-    width: 100%;
-    margin-left: 1em;
-}
+    #main-container #skilljar-content #vilt-events {
+        width: 80%;
+        margin: auto;
+    }
 
-.card-wide-content .card-wide-title {
-    margin-bottom: 0;
-}
+    #vilt-section #vilt-events #vilt-card.card-wide {
+        border: 2px solid #052332;
+        display: flex;
+        margin: 2em auto;
+        max-width: 60em;
+        cursor: pointer;
+        transition: all .3s ease;
+    }
 
-.card-wide-content .card-wide-subtitle {
-    color: #666464;
-    font-size: 1.1em;
-    margin-bottom: .5em;
-}
+    #vilt-section #vilt-events #vilt-card.card-wide:hover {
+        background-color: #052332;
+    }
 
-#vilt-events #event-times-container {
-    display: flex;
-    flex-flow: row wrap;
-}
+    #vilt-section #vilt-events #vilt-card.card-wide:hover h4,
+    #vilt-section #vilt-events #vilt-card.card-wide:hover h5,
+    #vilt-section #vilt-events #vilt-card.card-wide:hover #event-subtitle {
+        color: white;
+    }
 
-#vilt-events #event-times-container #event-times .pill-outline {
-    display: inline-block;
-    border: 2px solid #ff6d00;
-    border-radius: 10px;
-    padding: 0 4px;
-    margin: 0 1.5em .5em 1.5em;
-}
+    #vilt-section #vilt-events .card-wide img {
+        max-width: 15em;
+        margin-left: -1px;
+    }
 
-#vilt-events #event-times-container #event-times .pill-outline .pill-text{
-    font-size: .8em;
-    margin-bottom: 0;
-    text-align: center;
-}
+    @media only screen and (max-width: 1023px) {
+        #vilt-section #vilt-events .card-wide img {
+            display: none;
+        }
+    }
 
+    #vilt-section #vilt-events .card-wide .card-wide-content {
+        width: 100%;
+        margin-left: 1em;
+    }
+
+    .card-wide-content .card-wide-title {
+        margin-bottom: 0;
+        font-size: 1.3em;
+    }
+
+    .card-wide-content .card-wide-subtitle {
+        color: #666464;
+        font-size: 1.1em;
+        margin-bottom: .5em;
+    }
+
+    #vilt-events #event-times-container {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    #vilt-events #event-times-container #event-times .pill-outline {
+        display: inline-block;
+        background-color: white;
+        border: 2px solid #ff6d00;
+        border-radius: 10px;
+        padding: 0 4px;
+        margin: 0 1.5em .5em 1.5em;
+    }
+
+    #vilt-events #event-times-container #event-times .pill-outline .pill-text {
+        font-size: .8em;
+        margin-bottom: 0;
+        text-align: center;
+    }
 </style>
 
 <!-- API CALLS -->
@@ -103,10 +120,10 @@
         const baseUrl = "https://skilljar-api-test.azurewebsites.net";
         const domain = "learn.nintex.com";  // change domain to location.host
         callEventsData(baseUrl, domain)
-        .then(events => renderVilt(events));
-        
+            .then(events => renderVilt(events));
+
         getUserRecords(baseUrl, domain);  // get user data after rendering VILT view
-         
+
     }
 
     // generic fetch function
@@ -174,11 +191,13 @@
     function renderVilt(events) {
         const viltEvents = document.getElementById('vilt-events');
         const viltCard = document.getElementById('vilt-card');
-        
+
         // for each event copy viltCard template and fill with data
         for (ev of events) {
             // get template nodes
             const card = viltCard.cloneNode(true);
+            const url = ev.vilt_session.lesson.course.course_url;
+
             const title = card.querySelector("#event-title");
             const subtitle = card.querySelector("#event-subtitle");
             const date = card.querySelector("#event-date");
@@ -188,6 +207,7 @@
             title.innerText = ev.vilt_session.lesson.course.title;
             subtitle.innerText = ev.short_description;
 
+            card.addEventListener('click', ()=> window.open(url));
             viltEvents.appendChild(card);
 
         }
