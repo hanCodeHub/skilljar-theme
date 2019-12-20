@@ -30,26 +30,26 @@
     <!-- container for all VILT event cards -->
     <div id="vilt-events" hidden>
         <!-- template for a VILT event card - render real cards with JS -->
-        <div id="vilt-card" class="card-wide card-container" hidden>
+        <div class="card-wide card-container" hidden>
             <div class="img-container">
-                <img id="event-img"
+                <img class="event-img"
                     src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
                     alt="event image">
             </div>
-
+            <!-- event card -->
             <div class="card-wide-content">
-                <h4 id="event-title" class="card-wide-title">
+                <h4 class="card-wide-title">
                     Some main title for the course
                 </h4>
-                <p id="event-subtitle" class="card-wide-subtitle">
+                <p class="card-wide-subtitle">
                     Some kind of subtitle explaining the goal of this course
                 </p>
-                <div id="event-times-container">
+                <div class="event-times-container">
                     <h5>Available times:</h5>
-                    <div id="event-times">
-                        <div id="dt-pill" class="pill-outline" hidden>
-                            <p id="event-date" class="pill-text">Nov 26, 2019</p>
-                            <p id="event-time" class="pill-text">09:00</p>
+                    <div class="event-times">
+                        <div class="pill-outline" hidden>
+                            <p class="pill-text pill-date">Nov 26, 2019</p>
+                            <p class="pill-text pill-time">09:00</p>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
         margin-top: 3em;
     }
 
-    #vilt-section #vilt-events #vilt-card.card-wide {
+    #vilt-section #vilt-events .card-wide {
         border: 4px solid #052332;
         background-color: #fff;
         display: flex;
@@ -119,13 +119,13 @@
         transition: all .3s ease;
     }
 
-    #vilt-section #vilt-events #vilt-card.card-wide:hover {
+    #vilt-section #vilt-events .card-wide:hover {
         background-color: #052332;
     }
 
-    #vilt-section #vilt-events #vilt-card.card-wide:hover h4,
-    #vilt-section #vilt-events #vilt-card.card-wide:hover h5,
-    #vilt-section #vilt-events #vilt-card.card-wide:hover #event-subtitle {
+    #vilt-section #vilt-events .card-wide:hover h4,
+    #vilt-section #vilt-events .card-wide:hover h5,
+    #vilt-section #vilt-events .card-wide:hover .card-wide-subtitle {
         color: #fff;
     }
 
@@ -146,7 +146,7 @@
             display: none;
         }
 
-        #vilt-section #vilt-events #vilt-card.card-wide {
+        #vilt-section #vilt-events .card-wide {
             text-align: center;
         }
     }
@@ -170,14 +170,14 @@
         margin-bottom: 0;
     }
 
-    #vilt-events #event-times-container {
+    #vilt-events .event-times-container {
         display: flex;
         flex-flow: column wrap;
         margin-bottom: .5em;
         margin-top: .5em;
     }
 
-    #vilt-events #event-times-container #event-times .pill-outline {
+    #vilt-events .event-times-container .event-times .pill-outline {
         display: inline-block;
         background-color: white;
         border: 3px solid #ff6d00;
@@ -186,7 +186,7 @@
         margin: 0 0 .5em 1.5em;
     }
 
-    #vilt-events #event-times-container #event-times .pill-outline .pill-text {
+    #vilt-events .event-times-container .event-times .pill-outline .pill-text {
         font-size: .8em;
         margin-bottom: 0;
         text-align: center;
@@ -282,37 +282,36 @@
         content.appendChild(vilt);
 
         // template elements
-        const viltCard = document.getElementById('vilt-card');
+        const viltCard = document.querySelector('.card-wide');
         const viltEvents = document.getElementById('vilt-events');
 
-        // for each event copy viltCard template and fill with data
-        for (ev of events) {
-            renderEvent(ev, viltCard, viltEvents)
-        }
+        // for each event copy viltCard template and fill with ev data
+        events.forEach(ev => renderEvent(ev, viltCard, viltEvents));
 
         // unhide real elements and hide template card
         viltEvents.hidden = false;
         document.getElementById("vilt-header").hidden = false;
-        // removes class with display:flex which enables hidden
-        viltCard.classList.remove("card-wide");
+        // removes class with display:flex which enables hidden on template
+        viltCard.remove();
     }
 
     // renders a single event card to the vilt-events section
     function renderEvent(ev, viltCard, viltEvents) {
         // copy template card and get its child elements
         const card = viltCard.cloneNode(true);
-        const title = card.querySelector("#event-title");
-        const subtitle = card.querySelector("#event-subtitle");
-        const image = card.querySelector("#event-img");
+        const title = card.querySelector(".card-wide-title");
+        const subtitle = card.querySelector(".card-wide-subtitle");
+        const image = card.querySelector(".event-img");
 
         // populate text with API data
         title.innerText = ev.vilt_session.lesson.course.title;
         subtitle.innerText = ev.short_description;
         image.src = getImageUrl(ev.tags[0]);
         renderEventTime(ev, card);
+        card.dataset.tag = ev.tags[0];  // set data attrib to capability
 
         // add link to card and append card to vilt-events
-        url = ev.vilt_session.lesson.course.course_url;
+        const url = ev.vilt_session.lesson.course.course_url;
         card.addEventListener('click', () => window.open(url));
         viltEvents.appendChild(card);
     }
@@ -320,25 +319,26 @@
     // returns the image URL based on product capability
     function getImageUrl(productCap) {
         // images stored in Skilljar Image Respository course series
-        const formsUrl = "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png";
-        const workflowUrl = "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png";
+        imageUrls = {
+            forms: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png",
+            workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png"
+        }
 
-        // find the URL match for product capability
+        // NEED TO ADD MORE IMAGE URLS
+        // - process mapping
+        // - docgen
+        // - rpa
+
+        // match image URL with product capability
         productCap = productCap.toLowerCase();
-        let imageUrl = "";
-
-        if (productCap == "workflow")
-            imageUrl = workflowUrl;
-        else if (productCap == "forms")
-            imageUrl = formsUrl;
-
-        return imageUrl;
+        if (productCap == "workflow") return imageUrls.workflow;
+        else if (productCap == "forms") return imageUrls.forms;
     }
 
     // renders an event datetime pill within a given card
     function renderEventTime(event, card) {
         // render each event start time + date in local time
-        const viltPill = card.querySelector("#dt-pill");
+        const viltPill = card.querySelector(".pill-outline");
         event.starts_at.forEach(eventTime => {
             if (eventTime.seats <= 0) return; // skip if no available seats
 
@@ -352,11 +352,11 @@
             // datetime pill is cloned and populated for each start time
 
             const dtPill = viltPill.cloneNode(true);
-            dtPill.querySelector("#event-date").innerText = localDate;
-            dtPill.querySelector("#event-time").innerText = localTime;
+            dtPill.querySelector(".pill-date").innerText = localDate;
+            dtPill.querySelector(".pill-time").innerText = localTime;
 
             // pill added to times section
-            card.querySelector("#event-times").append(dtPill);
+            card.querySelector(".event-times").append(dtPill);
         });
         viltPill.style.display = "none";
     }
@@ -366,12 +366,40 @@
 
 <!-- FILTER AND SEARCH -->
 <script>
+    // viltCards stores all available cards
+    const viltCards = document.querySelectorAll('.card-wide');
     const filterSelect = document.getElementById('filter-select');
     const filterSearch = document.getElementById('filter-search');
+    
 
     filterSelect.addEventListener('change', handleFilterSelect);
+    filterSearch.addEventListener('change', handleFilterSearch);
 
+    // filters out all vilt cards that don't match selection
     function handleFilterSelect(e) {
-        console.log(e.target.value);
+        const viltCards = document.querySelectorAll('.card-wide');
+        const selected = e.target.value.toLowerCase();
+        
+        // capability stored on data-tag of each card
+        for (card of viltCards) {
+            card.style.display = "flex";  // reset before filtering
+            const tag = card.dataset.tag.toLowerCase();
+            
+            if (tag != selected && selected != "all")
+                card.style.display = "none";
+        }
+    }
+
+    function handleFilterSearch(e) { 
+        const viltCards = document.querySelectorAll('.card-wide');
+        const input = e.target.value.toLowerCase();
+
+        for (card of viltCards) {
+            card.style.display = "flex";  // reset before filtering
+            const name = card.lastElementChild.firstElementChild.innerText;
+            
+            if (!name.toLowerCase().includes(input))
+                card.style.display = "none";
+        }
     }
 </script>
