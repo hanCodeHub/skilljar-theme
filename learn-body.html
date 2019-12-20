@@ -175,6 +175,17 @@
 
     }
 
+    // returns the user Skilljar object if logged in, or null otherwise
+    function getUser() {
+        let user = null;
+        try {
+            user = skilljarUser;
+        } catch (error) {
+            console.log("user needs to sign in to see skilljar data.")
+        }
+        return user;
+    }
+
     async function getData(url) {
         const response = await fetch(url, {
             method: 'GET',
@@ -288,16 +299,15 @@
 <script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
 
 <script>
-
     // Display "Hello " + Student Name on the homepage
-    const getStudent = () => {
-        const resScript = document.scripts[9].innerHTML;
-        const res = resScript.match("(?<=firstName\: \').*(?=')");
-        helloMsg = res ? `Hello ${res}!` : "Hello!";
-        $('#hero-header').html(helloMsg);
+    const greetUser = () => {
+        const user = getUser();
+        if (user)
+            document.getElementById("hero-header").innerHTML = `Hello ${user.firstName}!`;
     }
 
-    window.addEventListener('load', getStudent);
+    if (location.pathname == '/')
+        document.addEventListener('DOMContentLoaded', greetUser);
 
     // legal T&C link and currency additions on purchase page
     const controlPayment = () => {

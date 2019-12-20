@@ -15,9 +15,7 @@
                 <option value="rpa">RPA</option>
             </select>
 
-            <input type="text"  id="filter-search" class="filter-control"
-                placeholder="Search class names"
-            >
+            <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
             <span class="fa fa-search"></span>
         </div>
 
@@ -33,9 +31,11 @@
     <div id="vilt-events" hidden>
         <!-- template for a VILT event card - render real cards with JS -->
         <div id="vilt-card" class="card-wide card-container" hidden>
-            <img id="event-img"
-                src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
-                alt="event image">
+            <div class="img-container">
+                <img id="event-img"
+                    src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
+                    alt="event image">
+            </div>
 
             <div class="card-wide-content">
                 <h4 id="event-title" class="card-wide-title">
@@ -78,7 +78,7 @@
 
     #main-container #vilt-section h1.section-header {
         font-weight: 350;
-        margin: 1em 0;
+        margin: 1.5em 0 1em 0;
     }
 
     #vilt-header #filters-row {
@@ -96,10 +96,12 @@
         border: 2px solid #052332;
         margin: 0 2em .5em 2em;
     }
-    #vilt-header #filters-row select.filter-control { 
+
+    #vilt-header #filters-row select.filter-control {
         cursor: pointer;
     }
-    #vilt-header #filters-row input.filter-control { 
+
+    #vilt-header #filters-row input.filter-control {
         text-indent: 4px;
     }
 
@@ -127,20 +129,34 @@
         color: #fff;
     }
 
-    #vilt-section #vilt-events .card-wide img {
-        max-width: 15em;
-        margin-left: -1px;
+    #vilt-section #vilt-events .img-container {
+        overflow: hidden;
+        max-width: 28%;
+        display: flex;
+        align-items: center;
     }
 
-    @media only screen and (max-width: 1023px) {
-        #vilt-section #vilt-events .card-wide img {
+    #vilt-section #vilt-events .card-wide img {
+        width: 100%;
+        transform: scale(1.5);
+    }
+
+    @media only screen and (max-width: 1150px) {
+        #vilt-section #vilt-events .img-container {
             display: none;
+        }
+
+        #vilt-section #vilt-events #vilt-card.card-wide {
+            text-align: center;
         }
     }
 
     #vilt-section #vilt-events .card-wide .card-wide-content {
         width: 100%;
         margin: 0 1em;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
     }
 
     .card-wide-content .card-wide-title {
@@ -151,13 +167,14 @@
     .card-wide-content .card-wide-subtitle {
         color: #666464;
         font-size: 1.1em;
-        margin-bottom: .5em;
+        margin-bottom: 0;
     }
 
     #vilt-events #event-times-container {
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: column wrap;
         margin-bottom: .5em;
+        margin-top: .5em;
     }
 
     #vilt-events #event-times-container #event-times .pill-outline {
@@ -187,16 +204,36 @@
 <!-- API CALLS -->
 <script>
 
+    // MAIN
     if (location.pathname == "/series/vilt") {
+
         const baseUrl = "https://skilljar-api-test.azurewebsites.net";
         const domain = "learn.nintex.com";  // change domain to location.host
+        const user = getUser();  // user skilljar object
 
-        // get user records after rendering view
+        // render live events into view
         callEventsData(baseUrl, domain)
             .then(events => renderVilt(events))
-            .then(() => getUserRecords(baseUrl, domain))
             .catch((err) => console.log(err));
 
+        // add user progress to view if user is logged in
+        // if (user) {
+        //     callUserData(baseUrl, domain, user.id)
+        //         .then(records => records)
+        //         .catch(err => console.log(err));
+        // }
+
+    }
+
+    // returns the user Skilljar object if logged in, or null otherwise
+    function getUser() {
+        let user = null;
+        try {
+            user = skilljarUser;
+        } catch (error) {
+            console.log("user needs to sign in to see skilljar data.")
+        }
+        return user;
     }
 
     // generic fetch function
@@ -215,7 +252,6 @@
         try {
             return await getData(`${baseUrl}/users/${userId}/${domain}`)
                 .then(res => res.data)
-                .then(userRecords => console.log(userRecords))
                 .catch(err => console.log(err));
         } catch (error) {
             console.log(`Error getting data from api: ${error}`);
@@ -233,66 +269,52 @@
         }
     }
 
-    // obtains user id first before calling API
-    function getUserRecords(baseUrl, domain) {
-        // Poll the script tag for the user id until found
-        const pollUserId = setInterval(getUserId, 100);
-
-        // inner function checks if id string exists
-        function getUserId() {
-            const scriptText = document.scripts[10].innerText;
-            const userData = scriptText.match("(?<=id\: \').*(?=')");
-
-            // if found, clear interval and make fetch call
-            if (userData) {
-                const userId = userData[0];
-                clearInterval(pollUserId);
-                callUserData(baseUrl, domain, userId);
-            }
-        }
-    }
-
 
     // DYNAMIC RENDERING OF EVENTS
 
-    // attach content to #skilljar-content section
-    const vilt = document.getElementById("vilt-section");
-    const content = document.getElementById("skilljar-content");
-    content.appendChild(vilt);
-
-    // renders a VILT event card with data from API
+    // renders all VILT event cards with data from API
     function renderVilt(events) {
         // remove loader animation
         document.getElementById('events-loader').remove();
+        // attach template to #skilljar-content section
+        const vilt = document.getElementById("vilt-section");
+        const content = document.getElementById("skilljar-content");
+        content.appendChild(vilt);
 
         // template elements
-        const viltEvents = document.getElementById('vilt-events');
         const viltCard = document.getElementById('vilt-card');
+        const viltEvents = document.getElementById('vilt-events');
 
         // for each event copy viltCard template and fill with data
         for (ev of events) {
-            // copy template card and get its child elements
-            const card = viltCard.cloneNode(true);
-            const title = card.querySelector("#event-title");
-            const subtitle = card.querySelector("#event-subtitle");
-            const image = card.querySelector("#event-img");
-
-            // populate text with API data
-            title.innerText = ev.vilt_session.lesson.course.title;
-            subtitle.innerText = ev.short_description;
-            image.src = getImageUrl(ev.tags[0]);
-            renderEventTime(ev, card);
-
-            // add link to card and append card to vilt-events
-            url = ev.vilt_session.lesson.course.course_url;
-            card.addEventListener('click', () => window.open(url));
-            viltEvents.appendChild(card);
+            renderEvent(ev, viltCard, viltEvents)
         }
+
         // unhide real elements and hide template card
         viltEvents.hidden = false;
         document.getElementById("vilt-header").hidden = false;
         // removes class with display:flex which enables hidden
         viltCard.classList.remove("card-wide");
+    }
+
+    // renders a single event card to the vilt-events section
+    function renderEvent(ev, viltCard, viltEvents) {
+        // copy template card and get its child elements
+        const card = viltCard.cloneNode(true);
+        const title = card.querySelector("#event-title");
+        const subtitle = card.querySelector("#event-subtitle");
+        const image = card.querySelector("#event-img");
+
+        // populate text with API data
+        title.innerText = ev.vilt_session.lesson.course.title;
+        subtitle.innerText = ev.short_description;
+        image.src = getImageUrl(ev.tags[0]);
+        renderEventTime(ev, card);
+
+        // add link to card and append card to vilt-events
+        url = ev.vilt_session.lesson.course.course_url;
+        card.addEventListener('click', () => window.open(url));
+        viltEvents.appendChild(card);
     }
 
     // returns the image URL based on product capability
