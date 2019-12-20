@@ -1,51 +1,67 @@
 <!-- Code inserted in the Header of VILT Course Series -->
 <section id="vilt-section">
+
+    <div id="filters-section">
+
+    </div>
+
+    <h1 class="section-header text-center" hidden>Select A Virtual Class</h1>
+
     <div id="events-loader">
-        <h3 class="text-center">Fetching available events...</h3>
+        <h3 class="text-center">Fetching available classes...</h3>
         <div class="loader-dark"></div>
     </div>
-    
+
     <!-- container for all VILT event cards -->
     <div id="vilt-events" hidden>
         <!-- template for a VILT event card - render real cards with JS -->
         <div id="vilt-card" class="card-wide card-container" hidden>
-                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
-                    alt="event image">
+            <img id="event-img"
+                src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fnintexu-vILT.1576697456192.jpg"
+                alt="event image">
 
-                <div class="card-wide-content">
-                    <h4 id="event-title" class="card-wide-title">
-                        Some main title for the course
-                    </h4>
-                    <p id="event-subtitle" class="card-wide-subtitle">
-                        Some kind of subtitle explaining the goal of this course
-                    </p>
-                    <div id="event-times-container">
-                        <h5>Available times:</h5>
-                        <div id="event-times">
-                            <div id="dt-pill" class="pill-outline" hidden>
-                                <p id="event-date" class="pill-text">Nov 26, 2019</p>
-                                <p id="event-time" class="pill-text">09:00</p>
-                            </div>
+            <div class="card-wide-content">
+                <h4 id="event-title" class="card-wide-title">
+                    Some main title for the course
+                </h4>
+                <p id="event-subtitle" class="card-wide-subtitle">
+                    Some kind of subtitle explaining the goal of this course
+                </p>
+                <div id="event-times-container">
+                    <h5>Available times:</h5>
+                    <div id="event-times">
+                        <div id="dt-pill" class="pill-outline" hidden>
+                            <p id="event-date" class="pill-text">Nov 26, 2019</p>
+                            <p id="event-time" class="pill-text">09:00</p>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        
+
     </div>
 
 </section>
 
 <!-- STYLES -->
 <style>
-
     #main-container #skilljar-content {
         margin-left: 0;
         background: linear-gradient(to right, #7798a8, #fff);
     }
 
+    #main-container #skilljar-content .top-row {
+        padding: 0;
+    }
+
     #main-container #skilljar-content #vilt-events {
         width: 80%;
         margin: auto;
+    }
+
+    #main-container #vilt-section h1.section-header{
+        font-weight: 350;
+        margin-bottom: 1em;
     }
 
     #vilt-section #vilt-events #vilt-card.card-wide {
@@ -107,7 +123,7 @@
         border: 3px solid #ff6d00;
         border-radius: 10px;
         padding: 0 4px;
-        margin: 0 1.5em .5em 1.5em;
+        margin: 0 0 .5em 1.5em;
     }
 
     #vilt-events #event-times-container #event-times .pill-outline .pill-text {
@@ -117,16 +133,26 @@
     }
 </style>
 
+
+<!-- MINOR DOM EDITS -->
+<script>
+    // remove all search elements and reset searchbar
+    document.querySelector('.search-container').remove();
+</script>
+
+
 <!-- API CALLS -->
 <script>
 
     if (location.pathname == "/series/vilt") {
         const baseUrl = "https://skilljar-api-test.azurewebsites.net";
         const domain = "learn.nintex.com";  // change domain to location.host
-        callEventsData(baseUrl, domain)
-            .then(events => renderVilt(events));
 
-        getUserRecords(baseUrl, domain);  // get user data after rendering VILT view
+        // get user records after rendering view
+        callEventsData(baseUrl, domain)
+            .then(events => renderVilt(events))
+            .then(() => getUserRecords(baseUrl, domain))
+            .catch((err) => console.log(err));
 
     }
 
@@ -191,7 +217,7 @@
     const content = document.getElementById("skilljar-content");
     content.appendChild(vilt);
 
-    // rendering called after data is retrieved
+    // renders a VILT event card with data from API
     function renderVilt(events) {
         // remove loader animation
         document.getElementById('events-loader').remove();
@@ -202,45 +228,72 @@
 
         // for each event copy viltCard template and fill with data
         for (ev of events) {
-            // copy template node and get its child elements
+            // copy template card and get its child elements
             const card = viltCard.cloneNode(true);
             const title = card.querySelector("#event-title");
             const subtitle = card.querySelector("#event-subtitle");
+            const image = card.querySelector("#event-img");
+
             // populate text with API data
             title.innerText = ev.vilt_session.lesson.course.title;
             subtitle.innerText = ev.short_description;
-
-            // render each event start time + date in local time
-            const viltPill = card.querySelector("#dt-pill");
-            ev.starts_at.forEach(eventTime => {
-                if (eventTime.seats <= 0) return;
-
-                const dateTime = new Date(eventTime.time);
-                // format as Nov 26, 2019
-                let localDate = dateTime.toDateString().slice(4);
-                localDate = localDate.substring(0, 6) + ', ' + localDate.substring(7);
-                // format time as 13:00
-                let localTime = dateTime.toTimeString().slice(0, 5);
-                
-                // datetime pill is cloned and populated for each start time
-                
-                const dtPill = viltPill.cloneNode(true);
-                dtPill.querySelector("#event-date").innerText = localDate;
-                dtPill.querySelector("#event-time").innerText = localTime;
-              
-                // pill added to times section
-                card.querySelector("#event-times").append(dtPill);
-            }); 
-            viltPill.style.display = "none";
+            image.src = getImageUrl(ev.tags[0]);
+            renderEventTime(ev, card);
 
             // add link to card and append card to vilt-events
             url = ev.vilt_session.lesson.course.course_url;
-            card.addEventListener('click', ()=> window.open(url));
+            card.addEventListener('click', () => window.open(url));
             viltEvents.appendChild(card);
         }
         // unhide real cards and hide template card
         viltEvents.hidden = false;
+        document.querySelector(".section-header").hidden = false;
         // removes class with display:flex which enables hidden
-        viltCard.classList.remove("card-wide"); 
+        viltCard.classList.remove("card-wide");
     }
+
+    // returns the image URL based on product capability
+    function getImageUrl(productCap) {
+        // images stored in Skilljar Image Respository course series
+        const formsUrl = "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png";
+        const workflowUrl = "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png";
+
+        // find the URL match for product capability
+        productCap = productCap.toLowerCase();
+        let imageUrl = "";
+
+        if (productCap == "workflow")
+            imageUrl = workflowUrl;
+        else if (productCap == "forms")
+            imageUrl = formsUrl;
+
+        return imageUrl;
+    }
+
+    // renders an event datetime pill within a given card
+    function renderEventTime(event, card) {
+        // render each event start time + date in local time
+        const viltPill = card.querySelector("#dt-pill");
+        event.starts_at.forEach(eventTime => {
+            if (eventTime.seats <= 0) return; // skip if no available seats
+
+            const dateTime = new Date(eventTime.time);
+            // format as Nov 26, 2019
+            let localDate = dateTime.toDateString().slice(4);
+            localDate = localDate.substring(0, 6) + ', ' + localDate.substring(7);
+            // format time as 13:00
+            let localTime = dateTime.toTimeString().slice(0, 5);
+
+            // datetime pill is cloned and populated for each start time
+
+            const dtPill = viltPill.cloneNode(true);
+            dtPill.querySelector("#event-date").innerText = localDate;
+            dtPill.querySelector("#event-time").innerText = localTime;
+
+            // pill added to times section
+            card.querySelector("#event-times").append(dtPill);
+        });
+        viltPill.style.display = "none";
+    }
+
 </script>
