@@ -1,12 +1,29 @@
 <!-- Code inserted in the Header of VILT Course Series -->
 <section id="vilt-section">
 
-    <div id="filters-section">
+    <!-- header for title and filter controls -->
+    <div id="vilt-header" hidden>
+        <h1 class="section-header text-center">Select A Virtual Class</h1>
+        <div id="filters-row">
+            <select name="capability" id="filter-select" class="filter-control">
+                <!-- values should match tag names of capabilities -->
+                <option selected value="all">All Capabilities</option>
+                <option value="workflow">Workflow</option>
+                <option value="forms">Forms</option>
+                <option value="process mapping">Process Mapping</option>
+                <option value="docgen">DocGen</option>
+                <option value="rpa">RPA</option>
+            </select>
+
+            <input type="text"  id="filter-search" class="filter-control"
+                placeholder="Search class names"
+            >
+            <span class="fa fa-search"></span>
+        </div>
 
     </div>
 
-    <h1 class="section-header text-center" hidden>Select A Virtual Class</h1>
-
+    <!-- loader animation removed when cards render -->
     <div id="events-loader">
         <h3 class="text-center">Fetching available classes...</h3>
         <div class="loader-dark"></div>
@@ -59,9 +76,35 @@
         margin: auto;
     }
 
-    #main-container #vilt-section h1.section-header{
+    #main-container #vilt-section h1.section-header {
         font-weight: 350;
-        margin-bottom: 1em;
+        margin: 1em 0;
+    }
+
+    #vilt-header #filters-row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    #vilt-header #filters-row .filter-control {
+        width: 12em;
+        font-size: inherit;
+        color: inherit;
+        border-radius: 5px;
+        padding: 4px;
+        border: 2px solid #052332;
+        margin: 0 2em .5em 2em;
+    }
+    #vilt-header #filters-row select.filter-control { 
+        cursor: pointer;
+    }
+    #vilt-header #filters-row input.filter-control { 
+        text-indent: 4px;
+    }
+
+    #vilt-section #events-loader {
+        margin-top: 3em;
     }
 
     #vilt-section #vilt-events #vilt-card.card-wide {
@@ -245,9 +288,9 @@
             card.addEventListener('click', () => window.open(url));
             viltEvents.appendChild(card);
         }
-        // unhide real cards and hide template card
+        // unhide real elements and hide template card
         viltEvents.hidden = false;
-        document.querySelector(".section-header").hidden = false;
+        document.getElementById("vilt-header").hidden = false;
         // removes class with display:flex which enables hidden
         viltCard.classList.remove("card-wide");
     }
@@ -296,4 +339,17 @@
         viltPill.style.display = "none";
     }
 
+</script>
+
+
+<!-- FILTER AND SEARCH -->
+<script>
+    const filterSelect = document.getElementById('filter-select');
+    const filterSearch = document.getElementById('filter-search');
+
+    filterSelect.addEventListener('change', handleFilterSelect);
+
+    function handleFilterSelect(e) {
+        console.log(e.target.value);
+    }
 </script>

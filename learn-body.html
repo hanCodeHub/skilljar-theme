@@ -360,9 +360,6 @@
         }
     });
 
-    // Adds currency again when page refreshes
-    document.addEventListener('change', addCurrencySubAndTotal);
-
     // Hides the ribbons of each tile on certification page
     if (window.location.pathname.endsWith('/certifications')) {
         const ribbons = document.querySelectorAll('.sj-course-ribbon-wrapper')
