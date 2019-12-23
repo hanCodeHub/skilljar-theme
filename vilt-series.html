@@ -366,40 +366,50 @@
 
 <!-- FILTER AND SEARCH -->
 <script>
-    // viltCards stores all available cards
-    const viltCards = document.querySelectorAll('.card-wide');
+    // event listeners for filter controls
     const filterSelect = document.getElementById('filter-select');
     const filterSearch = document.getElementById('filter-search');
-    
+    filterSelect.addEventListener('change', handleViltFilters);
+    filterSearch.addEventListener('change', handleViltFilters);
 
-    filterSelect.addEventListener('change', handleFilterSelect);
-    filterSearch.addEventListener('change', handleFilterSearch);
-
-    // filters out all vilt cards that don't match selection
-    function handleFilterSelect(e) {
+    // handles all VILT filters on all cards
+    function handleViltFilters(e) {
+        // display all possible cards
         const viltCards = document.querySelectorAll('.card-wide');
-        const selected = e.target.value.toLowerCase();
+        for (card of viltCards) card.style.display = 'flex';
+
+        // pass cards through all filters
+        handleViltSelect(viltCards);
+        handleViltSearch(viltCards);
+
+    }
+
+    // filters and returns VILT cards by capability selection
+    function handleViltSelect(viltCards) {
+        const select = document.getElementById('filter-select').value.toLowerCase();
         
-        // capability stored on data-tag of each card
+        // filter by capability stored on data-tag of each card
         for (card of viltCards) {
-            card.style.display = "flex";  // reset before filtering
             const tag = card.dataset.tag.toLowerCase();
-            
-            if (tag != selected && selected != "all")
+            if (tag != select && select != "all") {
                 card.style.display = "none";
+            }
         }
+        return viltCards;
     }
 
-    function handleFilterSearch(e) { 
-        const viltCards = document.querySelectorAll('.card-wide');
-        const input = e.target.value.toLowerCase();
+    // filters and returns VILT cards by name search
+    function handleViltSearch(viltCards) {
+        const input = document.getElementById('filter-search').value.toLowerCase();
 
+        // filter by name given in search input
         for (card of viltCards) {
-            card.style.display = "flex";  // reset before filtering
             const name = card.lastElementChild.firstElementChild.innerText;
-            
-            if (!name.toLowerCase().includes(input))
+            if (!name.toLowerCase().includes(input)) {
                 card.style.display = "none";
+            }
         }
+        return viltCards
     }
+
 </script>
