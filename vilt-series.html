@@ -29,7 +29,7 @@
 
     <!-- container for all VILT event cards -->
     <div id="vilt-events" hidden>
-        <!-- template for a VILT event card - render real cards with JS -->
+        <!-- template for a VILT event card - real cards rendered with JS -->
         <div class="card-wide card-container" hidden>
             <div class="img-container">
                 <img class="event-img"
@@ -45,7 +45,11 @@
                     Some kind of subtitle explaining the goal of this course
                 </p>
                 <div class="event-times-container">
-                    <h5>Available times:</h5>
+                    <h5>
+                        Available times:
+                        <span class="badge badge-register" hidden>Registered</span>
+                        <span class="badge badge-success" hidden>Completed</span>
+                    </h5>
                     <div class="event-times">
                         <div class="pill-outline" hidden>
                             <p class="pill-text pill-date">Nov 26, 2019</p>
@@ -177,6 +181,25 @@
         margin-top: .5em;
     }
 
+    #vilt-events .event-times-container .badge {
+        padding: 4px;
+        border-radius: 5px;
+        font-size: .8em;
+        float: right;
+        margin: 0 .5em;
+    }
+
+    .badge-register {
+        background-color: #ff6d00;
+        color: white;
+    }
+
+    .badge-success {
+        background-color: #4c994c;
+        color: #fff;
+    }
+
+
     #vilt-events .event-times-container .event-times .pill-outline {
         display: inline-block;
         background-color: white;
@@ -217,11 +240,11 @@
             .catch((err) => console.log(err));
 
         // add user progress to view if user is logged in
-        // if (user) {
-        //     callUserData(baseUrl, domain, user.id)
-        //         .then(records => records)
-        //         .catch(err => console.log(err));
-        // }
+        if (user) {
+            callUserData(baseUrl, domain, user.id)
+                .then(records => showUserProgress(records))
+                .catch(err => console.log(err));
+        }
 
     }
 
@@ -308,7 +331,10 @@
         subtitle.innerText = ev.short_description;
         image.src = getImageUrl(ev.tags[0]);
         renderEventTime(ev, card);
-        card.dataset.tag = ev.tags[0];  // set data attrib to capability
+
+        // set data attributes
+        card.dataset.tag = ev.tags[0];  // capability
+        card.dataset.id = ev.vilt_session.lesson.course.id  // course id
 
         // add link to card and append card to vilt-events
         const url = ev.vilt_session.lesson.course.course_url;
@@ -361,6 +387,36 @@
         viltPill.style.display = "none";
     }
 
+    // unhides a registered/completed progress pill on applicable event cards
+    function showUserProgress(records) {
+
+        // get all rendered VILT cards
+        const viltCards = document.getElementById('vilt-events').children;
+
+        // iterate through all user records to show progress if needed
+        for (record of records) {
+            for (card of viltCards) {
+                showProgress(card, record);
+            }
+        }
+    }
+
+    // unhides a single progress pill based on matching course id
+    function showProgress(card, record) {
+        // get pills
+        const registerBadge = card.querySelector('.badge-register');
+        const successBadge = card.querySelector('.badge-success');
+        
+        // check record course id against rendered card course id
+        if (card.dataset.id == record.course.id) {
+            if (record.course_progress.completed_at)  
+                successBadge.hidden = false;  // completed
+            else                                       
+                registerBadge.hidden = false;  // registered
+        }
+
+    }
+
 </script>
 
 
@@ -387,7 +443,7 @@
     // filters and returns VILT cards by capability selection
     function handleViltSelect(viltCards) {
         const select = document.getElementById('filter-select').value.toLowerCase();
-        
+
         // filter by capability stored on data-tag of each card
         for (card of viltCards) {
             const tag = card.dataset.tag.toLowerCase();
