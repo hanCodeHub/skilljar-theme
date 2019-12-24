@@ -5,9 +5,11 @@
     <div id="vilt-header" hidden>
         <h1 class="section-header text-center">Select A Virtual Class</h1>
         <div id="filters-row">
+
+            <!-- select filter -->
             <select name="capability" id="filter-select" class="filter-control">
                 <!-- values should match tag names of capabilities -->
-                <option selected value="all">All Capabilities</option>
+                <option selected value="all">All Products</option>
                 <option value="workflow">Workflow</option>
                 <option value="forms">Forms</option>
                 <option value="process mapping">Process Mapping</option>
@@ -15,8 +17,16 @@
                 <option value="rpa">RPA</option>
             </select>
 
-            <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
-            <span class="fa fa-search"></span>
+            <!-- search filter -->
+            <input type="text" id="filter-search" class="filter-control" 
+                placeholder="Search class names"
+            >
+
+            <!-- filters reset -->
+            <a href="#" id="filter-reset" class="link">
+                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Freset-icon.1577213905129.png" 
+                alt="filter reset button">
+            </a>
         </div>
 
     </div>
@@ -107,6 +117,10 @@
 
     #vilt-header #filters-row input.filter-control {
         text-indent: 4px;
+    }
+
+    #vilt-header #filters-row .link {
+        margin-left: 1.5em;
     }
 
     #vilt-section #events-loader {
@@ -425,19 +439,25 @@
     // event listeners for filter controls
     const filterSelect = document.getElementById('filter-select');
     const filterSearch = document.getElementById('filter-search');
+    const resetBtn = document.getElementById('filter-reset');
+        
     filterSelect.addEventListener('change', handleViltFilters);
     filterSearch.addEventListener('change', handleViltFilters);
+    resetBtn.addEventListener('click', handleFilterReset);
+
+    // resets view by displaying all possible VILT event cards
+    function displayVilt() {
+        const viltCards = document.querySelectorAll('.card-wide');
+        for (card of viltCards) card.style.display = 'flex';
+    }
 
     // handles all VILT filters on all cards
     function handleViltFilters(e) {
-        // display all possible cards
-        const viltCards = document.querySelectorAll('.card-wide');
-        for (card of viltCards) card.style.display = 'flex';
-
+        displayVilt();  // reset view
         // pass cards through all filters
+        const viltCards = document.querySelectorAll('.card-wide');
         handleViltSelect(viltCards);
         handleViltSearch(viltCards);
-
     }
 
     // filters and returns VILT cards by capability selection
@@ -466,6 +486,16 @@
             }
         }
         return viltCards
+    }
+
+    function handleFilterReset() {
+        displayVilt();
+        
+        const filterSelect = document.getElementById('filter-select');
+        const filterSearch = document.getElementById('filter-search');
+
+        filterSelect.value = 'all';
+        filterSearch.value = '';
     }
 
 </script>
