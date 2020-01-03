@@ -376,10 +376,14 @@
         ribbons.forEach(e => e.style.display = 'none')
     }
 
-    // reads the title label for the Next button into the button text
-    const titleLabel = document.querySelector('.lesson-title-label')
-    if (titleLabel) {
-        document.querySelector('.next-lesson-link').innerHTML = titleLabel.innerHTML
+    // reads next lesson title from on hover text into button
+    const nextLabel = document.querySelector(".next-lesson-button")
+            .firstElementChild.firstElementChild;
+    if (nextLabel) {
+        // change button text first
+        document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
+        // change on hover text to 'Next'
+        nextLabel.innerText = 'Next Module';
     }
 
 </script>
