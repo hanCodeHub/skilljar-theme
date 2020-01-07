@@ -2,34 +2,29 @@
 <section id="vilt-section">
 
     <!-- header for title and filter controls -->
-    <div id="vilt-header" hidden>
-        <div id="header-text">
-            <h1 class="section-header text-center">Join A Virtual Class</h1>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, ab obcaecati dolores eos quo explicabo quod fugiat assumenda excepturi similique perferendis? Adipisci eius dolor repudiandae ducimus omnis, quos laboriosam aliquid soluta autem accusamus inventore! Enim voluptates odio hic ipsa? Dolores ex quae facere ducimus nisi nostrum minima cupiditate veniam soluta?
-            </p>
-        </div>
+    <div id="vilt-header">
 
-        <div id="filters-row">
-            <!-- select filter -->
-            <select name="capability" id="filter-select" class="filter-control">
-                <!-- values should match tag names of capabilities -->
-                <option selected value="all">All Products</option>
-                <option value="workflow">Workflow</option>
-                <option value="forms">Forms</option>
-                <option value="process mapping">Process Mapping</option>
-                <option value="docgen">DocGen</option>
-                <option value="rpa">RPA</option>
-            </select>
+        <div class="header-block-wrapper">
+            <div id="header-block">
 
-            <!-- search filter -->
-            <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
+                <div class="header-block-text">
+                    <h1 class="section-header text-center">Join A Virtual Class</h1>
+                    <p>
+                        All virtual classes are led by our in-house Nintex instructors with deep product knowledge and
+                        experience. Select a class below based on available times and the product you want to learn
+                        about.
+                        After registering for the class, you may then select the session time that works best for you.
+                    </p>
+                    <span class="text-center btn-outline">
+                        <a href="http://learn.nintex.com/calendar" target="_blank">
+                            view calendar
+                        </a>
+                    </span>
+                </div>
+                <!-- background image on banner -->
+                <div class="header-block-graphic"></div>
 
-            <!-- filters reset -->
-            <a href="#" id="filter-reset" class="link">
-                <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Freset-icon.1577213905129.png"
-                    alt="filter reset button">
-            </a>
+            </div>
         </div>
 
     </div>
@@ -38,6 +33,30 @@
     <div id="events-loader">
         <h3 class="text-center">Fetching available classes...</h3>
         <div class="loader-dark"></div>
+    </div>
+
+    <!-- filter controls -->
+    <div id="filters-row" hidden>
+        <!-- select filter -->
+        <select name="capability" id="filter-select" class="filter-control">
+            <!-- values should match tag names of capabilities -->
+            <option selected value="all">All Products</option>
+            <option value="workflow">Workflow</option>
+            <option value="forms">Forms</option>
+            <option value="process mapping">Process Mapping</option>
+            <option value="docgen">DocGen</option>
+            <option value="rpa">RPA</option>
+            <option value="sign">Nintex Sign</option>
+        </select>
+
+        <!-- search filter -->
+        <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
+
+        <!-- filters reset -->
+        <a href="#" id="filter-reset" class="link">
+            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Freset-icon.1577213905129.png"
+                alt="filter reset button">
+        </a>
     </div>
 
     <!-- container for all VILT event cards -->
@@ -90,41 +109,89 @@
     }
 
     /* header title and paragraph */
-    #main-container #skilljar-content #vilt-header {
+    #main-container #vilt-section h1.section-header {
+        font-weight: 400;
+        margin: 1.5em 0 1em 0;
+        color: #ff6d00;
+    }
+
+    #main-container #vilt-section .header-block-wrapper {
+        background: linear-gradient(80deg, black, #052332);
+    }
+
+    #main-container #vilt-section #header-block {
+        color: #052332;
+        margin: auto;
+        margin-bottom: 3em;
+        display: flex;
+        flex-flow: row nowrap;
         max-width: 80%;
-        width: 60em;
+        width: 80em;
+    }
+
+    #main-container #vilt-section #header-block p {
+        font-size: 1.1em;
+        font-weight: 300;
+        margin-bottom: 2.5em;
+    }
+
+    #vilt-section #header-block .header-block-text {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 2.5em 4em 4em 0;
+        color: white;
+        letter-spacing: .03em;
+    }
+
+    #header-block .header-block-text .btn-outline {
         margin: auto;
     }
 
-    #main-container #vilt-section h1.section-header {
-        font-weight: 350;
-        margin: 1.5em 0 1em 0;
+    #header-block .header-block-text .btn-outline:hover {
+        background-color: #ff6d00;
     }
 
-    #main-container #vilt-section #header-text {
-        margin-bottom: 3em;
+    .header-block-text .btn-outline a { 
+        color: #fff;
     }
 
-    #main-container #vilt-section #header-text p {
-        font-size: 1.05em;
+    #vilt-section #header-block .header-block-graphic {
+        width: 100em;
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fvilt-banner-image.1578434773237.jpg");
+        background-size: cover;
     }
 
-    /* filter controls */
-    #vilt-header #filters-row {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-    }
+    @media only screen and (max-width: 1150px) { 
+        #vilt-section #header-block .header-block-graphic { 
+            display: none;
+        }
 
-    @media only screen and (max-width: 739px) {
-        #vilt-header #filters-row { 
-            flex-flow: column nowrap;
+        #vilt-section #header-block .header-block-text {
+            margin: 2.5em 0;
         }
     }
 
-    #vilt-header #filters-row .filter-control {
-        width: 12em;
+
+    /* filter controls */
+    #filters-row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 818px) {
+        #filters-row {
+            flex-flow: column nowrap;
+            align-items: center;
+        }
+    
+        #filters-row .filter-control { 
+            margin-bottom: 1em;
+        }
+    }
+
+    #filters-row .filter-control {
+        width: 15em;
         font-size: inherit;
         color: inherit;
         border-radius: 5px;
@@ -133,15 +200,15 @@
         margin: 0 2em .5em 2em;
     }
 
-    #vilt-header #filters-row select.filter-control {
+    #filters-row select.filter-control {
         cursor: pointer;
     }
 
-    #vilt-header #filters-row input.filter-control {
+    #filters-row input.filter-control {
         text-indent: 4px;
     }
 
-    #vilt-header #filters-row .link {
+    #filters-row .link {
         margin-left: 1.5em;
         margin-bottom: 8px;
     }
@@ -150,7 +217,7 @@
     #main-container #skilljar-content #vilt-events {
         width: 80%;
         margin: auto;
-    }       
+    }
 
     #vilt-section #events-loader {
         margin-top: 3em;
@@ -267,10 +334,11 @@
 </style>
 
 
-<!-- MINOR DOM EDITS -->
+<!-- MINOR DOM EDITS/RESETS -->
 <script>
     // remove all search elements and reset searchbar
     document.querySelector('.search-container').remove();
+    document.getElementById('filters-row').style.display = "none";
 </script>
 
 
@@ -367,7 +435,7 @@
 
         // unhide real elements and hide template card
         viltEvents.hidden = false;
-        document.getElementById("vilt-header").hidden = false;
+        document.getElementById("filters-row").style.display = "flex";
         // removes class with display:flex which enables hidden on template
         viltCard.remove();
     }
@@ -398,18 +466,19 @@
 
     // returns the image URL based on product capability
     function getImageUrl(productCap) {
-        
+
         // images stored in Skilljar Image Respository course series
         imageUrls = {
             forms: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png",
             workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png"
-        
-        // NEED TO ADD MORE IMAGE URLS
-        // - process mapping
-        // - docgen
-        // - rpa
+
+            // NEED TO ADD MORE IMAGE URLS
+            // - process mapping
+            // - docgen
+            // - rpa
+            // - Nintex Sign
         }
-        
+
         // match image URL with product capability
         productCap = productCap.toLowerCase();
         if (productCap == "workflow") return imageUrls.workflow;
