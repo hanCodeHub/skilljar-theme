@@ -3,9 +3,14 @@
 
     <!-- header for title and filter controls -->
     <div id="vilt-header" hidden>
-        <h1 class="section-header text-center">Select A Virtual Class</h1>
-        <div id="filters-row">
+        <div id="header-text">
+            <h1 class="section-header text-center">Join A Virtual Class</h1>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, ab obcaecati dolores eos quo explicabo quod fugiat assumenda excepturi similique perferendis? Adipisci eius dolor repudiandae ducimus omnis, quos laboriosam aliquid soluta autem accusamus inventore! Enim voluptates odio hic ipsa? Dolores ex quae facere ducimus nisi nostrum minima cupiditate veniam soluta?
+            </p>
+        </div>
 
+        <div id="filters-row">
             <!-- select filter -->
             <select name="capability" id="filter-select" class="filter-control">
                 <!-- values should match tag names of capabilities -->
@@ -74,6 +79,7 @@
 
 <!-- STYLES -->
 <style>
+    /* page reset */
     #main-container #skilljar-content {
         margin-left: 0;
         background: linear-gradient(to right, #7798a8, #fff);
@@ -83,8 +89,10 @@
         padding: 0;
     }
 
-    #main-container #skilljar-content #vilt-events {
-        width: 80%;
+    /* header title and paragraph */
+    #main-container #skilljar-content #vilt-header {
+        max-width: 80%;
+        width: 60em;
         margin: auto;
     }
 
@@ -93,10 +101,26 @@
         margin: 1.5em 0 1em 0;
     }
 
+    #main-container #vilt-section #header-text {
+        margin-bottom: 3em;
+    }
+
+    #main-container #vilt-section #header-text p {
+        font-size: 1.05em;
+    }
+
+    /* filter controls */
     #vilt-header #filters-row {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
+        align-items: center;
+    }
+
+    @media only screen and (max-width: 739px) {
+        #vilt-header #filters-row { 
+            flex-flow: column nowrap;
+        }
     }
 
     #vilt-header #filters-row .filter-control {
@@ -119,12 +143,20 @@
 
     #vilt-header #filters-row .link {
         margin-left: 1.5em;
+        margin-bottom: 8px;
     }
+
+    /* EVENTS SECTION */
+    #main-container #skilljar-content #vilt-events {
+        width: 80%;
+        margin: auto;
+    }       
 
     #vilt-section #events-loader {
         margin-top: 3em;
     }
 
+    /* event cards */
     #vilt-section #vilt-events .card-wide {
         border: 0;
         background-color: #fff;
@@ -147,6 +179,7 @@
         color: #fff;
     }
 
+    /* card image */
     #vilt-section #vilt-events .img-container {
         overflow: hidden;
         max-width: 28%;
@@ -169,6 +202,7 @@
         }
     }
 
+    /* content inside each card */
     #vilt-section #vilt-events .card-wide .card-wide-content {
         width: 100%;
         margin: 0 1em;
@@ -240,10 +274,10 @@
 </script>
 
 
-<!-- API CALLS -->
+<!-- DOM RENDERING -->
 <script>
 
-    // MAIN
+    // MAIN RENDERING PROGRAM
     if (location.pathname == "/series/vilt") {
 
         const baseUrl = "https://skilljar-api-test.azurewebsites.net";
@@ -263,6 +297,10 @@
         }
 
     }
+    // END MAIN
+
+
+    // API CALLS
 
     // returns the user Skilljar object if logged in, or null otherwise
     function getUser() {
@@ -360,17 +398,18 @@
 
     // returns the image URL based on product capability
     function getImageUrl(productCap) {
+        
         // images stored in Skilljar Image Respository course series
         imageUrls = {
             forms: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png",
             workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png"
-        }
-
+        
         // NEED TO ADD MORE IMAGE URLS
         // - process mapping
         // - docgen
         // - rpa
-
+        }
+        
         // match image URL with product capability
         productCap = productCap.toLowerCase();
         if (productCap == "workflow") return imageUrls.workflow;
@@ -430,7 +469,6 @@
             else
                 registerBadge.hidden = false;  // registered
         }
-
     }
 
 </script>
@@ -490,12 +528,12 @@
         return viltCards
     }
 
+    // displays all VILT cards and resets filter controls
     function handleFilterReset() {
         displayVilt();
 
         const filterSelect = document.getElementById('filter-select');
         const filterSearch = document.getElementById('filter-search');
-
         filterSelect.value = 'all';
         filterSearch.value = '';
     }
