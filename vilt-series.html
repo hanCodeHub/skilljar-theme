@@ -32,7 +32,7 @@
     <!-- loader animation removed when cards render -->
     <div id="events-loader">
         <h3 class="text-center">Fetching available classes...</h3>
-        <div class="loader-dark"></div>
+        <div class="loader-small"></div>
     </div>
 
     <!-- filter controls -->
@@ -79,6 +79,7 @@
                 <div class="event-times-container">
                     <h6>
                         Available times:
+                        <!-- status badges -->
                         <span class="badge badge-register" hidden>Registered</span>
                         <span class="badge badge-success" hidden>Completed</span>
                     </h6>
@@ -106,6 +107,11 @@
 
     #main-container #skilljar-content .top-row {
         padding: 0;
+    }
+
+    #main-container #skilljar-content .catalog-header {
+        margin-top: 0;
+        padding-left: 0;
     }
 
     /* header title and paragraph */
@@ -151,7 +157,7 @@
         background-color: #ff6d00;
     }
 
-    .header-block-text .btn-outline a { 
+    .header-block-text .btn-outline a {
         color: #fff;
     }
 
@@ -161,8 +167,8 @@
         background-size: cover;
     }
 
-    @media only screen and (max-width: 1150px) { 
-        #vilt-section #header-block .header-block-graphic { 
+    @media only screen and (max-width: 1150px) {
+        #vilt-section #header-block .header-block-graphic {
             display: none;
         }
 
@@ -184,8 +190,8 @@
             flex-flow: column nowrap;
             align-items: center;
         }
-    
-        #filters-row .filter-control { 
+
+        #filters-row .filter-control {
             margin-bottom: 1em;
         }
     }
@@ -219,8 +225,39 @@
         margin: auto;
     }
 
+    /* custom loader */
     #vilt-section #events-loader {
         margin-top: 3em;
+    }
+
+    .loader-small {
+        margin: 0 auto;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #052332;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 
     /* event cards */
@@ -297,7 +334,7 @@
         margin-top: .5em;
     }
 
-    #vilt-events .event-times-container .badge {
+    #vilt-events .badge {
         padding: 4px;
         border-radius: 5px;
         font-size: .8em;
@@ -308,11 +345,13 @@
     .badge-register {
         background-color: #ff6d00;
         color: white;
+        display: none;
     }
 
     .badge-success {
         background-color: #4c994c;
         color: #fff;
+        display: none;
     }
 
 
@@ -419,8 +458,10 @@
 
     // renders all VILT event cards with data from API
     function renderVilt(events) {
-        // remove loader animation
+        // remove loader animation and empty top row
         document.getElementById('events-loader').remove();
+        document.querySelector('.top-row').style.height = 0;
+
         // attach template to #skilljar-content section
         const vilt = document.getElementById("vilt-section");
         const content = document.getElementById("skilljar-content");
@@ -534,9 +575,9 @@
         // check record course id against rendered card course id
         if (card.dataset.id == record.course.id) {
             if (record.course_progress.completed_at)
-                successBadge.hidden = false;  // completed
+                successBadge.style.display = "inline";  // completed
             else
-                registerBadge.hidden = false;  // registered
+                registerBadge.style.display = "inline"  // registered
         }
     }
 
