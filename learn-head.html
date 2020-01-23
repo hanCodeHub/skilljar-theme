@@ -105,6 +105,8 @@
         background: #052332;
         width: 100%;
         margin-top: 25px;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
         height: fit-content;
         border: none;
         border-radius: 25px;
@@ -113,6 +115,8 @@
 
     #catalog-left-nav .catalog-left-nav-wrapper {
         padding: 7px;
+        -webkit-transform: translate(7px, 19px);
+        -ms-transform: translate(7px, 19px);
         transform: translate(7px, 19px);
     }
 
@@ -155,7 +159,7 @@
     }
 
     /* remove tag filters in mobile left nav */
-    #catalog-left-nav .catalog-filter-menu { 
+    #catalog-left-nav .catalog-filter-menu {
         display: none;
     }
 
@@ -222,6 +226,8 @@
     #header,
     #header .header-link {
         height: 61px;
+        background: -o-linear-gradient(80deg, black, #052332);
+        background: -o-linear-gradient(10deg, black, #052332);
         background: linear-gradient(80deg, black, #052332);
     }
 
@@ -320,7 +326,11 @@
 
     @media only screen and (max-width: 767px) {
         #header-right {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
         }
     }
@@ -389,10 +399,8 @@
         height: 11em;
         border-radius: 50%;
         background: #ffffff;
-        background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
         background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-        background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(10%, #ffffff), color-stop(42%, rgba(255, 255, 255, 0)));
         background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
         position: relative;
         -webkit-animation: load3 1.4s infinite linear;
@@ -435,10 +443,8 @@
         height: 11em;
         border-radius: 50%;
         background: #052332;
-        background: -moz-linear-gradient(left, #052332 10%, rgba(255, 255, 255, 0) 42%);
-        background: -webkit-linear-gradient(left, #052332 10%, rgba(255, 255, 255, 0) 42%);
         background: -o-linear-gradient(left, #052332 10%, rgba(255, 255, 255, 0) 42%);
-        background: -ms-linear-gradient(left, #052332 10%, rgba(255, 255, 255, 0) 42%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(10%, #052332), color-stop(42%, rgba(255, 255, 255, 0)));
         background: linear-gradient(to right, #052332 10%, rgba(255, 255, 255, 0) 42%);
         position: relative;
         -webkit-animation: load3 1.4s infinite linear;
@@ -484,10 +490,12 @@
         border-color: #09894e !important;
         background: #DCF3E7 !important;
         color: black !important;
+        -webkit-box-shadow: 0px 2px 2px 0px #403838 !important;
         box-shadow: 0px 2px 2px 0px #403838 !important;
     }
 
     .sj-course-ribbon-registered {
+        -webkit-box-shadow: 0px 2px 2px 0px #652a0d !important;
         box-shadow: 0px 2px 2px 0px #652a0d !important;
         color: black !important;
     }
@@ -577,6 +585,8 @@
         position: absolute;
         top: 80%;
         left: 25%;
+        -webkit-transform: translate(-0%, -0%);
+        -ms-transform: translate(-0%, -0%);
         transform: translate(-0%, -0%);
         font-size: 1.5vw;
         text-align: left;
@@ -715,6 +725,7 @@
         /*border: 1px solid #888;*/
         width: 1670px;
         height: 327px;
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-animation-name: animatetop;
         -webkit-animation-duration: 0.4s;
@@ -763,11 +774,15 @@
         color: white;
         padding: 200px 0px 200px 0px;
         background: #052332;
+        -webkit-clip-path: polygon(0% 0%, 50% 20%, 100% 0%, 100% 75%, 50% 95%, 0% 75%);
         clip-path: polygon(0% 0%, 50% 20%, 100% 0%, 100% 75%, 50% 95%, 0% 75%);
     }
 
     #skilljar-content .top-row .section-body-light {
         color: black;
+        background: -o-linear-gradient(to left, #bbc3cc, #fff);
+        background: -webkit-gradient(linear, right top, left top, from(#bbc3cc), to(#fff));
+        background: -o-linear-gradient(right, #bbc3cc, #fff);
         background: linear-gradient(to left, #bbc3cc, #fff);
         padding: 260px 0 100px 0;
         margin: -250px 0 -50px 0;
@@ -784,6 +799,7 @@
 
     @media only screen and (max-width: 767px) {
         #skilljar-content .top-row .section-body-dark {
+            -webkit-clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 88%, 50% 95%, 0% 88%);
             clip-path: polygon(0% 0%, 50% 7%, 100% 0%, 100% 88%, 50% 95%, 0% 88%);
         }
 
@@ -792,6 +808,7 @@
         }
 
         #skilljar-content .top-row .section-body-block {
+            -webkit-clip-path: none;
             clip-path: none;
         }
 
@@ -799,11 +816,20 @@
 
     @media only screen and (min-width: 768px) {
         #skilljar-content .top-row .section-body-dark {
+            -webkit-clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
             clip-path: polygon(0% 0%, 50% 15%, 100% 0%, 100% 80%, 50% 95%, 0% 80%);
         }
 
         #skilljar-content .top-row .section-body-block {
+            -webkit-clip-path: none;
             clip-path: none;
+        }
+    }
+
+    @supports (-ms-ime-align:auto) {
+        #skilljar-content #live-training {
+            padding-top: 100px;
+            padding-bottom: 450px;
         }
     }
 
@@ -815,6 +841,8 @@
         padding: 1em;
         border: 2px solid white;
         border-radius: 10px;
+        -webkit-transition: all .3s ease;
+        -o-transition: all .3s ease;
         transition: all .3s ease;
         cursor: pointer;
         background: transparent;
@@ -848,6 +876,8 @@
         position: absolute;
         top: 0;
         left: 1.5em;
+        -webkit-transform: translateY(-1em);
+        -ms-transform: translateY(-1em);
         transform: translateY(-1em);
         z-index: 2;
         width: 25%;
@@ -856,26 +886,38 @@
     /* offerings training format tiles */
     #offerings+#catalog-courses a.coursebox-container,
     #get-started .card-container.coursebox-container {
+        background: -o-linear-gradient(to top right, #052332, grey);
+        background: -webkit-gradient(linear, left bottom, right top, from(#052332), to(grey));
+        background: -o-linear-gradient(bottom left, #052332, grey);
         background: linear-gradient(to top right, #052332, grey);
         border-radius: 10px;
         width: 20em;
         margin: 0px 40px 50px 40px;
         padding-bottom: 20px;
         text-align: center;
+        -webkit-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
         border: none;
+        -webkit-box-shadow: 5px 5px 6px #888888;
         box-shadow: 5px 5px 6px #888888;
     }
 
     #offerings+#catalog-courses a.coursebox-container:hover,
     #get-started .card-container.coursebox-container:hover {
+        -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
         box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
         transform: translateY(-10px);
     }
 
     #offerings+#catalog-courses a.coursebox-container:active,
     #get-started .card-container.coursebox-container:active {
+        -webkit-box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.8);
         box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.8);
+        -webkit-transform: translateY(-5px);
+        -ms-transform: translateY(-5px);
         transform: translateY(-5px);
     }
 
@@ -905,15 +947,29 @@
     /* LIVE TRAINING BLOCK  */
 
     #live-training>#live-training-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         margin-bottom: 1.4em;
     }
 
     #live-training>#live-training-body {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
         flex-flow: row wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
 
@@ -926,12 +982,26 @@
             padding-bottom: 300px;
             padding-top: 250px;
         }
+
+        @supports (-ms-ime-align:auto) {
+            #skilljar-content #live-training {
+                padding-top: 100px;
+                padding-bottom: 450px;
+            }
+        }
     }
 
     @media only screen and (min-width: 900px) and (max-width: 1383px) {
         #skilljar-content #live-training {
             padding-bottom: 250px;
         }
+
+        @supports (-ms-ime-align:auto) {
+        #skilljar-content #live-training {
+            padding-top: 100px;
+            padding-bottom: 450px;
+        }
+    }
     }
 
     /* private training card */
@@ -950,6 +1020,7 @@
 
     #private-training-section .card-container:hover .card-image {
         -webkit-transform: scale(2) translateY(-15%);
+        -ms-transform: scale(2) translateY(-15%);
         transform: scale(2) translateY(-15%);
         -webkit-filter: blur(2px) brightness(0.5);
         filter: blur(2px) brightness(0.5);
@@ -957,6 +1028,8 @@
 
     .card-image {
         width: 100%;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
         transition: all 0.2s ease;
     }
 
@@ -981,6 +1054,8 @@
         position: absolute;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         display: none;
     }
@@ -1020,6 +1095,8 @@
     }
 
     #live-training #events-table-section .events-table-row {
+        -webkit-transition: all .1s ease;
+        -o-transition: all .1s ease;
         transition: all .1s ease;
         cursor: pointer;
         border-bottom: 2px solid #ff6d00;
@@ -1031,10 +1108,14 @@
     }
 
     #live-training #events-table-section .events-table-row:hover {
+        -webkit-transform: scale(1.08);
+        -ms-transform: scale(1.08);
         transform: scale(1.08);
     }
 
     #live-training #events-table-section .events-table-row:active {
+        -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
         transform: scale(1.05);
     }
 
@@ -1052,7 +1133,12 @@
 
     @media only screen and (max-width: 767px) {
         #live-training #events-table-section .events-table-row {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
             flex-direction: column;
         }
 
@@ -1069,9 +1155,22 @@
         margin-top: -320px;
     }
 
+    @supports (-ms-ime-align:auto) {
+        #skilljar-content .top-row #resources { 
+            padding-top: 100px;
+        }
+    }
+
     #resources .tile-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
         flex-flow: row wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         padding-top: 1em;
     }
@@ -1082,16 +1181,22 @@
     }
 
     #how-to-icon {
+        -webkit-transform: translateY(-.3em);
+        -ms-transform: translateY(-.3em);
         transform: translateY(-.3em);
         left: 2em;
     }
 
     #community-icon {
+        -webkit-transform: translateY(-1.2em);
+        -ms-transform: translateY(-1.2em);
         transform: translateY(-1.2em);
         left: 2em;
     }
 
     #helpdoc-icon {
+        -webkit-transform: translate(0, -1.5em);
+        -ms-transform: translate(0, -1.5em);
         transform: translate(0, -1.5em);
     }
 </style>

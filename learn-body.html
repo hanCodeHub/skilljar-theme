@@ -255,6 +255,7 @@
     const profileLink = document.querySelector('.profile-link');
     if (profileLink) {
         profileLink.addEventListener('click', toProfile);
+        profileLink.innerText = "View Progress";
     };
 
     function toProfile(e) {
@@ -265,8 +266,6 @@
         let profilePage = `${urlDomain}/accounts/profile/?next=/`
         window.location.assign(profilePage)
     };
-    // change text
-    document.querySelector('.sj-text-my-profile').firstChild.innerText = "View Progress";
 
     // Insert profile dropdown links
     $('#header-drop li:nth-child(1)').after('<li><a href="https://nintex-it.workflowcloud.com/forms/6e677242-5448-421d-a957-4811fccb0572" target="_blank">Provide Feedback</a></li>');
@@ -377,9 +376,9 @@
     }
 
     // reads next lesson title from on hover text into button
-    const nextLabel = document.querySelector(".next-lesson-button")
-            .firstElementChild.firstElementChild;
-    if (nextLabel) {
+    const nextBtn = document.querySelector(".next-lesson-button");
+    if (nextBtn) {
+        const nextLabel = nextBtn.firstElementChild.firstElementChild;
         // change button text first
         document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
         // change on hover text to 'Next'

@@ -112,9 +112,11 @@
 
 <!-- STYLES -->
 <style>
-    /* page reset */
-    #main-container #skilljar-content {
+     /* page reset */
+     #main-container #skilljar-content {
         margin-left: 0;
+        background: -webkit-gradient(linear, left top, right top, from(#7798a8), to(#fff));
+        background: -o-linear-gradient(left, #7798a8, #fff);
         background: linear-gradient(to right, #7798a8, #fff);
     }
 
@@ -135,6 +137,7 @@
     }
 
     #main-container #vilt-section .header-block-wrapper {
+        background: -o-linear-gradient(10deg, black, #052332);
         background: linear-gradient(80deg, black, #052332);
     }
 
@@ -142,8 +145,13 @@
         color: #052332;
         margin: auto;
         margin-bottom: 3em;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row nowrap;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
         max-width: 80%;
         width: 80em;
     }
@@ -155,8 +163,13 @@
     }
 
     #vilt-section #header-block .header-block-text {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: column nowrap;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column nowrap;
+                flex-flow: column nowrap;
         margin: 2.5em 4em 4em 0;
         color: white;
         letter-spacing: .03em;
@@ -193,15 +206,27 @@
 
     /* filter controls */
     #filters-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     @media only screen and (max-width: 818px) {
         #filters-row {
-            flex-flow: column nowrap;
-            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
         }
 
         #filters-row .filter-control {
@@ -268,11 +293,13 @@
 
     @keyframes spin {
         0% {
-            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
         }
 
         100% {
-            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
         }
     }
 
@@ -280,12 +307,17 @@
     #vilt-section #vilt-events .card-wide {
         border: 0;
         background-color: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         margin: 2em auto;
         max-width: 60em;
         cursor: pointer;
+        -webkit-transition: all .3s ease;
+        -o-transition: all .3s ease;
         transition: all .3s ease;
-        box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.5);
+        -webkit-box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.5);
+                box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.5);
         border-radius: 3px;
     }
 
@@ -304,13 +336,19 @@
     #vilt-section #vilt-events .img-container {
         overflow: hidden;
         max-width: 28%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     #vilt-section #vilt-events .card-wide img {
         width: 100%;
-        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+            -ms-transform: scale(1.5);
+                transform: scale(1.5);
     }
 
     @media only screen and (max-width: 1150px) {
@@ -327,10 +365,19 @@
     #vilt-section #vilt-events .card-wide .card-wide-content {
         width: 100%;
         margin: 0 1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        align-items: flex-start;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column;
+                flex-flow: column;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
     }
 
     .card-wide-content .card-wide-title {
@@ -346,22 +393,36 @@
     }
 
     #vilt-events .event-times-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: column wrap;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column wrap;
+                flex-flow: column wrap;
         margin-bottom: .5em;
         margin-top: .5em;
     }
 
     .event-times-container .event-times {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
     }
 
 
     /* event levels */
     .level-blocks {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
         width: fit-content;
         height: 1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         margin-top: .5em;
     }
@@ -392,7 +453,9 @@
         font-family: Courier;
         font-weight: 700;
         text-transform: uppercase;
-        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+            -ms-transform: rotate(-15deg);
+                transform: rotate(-15deg);
         position: absolute;
         top: 3em;
         right: 1em;
@@ -496,7 +559,10 @@
     async function callEventsData(baseUrl, domain) {
         try {
             return await getData(`${baseUrl}/events/${domain}?unique_view=True`)
-                .then(res => res.data)
+                .then(res => {
+                    console.log(res.data);
+                    return res.data;
+                    })
                 .catch(err => console.log(err));
         } catch (error) {
             console.log(`Error getting data from api: ${error}`);
