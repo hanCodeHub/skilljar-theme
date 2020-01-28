@@ -46,7 +46,6 @@
             <option value="process mapping">Process Mapping</option>
             <option value="docgen">DocGen</option>
             <option value="rpa">RPA</option>
-            <option value="esign">Nintex Sign</option>
         </select>
 
         <!-- search filter -->
@@ -129,6 +128,11 @@
         padding-left: 0;
     }
 
+    /* hide left nav button - search bar does not work on this page */
+    #left-nav-button {
+        display: none;
+    }
+
     /* header title and paragraph */
     #main-container #vilt-section h1.section-header {
         font-weight: 400;
@@ -137,8 +141,7 @@
     }
 
     #main-container #vilt-section .header-block-wrapper {
-        background: -o-linear-gradient(10deg, black, #052332);
-        background: linear-gradient(80deg, black, #052332);
+        background-color: #03161e;
     }
 
     #main-container #vilt-section #header-block {
@@ -148,12 +151,12 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        justify-content: center;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
             -ms-flex-flow: row nowrap;
                 flex-flow: row nowrap;
-        max-width: 80%;
-        width: 80em;
+        max-width: 75%;
     }
 
     #main-container #vilt-section #header-block p {
@@ -259,7 +262,7 @@
 
     /* EVENTS SECTION */
     #main-container #skilljar-content #vilt-events {
-        width: 80%;
+        width: 75%;
         margin: auto;
     }
 
@@ -311,7 +314,6 @@
         display: -ms-flexbox;
         display: flex;
         margin: 2em auto;
-        max-width: 60em;
         cursor: pointer;
         -webkit-transition: all .3s ease;
         -o-transition: all .3s ease;
@@ -339,16 +341,18 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        justify-content: center;
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
     }
 
     #vilt-section #vilt-events .card-wide img {
-        width: 100%;
-        -webkit-transform: scale(1.5);
-            -ms-transform: scale(1.5);
-                transform: scale(1.5);
+        max-width: initial;  /* reset skilljar default */
+        height: 11em;
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
     }
 
     @media only screen and (max-width: 1150px) {
@@ -492,6 +496,18 @@
     // remove all search elements and reset searchbar
     document.querySelector('.search-container').remove();
     document.getElementById('filters-row').style.display = "none";
+
+    // add breadcrumbs for this page
+    document.addEventListener('DOMContentLoaded', addBreadcrumbs);
+    
+    function addBreadcrumbs() {
+        const breadcrumbs = document.querySelector("#breadcrumbs");
+        const viltCrumb = document.createElement('a');
+        viltCrumb.innerText = "Instructor-led Training";
+        viltCrumb.classList.add('breadcrumb');
+        breadcrumbs.appendChild(viltCrumb);
+    }
+    
 </script>
 
 
@@ -560,7 +576,6 @@
         try {
             return await getData(`${baseUrl}/events/${domain}?unique_view=True`)
                 .then(res => {
-                    console.log(res.data);
                     return res.data;
                     })
                 .catch(err => console.log(err));
@@ -653,11 +668,11 @@
         // images stored in Skilljar Image Respository course series
         imageUrls = {
             forms: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png",
-            workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png"
+            workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png",
+            docgen: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FDOGGEN+NWC_NU.1579809667103.png"
 
             // NEED TO ADD MORE IMAGE URLS
             // - process mapping
-            // - docgen
             // - rpa
             // - Nintex Sign
         }
@@ -666,6 +681,7 @@
         productCap = productCap.toLowerCase();
         if (productCap == "workflow") return imageUrls.workflow;
         else if (productCap == "forms") return imageUrls.forms;
+        else if (productCap == "docgen") return imageUrls.docgen;
     }
 
     // renders the level blocks of given card based on difficulty

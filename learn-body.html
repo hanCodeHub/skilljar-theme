@@ -5,6 +5,22 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<!-- NAV BLOCK - attaches to #header - for breadcrumbs and links in subpages -->
+<nav id="nav-section" hidden>
+    <div id="navbar">
+        <div id="breadcrumbs">
+            <!-- change link addresses for each domain -->
+            <a href="https://nintex.skilljar.com">Home</a>
+        </div>
+        <div id="nav-links">
+            <a href="https://nintex.skilljar.com/series/ondemand">On-demand Training</a> 
+            <a href="https://nintex.skilljar.com/series/vilt">Instructor-led Training</a>
+            <a href="https://nintex.skilljar.com/series/certifications">Certification Exams</a>
+        </div>
+       
+    </div>
+</nav>
+
 <!-- MAIN OFFERINGS BLOCK -->
 <header id="offerings" hidden>
     <h1 class="section-header text-center">Choose a training offering that's right for you</h1>
@@ -130,6 +146,7 @@
         const catalog = document.querySelector('#catalog-content');
         const courses = document.querySelector('#catalog-courses');
         const topRow = document.querySelector('.top-row');
+        const header = document.getElementById('#header');
 
         // New blocks
         const offerings = document.querySelector('#offerings');
@@ -144,7 +161,6 @@
         catalog.insertBefore(offerings, courses);
         topRow.appendChild(liveTraining);
         topRow.appendChild(resources);
-
     }
 
 </script>
@@ -385,4 +401,15 @@
         nextLabel.innerText = 'Next Module';
     }
 
+</script>
+
+<!-- Enables navbar on subpages -->
+<script>
+    // navSection is only unhidden in subpages
+    const header = document.querySelector('#header');
+    const navSection = document.querySelector('#nav-section');
+    
+    if (location.href != "https://nintex.skilljar.com/")
+        navSection.hidden = false;
+        header.appendChild(navSection);
 </script>
