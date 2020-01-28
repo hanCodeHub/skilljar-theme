@@ -221,10 +221,10 @@
     }
 
     #header #header-left {
-        padding-left: 12.5%;
+        padding-left: 15%;
     }
     #header #header-right {
-        padding-right: 12.5%;
+        padding-right: 15%;
     }
 
     #header,
@@ -263,7 +263,7 @@
     #header #navbar {
         display: flex;
         align-items: center;
-        width: 75%;
+        width: 70%;
         height: 100%;
         margin: auto;
     }
@@ -286,7 +286,7 @@
         padding: 0 1.3em;
     }
 
-    /* make current page breadcrumb text static */
+    /* make last breadcrumb/current page text static */
     #breadcrumbs > a.breadcrumb:last-child {
         pointer-events: none;
     }
@@ -297,6 +297,7 @@
         font-style: italic;
     }
 
+    /* every breadcrumb except for Home */
     #breadcrumbs .breadcrumb::before {
         content: "/";
         padding-left: .2em;
@@ -311,7 +312,7 @@
     }
 
     /* hide external nav-links for small devices */
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1023px) {
         #header #navbar #nav-links {
             display: none;
         }
@@ -391,7 +392,7 @@
 
     /* global search bar */
     .search-location-header_right #header-right .search-container .catalog-search-input-group {
-        width: 20em
+        width: 17em;
     }
 
     #header-right,
@@ -405,17 +406,23 @@
         #header-right > div.headerheight.align-vertical img {
             display: none;
         }
+
         /* remove arrow from profile dropdown */
         .f-dropdown::before, .f-dropdown::after {
             border: none;
         } 
+
         /* shrink white space on each side */
-        #header-left {
+        #header #header-left {
             padding-left: 7%;
         }
-        #header-right {
+        #header #header-right {
             padding-right: 7%;
         }
+        #vilt-header > .header-block-wrapper > #header-block {
+            width: 86%;
+        }
+
     }
 
     .filter-option.checked .filter-name {

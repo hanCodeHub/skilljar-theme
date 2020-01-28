@@ -15,11 +15,6 @@
                         about.
                         After registering for the class, you may then select the session time that works best for you.
                     </p>
-                    <span class="text-center btn-outline">
-                        <a href="http://learn.nintex.com/calendar" target="_blank">
-                            view calendar
-                        </a>
-                    </span>
                 </div>
                 <!-- background image on banner -->
                 <div class="header-block-graphic"></div>
@@ -37,6 +32,13 @@
 
     <!-- filter controls -->
     <div id="filters-row" hidden>
+        <!-- calendar view -->
+        <a href="http://learn.nintex.com/calendar" target="_blank" class="filter-control">
+            <span>
+                Calendar View
+            </span>
+        </a>
+
         <!-- select filter -->
         <select name="capability" id="filter-select" class="filter-control">
             <!-- values should match tag names of capabilities -->
@@ -52,9 +54,8 @@
         <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
 
         <!-- filters reset -->
-        <a href="#" id="filter-reset" class="link">
-            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Freset-icon.1577213905129.png"
-                alt="filter reset button">
+        <a href="#" id="filter-reset" class="link-text">
+            Reset Filters
         </a>
     </div>
 
@@ -114,9 +115,7 @@
      /* page reset */
      #main-container #skilljar-content {
         margin-left: 0;
-        background: -webkit-gradient(linear, left top, right top, from(#7798a8), to(#fff));
-        background: -o-linear-gradient(left, #7798a8, #fff);
-        background: linear-gradient(to right, #7798a8, #fff);
+        background-color: #f3f7f9 !important;
     }
 
     #main-container #skilljar-content .top-row {
@@ -156,7 +155,7 @@
         -webkit-box-direction: normal;
             -ms-flex-flow: row nowrap;
                 flex-flow: row nowrap;
-        max-width: 75%;
+        max-width: 70%;
     }
 
     #main-container #vilt-section #header-block p {
@@ -219,9 +218,11 @@
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center;
+        max-width: 70%;
+        margin: auto;
     }
 
-    @media only screen and (max-width: 818px) {
+    @media only screen and (max-width: 1150) {
         #filters-row {
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
@@ -237,14 +238,30 @@
         }
     }
 
+    /* each control/filter button */
     #filters-row .filter-control {
-        width: 15em;
+        width: 12em;
         font-size: inherit;
-        color: inherit;
+        background-color: #fff;
+        color: #5f5f5f;
         border-radius: 5px;
         padding: 4px;
-        border: 2px solid #052332;
-        margin: 0 2em .5em 2em;
+        border: 1.4px solid #6f6f6f;
+        margin: 0 2em 1em 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    #filters-row a.filter-control:hover {
+        background: #ff6d00;
+        color: white;
+    }
+    /* longer width for search filter */
+    #filter-search.filter-control {
+        width: 15em;
     }
 
     #filters-row select.filter-control {
@@ -255,15 +272,24 @@
         text-indent: 4px;
     }
 
-    #filters-row .link {
+    #filters-row .link-text {
         margin-left: 1.5em;
-        margin-bottom: 8px;
+        margin-bottom: 1em;
+        display: flex;
+        align-items: center;
+        font-style: italic;
     }
 
     /* EVENTS SECTION */
     #main-container #skilljar-content #vilt-events {
-        width: 75%;
+        width: 70%;
         margin: auto;
+    }
+    /* less whitespace for small devices */
+    @media only screen and (max-width: 500px) {
+        #main-container #skilljar-content #vilt-events {
+            width: 86%;
+        }
     }
 
     /* custom loader */
@@ -273,7 +299,7 @@
 
     .loader-small {
         margin: 0 auto;
-        border: 16px solid #f3f3f3;
+        border: 16px solid #d8d7d7;
         border-radius: 50%;
         border-top: 16px solid #052332;
         width: 120px;
@@ -308,7 +334,7 @@
 
     /* event cards */
     #vilt-section #vilt-events .card-wide {
-        border: 0;
+        border: 1px solid #6f6f6f;
         background-color: #fff;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -318,20 +344,12 @@
         -webkit-transition: all .3s ease;
         -o-transition: all .3s ease;
         transition: all .3s ease;
+        border-radius: 5px;
+    }
+    #vilt-section #vilt-events .card-wide:hover {
+        background-color: #eaf0f1;
         -webkit-box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.5);
                 box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.5);
-        border-radius: 3px;
-    }
-
-    #vilt-section #vilt-events .card-wide:hover {
-        background-color: #052332;
-    }
-
-    #vilt-section #vilt-events .card-wide:hover h4,
-    #vilt-section #vilt-events .card-wide:hover h6,
-    #vilt-section #vilt-events .card-wide:hover .card-wide-subtitle,
-    #vilt-section #vilt-events .card-wide:hover .level-blocks {
-        color: #fff;
     }
 
     /* card image */
@@ -356,6 +374,7 @@
     }
 
     @media only screen and (max-width: 1150px) {
+        
         #vilt-section #vilt-events .img-container {
             display: none;
         }
