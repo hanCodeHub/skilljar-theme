@@ -8,7 +8,7 @@
             <div id="header-block">
 
                 <div class="header-block-text">
-                    <h1 class="section-header text-center">Join A Virtual Class</h1>
+                    <h1 class="section-header">Join A Virtual Class</h1>
                     <p>
                         All virtual classes are led by our in-house Nintex instructors with deep product knowledge and
                         experience. Select a class below based on available times and the product you want to learn
@@ -55,7 +55,7 @@
 
         <!-- filters reset -->
         <a href="#" id="filter-reset" class="link-text">
-            Reset Filters
+            <span class="link-icon">&#10005;</span> Reset filters
         </a>
     </div>
 
@@ -117,8 +117,8 @@
 
 <!-- STYLES -->
 <style>
-     /* page reset */
-     #main-container #skilljar-content {
+ /* page reset */
+ #main-container #skilljar-content {
         margin-left: 0;
         background-color: #f3f7f9 !important;
     }
@@ -139,13 +139,15 @@
 
     /* header title and paragraph */
     #main-container #vilt-section h1.section-header {
+        font-family: "Montserrat";
         font-weight: 400;
+        font-size: 2em;
         margin: 1.5em 0 1em 0;
         color: #ff6d00;
     }
 
     #main-container #vilt-section .header-block-wrapper {
-        background-color: #03161e;
+        background-color: #052332;
     }
 
     #main-container #vilt-section #header-block {
@@ -155,7 +157,9 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
             -ms-flex-flow: row nowrap;
@@ -177,7 +181,7 @@
         -webkit-box-direction: normal;
             -ms-flex-flow: column nowrap;
                 flex-flow: column nowrap;
-        margin: 2.5em 4em 4em 0;
+        margin: 2.5em 4em 2em 0;
         color: white;
         letter-spacing: .03em;
     }
@@ -196,8 +200,9 @@
 
     #vilt-section #header-block .header-block-graphic {
         width: 100em;
-        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fvilt-banner-image.1578434773237.jpg");
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fvilt-banner-image2.1580326513120.jpg");
         background-size: cover;
+        background-position: center;
     }
 
     @media only screen and (max-width: 1150px) {
@@ -222,9 +227,9 @@
                 flex-flow: row wrap;
         -webkit-box-pack: center;
             -ms-flex-pack: center;
-                justify-content: center;
+                justify-content: flex-start;
         max-width: 70%;
-        margin: auto;
+        margin: 2em auto;
     }
 
     @media only screen and (max-width: 1150) {
@@ -246,16 +251,24 @@
     /* each control/filter button */
     #filters-row .filter-control {
         width: 12em;
+        height: 2.4em;
         font-size: inherit;
         background-color: #fff;
         color: #5f5f5f;
         border-radius: 5px;
         padding: 4px;
-        border: 1.4px solid #6f6f6f;
-        margin: 0 2em 1em 2em;
+        border: 1.4px solid #c0c0c0;
+        outline: none;
+        margin: 0 2em 1em 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         -webkit-transition: all .3s ease;
         -o-transition: all .3s ease;
         transition: all .3s ease;
@@ -264,9 +277,14 @@
         background: #ff6d00;
         color: white;
     }
+    /* remove left margin on leftmost filter control */
+    #vilt-section #filters-row:first-child {
+        margin-left: 0;
+    }
+
     /* longer width for search filter */
     #filter-search.filter-control {
-        width: 15em;
+        width: 17em;
     }
 
     #filters-row select.filter-control {
@@ -278,11 +296,20 @@
     }
 
     #filters-row .link-text {
-        margin-left: 1.5em;
         margin-bottom: 1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
-        font-style: italic;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        color: #5f5f5f;
+    }
+    /* icon inside link */
+    #filters-row .link-text .link-icon {
+        font-size: 1.1em;
+        margin-right: .5em;
+        margin-top: 1px;
     }
 
     /* EVENTS SECTION */
@@ -339,7 +366,7 @@
 
     /* event cards */
     #vilt-section #vilt-events .card-wide {
-        border: 1px solid #6f6f6f;
+        border: 1px solid #c0c0c0;
         background-color: #fff;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -364,7 +391,9 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
@@ -411,13 +440,18 @@
     }
 
     .card-wide-content .card-info-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: flex-start;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
     }
 
     .card-wide-content .card-wide-title {
         margin-bottom: 0;
         margin-top: .4em;
+        font-family: "Montserrat";
         font-size: 1.1em;
         font-weight: 600;
         color: #052332;
@@ -481,6 +515,7 @@
         height: 1em;
         margin-right: .25em;
         background-color: #ccc;
+        border-radius: 10px;
     }
 
     .block-fill {
@@ -524,7 +559,6 @@
     p.pill-text.pill-date::after {
         content: ' -';
     }
-
 </style>
 
 
@@ -657,19 +691,24 @@
         const title = card.querySelector(".card-wide-title");
         const subtitle = card.querySelector(".card-wide-subtitle");
         const image = card.querySelector(".event-img");
-        // get tags from event data
+
+        // get tags from event data (for filtering and rendering)
         const productTag = getCapability(ev);
         const levelTag = getLevel(ev);
+        const platformTag = getPlatform(ev);
 
         // set data attributes
-        card.dataset.product = productTag;  // product capability
-        card.dataset.level = levelTag;
+        card.dataset.product = productTag;  // product tag
+        card.dataset.level =  levelTag; // level tag
+        card.dataset.platform = platformTag; // platform tag
         card.dataset.id = ev.vilt_session.lesson.course.id  // course id
 
         // populate text and image with API data
         title.innerText = ev.vilt_session.lesson.course.title;
         subtitle.innerText = ev.short_description;
-        image.src = getImageUrl(productTag);
+        // image depends on product and platform
+        image.src = getImageUrl(productTag, platformTag); 
+
         renderEventTime(ev, card);
         renderLevel(card);
 
@@ -699,27 +738,42 @@
         return null;
     }
 
+    // returns the platform tag found in the event data
+    function getPlatform(event) {
+        const platforms = ["Office 365", "SharePoint", "NWC"];
+
+        for (platform of platforms)
+            if (event.tags.includes(platform)) return platform;
+        return null;
+    }
+
     // returns the image URL based on product capability
-    function getImageUrl(productCap) {
+    function getImageUrl(product, platform) {
 
         // images stored in Skilljar Image Respository course series
         imageUrls = {
-            forms: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse_forms.1576814645570.png",
-            workflow: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcourse-workflow.1576814629068.png",
-            docgen: "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FDOGGEN+NWC_NU.1579809667103.png"
+            "office 365": {
+                "docgen": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FDOCGEN+O365_icons.1580336195540.png",
 
-            // NEED TO ADD MORE IMAGE URLS
-            // - process mapping
-            // - rpa
-            // - Nintex Sign
+                "esign": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FESIGN+O365_icons.1580336759398.png",
+
+                "forms": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FForms+0ffice+365_icons.1580336836091.png",
+
+                "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FWF+0365_icons.1580336933559.png"
+            },
+            "sharepoint": {},
+            "nwc": {},
+            "process mapping": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FPROCESS+MAPPING_icons.1580337008265.png",
+
+            "RPA": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FRPA_icons.1580337081095.png"
         }
 
-        // match image URL with product capability
-        productCap = productCap.toLowerCase();
-        if (productCap == "workflow") return imageUrls.workflow;
-        else if (productCap == "forms") return imageUrls.forms;
-        else if (productCap == "docgen") return imageUrls.docgen;
-    }
+        // if both platform and product tags exist
+        if (platform && product)
+            return imageUrls[platform.toLowerCase()][product.toLowerCase()];
+        // if only product (RPA, Process Mapping, etc)
+        return imageUrls[product.toLowerCase()];
+    }       
 
     // renders the level blocks of given card based on difficulty
     function renderLevel(card) {
