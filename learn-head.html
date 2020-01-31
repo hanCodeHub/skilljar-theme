@@ -175,6 +175,12 @@
         content: 'Completed' !important;
     }
 
+    /* remove catalog search block from the top when searching */
+    /* turn back on to see default filters on search results */
+    .search #catalog-search-info {
+        display: none !important;
+    }
+
     #catalog-search-box .catalog-search-input {
         text-indent: 3px;
     }
@@ -1033,6 +1039,45 @@
     #offerings+#catalog-courses .coursebox-text-description {
         color: silver;
     }
+
+    /* when using searchbar on homepage render simple cards */
+    /* hide lesson cards */
+    #offerings+#catalog-courses > a[data-type="-l"] {
+        display: none;
+    }
+    /* courses */
+    #offerings+#catalog-courses > a.search-only[data-type="-c"] {
+        background: #fff;
+        border: 1px solid darkgray;
+        border-radius: 3px;
+        box-shadow: none;
+        color: #052332;
+        overflow: hidden;
+        width: 15.8em;
+    }
+    /* image */
+    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image {
+        margin: auto;
+        width: 100%;
+        margin-bottom: 1em;
+        align-self: stretch;
+    }
+    #offerings+#catalog-courses a.search-only[data-type="-c"] 
+    .coursebox-image > img{
+        border-radius: 3px;
+    }
+    /* main title */
+    #offerings+#catalog-courses a.search-only .coursebox-text {
+        color: #052332;
+        font-size: 1em;
+        margin: 10px 5px;
+    }
+    /* subtitle */
+    #offerings+#catalog-courses a.search-only .coursebox-text-description {
+        color: inherit;
+        margin: 10px 5px;
+    }
+
 
     /* LIVE TRAINING BLOCK  */
 
