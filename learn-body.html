@@ -82,7 +82,7 @@
 
         <div id="private-training-section" class="text-center" hidden>
             <div class="card-container">
-                <a href="" target="_blank">
+                <a id="private-training-link" href="https://ntx-it-test.workflowcloud.com/forms/f827be1d-4f6c-44d3-b678-88d29317a514" target="_blank">
                     <div class="card-message">
                         <p>Contact us for private training</p>
                     </div>
@@ -320,12 +320,35 @@
         if (user)
             document.getElementById("hero-header").innerHTML = `Hello ${user.firstName}!`;
     }
-
     if (location.pathname == '/')
         document.addEventListener('DOMContentLoaded', greetUser);
+    
+    // adds user email to private training URL params
+    const privateLink = document.getElementById('private-training-link')
+    if (privateLink && getUser())
+        privateLink.href += '?userEmail='.concat(skilljarUser.email);
 
-    // legal T&C link and currency additions on purchase page
-    const controlPayment = () => {
+    // Hides the ribbons of each tile on certification page
+    if (window.location.pathname.endsWith('/certifications')) {
+        const ribbons = document.querySelectorAll('.sj-course-ribbon-wrapper')
+        ribbons.forEach(e => e.style.display = 'none')
+    }
+
+    // reads next lesson title from on hover text into button
+    const nextBtn = document.querySelector(".next-lesson-button");
+    if (nextBtn) {
+        const nextLabel = nextBtn.firstElementChild.firstElementChild;
+        // change button text first
+        document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
+        // change on hover text to 'Next'
+        nextLabel.innerText = 'Next Module';
+    }
+
+</script>
+
+<script>
+// legal T&C link and currency additions on purchase page
+const controlPayment = () => {
         // select and hide purchase button onload
         let btnPurchase = document
             .querySelector("#payment-form > div:nth-child(3) > div > button")
@@ -384,23 +407,6 @@
             addCurrencySubAndTotal();
         }
     });
-
-    // Hides the ribbons of each tile on certification page
-    if (window.location.pathname.endsWith('/certifications')) {
-        const ribbons = document.querySelectorAll('.sj-course-ribbon-wrapper')
-        ribbons.forEach(e => e.style.display = 'none')
-    }
-
-    // reads next lesson title from on hover text into button
-    const nextBtn = document.querySelector(".next-lesson-button");
-    if (nextBtn) {
-        const nextLabel = nextBtn.firstElementChild.firstElementChild;
-        // change button text first
-        document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
-        // change on hover text to 'Next'
-        nextLabel.innerText = 'Next Module';
-    }
-
 </script>
 
 <!-- Enables navbar on subpages -->
