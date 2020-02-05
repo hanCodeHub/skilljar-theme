@@ -305,11 +305,17 @@
                 align-items: center;
         color: #5f5f5f;
     }
+
+    .link-text:hover .link-icon {
+        transform: rotate(90deg);
+    }
+
     /* icon inside link */
     #filters-row .link-text .link-icon {
         font-size: 1.1em;
         margin-right: .5em;
         margin-top: 1px;
+        transition: .4s ease;
     }
 
     /* EVENTS SECTION */
@@ -562,7 +568,7 @@
 </style>
 
 
-<!-- MINOR DOM EDITS/RESETS -->
+<!-- MINOR DOM EDITS/RESETS - CUSTOMIZE ON ALL SUBPAGES -->
 <script>
     // remove all search elements and reset searchbar
     document.querySelector('.search-container').remove();

@@ -274,6 +274,8 @@
         margin: auto;
     }
 
+    /* subpages must implement additional breadcrumbs */
+    /* all breadcrumbs are are globally styled here */
     #header #navbar #breadcrumbs a,
     #header #navbar #nav-links a {
         margin-bottom: 0;
@@ -942,6 +944,18 @@
         transition: all .3s ease;
         cursor: pointer;
         background: transparent;
+    }
+
+    .btn-solid {
+        background: #ff6d00;
+        color: #fff;
+        padding: .7em;
+        width: 15em;
+        text-align: center;
+        box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
+    }
+    .btn-solid:hover {
+        color: #fff;
     }
 
     .outline-dark {
