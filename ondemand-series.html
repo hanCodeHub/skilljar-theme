@@ -31,7 +31,7 @@
 
     <!-- Nintex for SharePoint -->
     <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover"
-        title="Nintex for SharePoint" href="learn.nintex.com/series/sharepoint" data-type="-c"
+        title="Nintex for SharePoint" href="https://learn.nintex.com/series/sharepoint" data-type="-c"
         data-tags="sharepoint,beginner,workflow,forms,intermediate" data-order="138" data-oid="" data-coid=""
         data-course-series="sharepoint">
         <div class="coursebox-image"><img
@@ -49,7 +49,7 @@
 
     <!-- Nintex for O365 -->
     <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover"
-        title="Nintex for Office 365" href="learn.nintex.com/series/nintex-for-office-365" data-type="-c"
+        title="Nintex for Office 365" href="https://learn.nintex.com/series/nintex-for-office-365" data-type="-c"
         data-tags="office-365,beginner,workflow,forms,intermediate" data-order="136" data-oid="" data-coid=""
         data-course-series="nintex-for-office-365">
         <div class="coursebox-image"><img
@@ -67,7 +67,7 @@
 
     <!-- Nintex Workflow Cloud -->
     <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover"
-        title="Nintex Workflow Cloud" href="learn.nintex.com/series/nintex-workflow-cloud" data-type="-c"
+        title="Nintex Workflow Cloud" href="https://learn.nintex.com/series/nintex-workflow-cloud" data-type="-c"
         data-tags="beginner,workflow,forms,intermediate,workflow-cloud,salesforce" data-order="142" data-oid="" data-coid=""
         data-course-series="nintex-workflow-cloud">
         <div class="coursebox-image"><img
@@ -86,7 +86,7 @@
 
     <!-- Nintex Drawloop -->
     <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover"
-        title="Nintex DocGen for Salesforce" href="learn.nintex.com/series/nintex-docgen-for-salesforce" data-type="-c"
+        title="Nintex DocGen for Salesforce" href="https://learn.nintex.com/series/nintex-docgen-for-salesforce" data-type="-c"
         data-tags="beginner,intermediate,salesforce,docgentm,nwc" data-order="134" data-oid="" data-coid=""
         data-course-series="nintex-docgen-for-salesforce">
         <div class="coursebox-image"><img
@@ -103,7 +103,7 @@
 
     <!-- Nintex Promapp -->
     <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" title="Nintex Promapp"
-        href="learn.nintex.com/series/nintex-promapp" data-type="-c" data-tags="beginner,process-mapping" data-order="140" data-oid=""
+        href="https://learn.nintex.com/series/nintex-promapp" data-type="-c" data-tags="beginner,process-mapping" data-order="140" data-oid=""
         data-coid="" data-course-series="nintex-promapp">
         <div class="coursebox-image"><img
                 src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/103pzv2ezq8od/promo-image.1541182140.png"
@@ -137,8 +137,8 @@
 
 <!-- STYLES -->
 <style>
-    /* page reset */
-    #main-container #skilljar-content {
+       /* page reset */
+       #main-container #skilljar-content {
         margin-left: 0;
         background-color: #fff !important;
     }
@@ -242,9 +242,15 @@
     /* SERIES CARDS */
     #catalog-content #catalog-courses {
         width: 70%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         margin: auto;
     }
 
@@ -252,7 +258,16 @@
         margin-right: 1.5em;
         margin-bottom: 2em;
         padding-bottom: 1em;
+        -webkit-transition: .3s ease;
+        -o-transition: .3s ease;
+        transition: .3s ease;
     }
+
+    #catalog-content #catalog-courses .coursebox-container:hover {
+    -webkit-transform: translateY(-1em);
+        -ms-transform: translateY(-1em);
+            transform: translateY(-1em);
+}
 
     #catalog-courses .coursebox-container .coursebox-text { 
         font-family: 'montserrat';
@@ -264,7 +279,11 @@
         color: #052332;
     }
 
-
+    /* remove stacked effect behind cards */
+    #catalog-content #catalog-courses .coursebox-container::before,
+    #catalog-content #catalog-courses .coursebox-container::after { 
+        content: none;
+    }
 </style>
 
 

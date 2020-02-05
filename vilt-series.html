@@ -307,7 +307,9 @@
     }
 
     .link-text:hover .link-icon {
-        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
     }
 
     /* icon inside link */
@@ -315,6 +317,8 @@
         font-size: 1.1em;
         margin-right: .5em;
         margin-top: 1px;
+        -webkit-transition: .4s ease;
+        -o-transition: .4s ease;
         transition: .4s ease;
     }
 
