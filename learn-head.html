@@ -294,6 +294,10 @@
         padding: 0 1.3em;
     }
 
+    a.breadcrumb {
+        margin-right: .34em;
+    }
+
     /* make last breadcrumb/current page text static */
     #breadcrumbs > a.breadcrumb:last-child {
         pointer-events: none;
@@ -381,6 +385,12 @@
     .catalog-center-width {
         width: auto;
     }
+
+    @media only screen and (max-width: 544px) {
+            .catalog-center-width.one-col-full {
+                padding: 0px;
+            }
+        }
 
     .catalog-header {
         margin-left: 0px !important;
@@ -1257,9 +1267,9 @@
     }
 
     #live-training #events-table-section .events-table-row:hover {
-        -webkit-transform: scale(1.08);
-        -ms-transform: scale(1.08);
-        transform: scale(1.08);
+        -webkit-transform: scale(1.04);
+        -ms-transform: scale(1.04);
+        transform: scale(1.04);
     }
 
     #live-training #events-table-section .events-table-row:active {
@@ -1349,6 +1359,7 @@
         transform: translate(0, -1.5em);
     }
 </style>
+
 
 <!-- Google Tag Manager -->
 <script>(function (w, d, s, l, i) {

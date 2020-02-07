@@ -579,20 +579,17 @@
     document.getElementById('filters-row').style.display = "none";
 
     // add breadcrumbs for this page
-    document.addEventListener('DOMContentLoaded', addBreadcrumbs);
-    
-    function addBreadcrumbs() {
-        const breadcrumbs = document.querySelector("#breadcrumbs");
-        const viltCrumb = document.createElement('a');
-        viltCrumb.innerText = "Instructor-led Training";
-        viltCrumb.classList.add('breadcrumb');
-        breadcrumbs.appendChild(viltCrumb);
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        addBreadcrumbs([
+            ["Instructor-led Training", "https://nintex.skilljar.com/series/vilt"]
+        ]);
+    });
+
     
 </script>
 
 
-<!-- DOM RENDERING -->
+<!-- DOM RENDERING OF VILT SESSION -->
 <script>
 
     // MAIN RENDERING PROGRAM

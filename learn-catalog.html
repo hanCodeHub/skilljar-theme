@@ -4,7 +4,7 @@
             <span id="hero-header" style="color: #ffffff;">Welcome to Nintex University!</span>
             <p id="hero-subheader">
                 <span style="color: #ffffff;">
-                    Learn how to manage, automate, optimize any business process with Nintex
+                    Learn how to manage, automate, and optimize any business process with Nintex
                 </span>
             </p>
         </div>
@@ -72,16 +72,16 @@
         .hero-cta-button::after {
             content: "";
             -webkit-transform: scaleY(0);
-                -ms-transform: scaleY(0);
-                    transform: scaleY(0);
+            -ms-transform: scaleY(0);
+            transform: scaleY(0);
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 100%;
             -webkit-transform-origin: bottom center;
-                -ms-transform-origin: bottom center;
-                    transform-origin: bottom center;
+            -ms-transform-origin: bottom center;
+            transform-origin: bottom center;
             background: #ff6d00;
             -webkit-transition: -webkit-transform 0.3s;
             transition: -webkit-transform 0.3s;
@@ -93,8 +93,8 @@
 
         .hero-cta-button:hover::after {
             -webkit-transform: scaleY(1);
-                -ms-transform: scaleY(1);
-                    transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            transform: scaleY(1);
             z-index: 0;
         }
 
@@ -108,8 +108,8 @@
             position: relative;
             z-index: 1;
             -webkit-transform: translateY(3px);
-                -ms-transform: translateY(3px);
-                    transform: translateY(3px);
+            -ms-transform: translateY(3px);
+            transform: translateY(3px);
         }
 
         #hero-subheading {
@@ -172,7 +172,11 @@
         #catalog-courses.course-listing [data-course-series="nintex-rpa"],
         #catalog-courses.course-listing [data-course-series="get-started"],
         #catalog-courses.course-listing [data-course-series="resource-library"],
-        #catalog-courses.course-listing [data-course-series="test-courses"] {
+        #catalog-courses.course-listing [data-course-series="test-courses"],
+        #catalog-courses.course-listing [data-course-series="test-series-process-automation"],
+        #catalog-courses.course-listing [data-course-series="test-series-drawloop"],
+        #catalog-courses.course-listing [data-course-series="test-series-rpa"],
+        #catalog-courses.course-listing [data-course-series="test-series-process-mapping"] {
             display: none;
         }
 
@@ -204,8 +208,9 @@
             display: -ms-flexbox;
             display: flex;
             -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                    justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
         }
     </style>
+
 </div>

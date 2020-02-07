@@ -410,13 +410,35 @@ const controlPayment = () => {
     });
 </script>
 
+
 <!-- Enables navbar on subpages -->
 <script>
     // navSection is only unhidden in subpages
     const header = document.querySelector('#header');
     const navSection = document.querySelector('#nav-section');
     
-    if (location.href != "https://nintex.skilljar.com/")
-        navSection.hidden = false;
+    if (location.href != "https://nintex.skilljar.com/") {
+         navSection.hidden = false;
         header.appendChild(navSection);
+    }
+       
+</script>
+
+<!-- Functions here are used in subpages -->
+<script>
+    // used in subpages to add breadcrumbs
+    // params: [[crumb1Name, crumb1Link], [crumb2Name, crumb2Link]]
+    const addBreadcrumbs = ([...crumbs]) => {
+        const homeCrumb = document.querySelector("#breadcrumbs");
+
+        // attach each crumb to home. crumbs are [name, link]
+        for (crumb of crumbs) {
+            const newCrumb = document.createElement('a');
+            newCrumb.innerText = crumb[0];  // name
+            newCrumb.classList.add('breadcrumb');
+            breadcrumbs.appendChild(newCrumb);
+            newCrumb.href = crumb[1];  // link
+        }
+
+    }
 </script>
