@@ -417,9 +417,12 @@ const controlPayment = () => {
     const header = document.querySelector('#header');
     const navSection = document.querySelector('#nav-section');
     
+    // edits to subpages if not homepage
     if (location.href != "https://nintex.skilljar.com/") {
-         navSection.hidden = false;
+        navSection.hidden = false;
         header.appendChild(navSection);
+        // remove all search elements and reset searchbar
+        document.querySelector('.search-container').remove();
     }
        
 </script>

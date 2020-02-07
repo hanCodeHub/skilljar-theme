@@ -1,0 +1,21 @@
+<style>
+    /* hide nav links sooner when more breadcrumbs are shown */
+    @media only screen and (max-width: 1238px) {
+        #header #navbar #nav-links {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+
+    // trigger DOM edits after DOM loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // [name, link] for each breadcrumb
+        addBreadcrumbs([
+            ["On-demand Training", "/series/ondemand"],
+            ["Nintex RPA", "/series/test-series-rpa"]
+        ]);
+    });
+
+</script>
