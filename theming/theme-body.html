@@ -14,11 +14,11 @@
             <a href="https://nintex.skilljar.com">Home</a>
         </div>
         <div id="nav-links">
-            <a href="https://nintex.skilljar.com/series/ondemand">On-demand Training</a> 
+            <a href="https://nintex.skilljar.com/series/ondemand">On-demand Training</a>
             <a href="https://nintex.skilljar.com/series/vilt">Instructor-led Training</a>
             <a href="https://nintex.skilljar.com/series/certifications">Certification Exams</a>
         </div>
-       
+
     </div>
 </nav>
 
@@ -83,7 +83,9 @@
 
         <div id="private-training-section" class="text-center" hidden>
             <div class="card-container">
-                <a id="private-training-link" href="https://ntx-it-test.workflowcloud.com/forms/f827be1d-4f6c-44d3-b678-88d29317a514" target="_blank">
+                <a id="private-training-link"
+                    href="https://ntx-it-test.workflowcloud.com/forms/f827be1d-4f6c-44d3-b678-88d29317a514"
+                    target="_blank">
                     <div class="card-message">
                         <p>Contact us for private training</p>
                     </div>
@@ -323,7 +325,7 @@
     }
     if (location.pathname == '/')
         document.addEventListener('DOMContentLoaded', greetUser);
-    
+
     // adds user email to private training URL params
     const privateLink = document.getElementById('private-training-link')
     if (privateLink && getUser())
@@ -348,8 +350,8 @@
 </script>
 
 <script>
-// legal T&C link and currency additions on purchase page
-const controlPayment = () => {
+    // legal T&C link and currency additions on purchase page
+    const controlPayment = () => {
         // select and hide purchase button onload
         let btnPurchase = document
             .querySelector("#payment-form > div:nth-child(3) > div > button")
@@ -416,15 +418,16 @@ const controlPayment = () => {
     // navSection is only unhidden in subpages
     const header = document.querySelector('#header');
     const navSection = document.querySelector('#nav-section');
-    
+
     // edits to subpages if not homepage
     if (location.href != "https://nintex.skilljar.com/") {
         navSection.hidden = false;
         header.appendChild(navSection);
         // remove all search elements and reset searchbar
-        document.querySelector('.search-container').remove();
+        const searchBar = document.querySelector('.search-container');
+        if (searchBar) searchBar.remove();
     }
-       
+
 </script>
 
 <!-- Functions here are used in subpages -->
@@ -443,5 +446,35 @@ const controlPayment = () => {
             newCrumb.href = crumb[1];  // link
         }
 
+    }
+
+    // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
+
+    // returns the product capability tag found in given course element
+    function getCapability(course) {
+        const capabilities = [
+            "Workflow", "Forms", "Process Mapping", "RPA", "DocGen", "eSign"]
+
+        for (capa of capabilities)
+            if (course.tagArray.includes(capa)) return capa;
+        return null;
+    }
+
+    // returns the level tag found in given course element
+    function getLevel(course) {
+        const levels = ["Practitioner", "Expert", "Master"];
+
+        for (level of levels)
+            if (course.tagArray.includes(level)) return level;
+        return null;
+    }
+
+    // returns the platform tag found in given course element
+    function getPlatform(course) {
+        const platforms = ["Office 365", "SharePoint", "NWC"];
+
+        for (platform of platforms)
+            if (course.tagArray.includes(platform)) return platform;
+        return null;
     }
 </script>

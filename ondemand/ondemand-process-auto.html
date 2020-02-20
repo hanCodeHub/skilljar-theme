@@ -1,12 +1,328 @@
+<div>
+    <!-- BANNER HEADER BLOCK -->
+    <div id="header-banner">
+
+        <div class="header-block-wrapper">
+            <div id="header-block">
+                <div class="header-block-text">
+                    <h1 class="section-header">Nintex Process Automation</h1>
+                    <p>
+                        Everything related to Workflow and Forms. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis in et est cumque quod, excepturi aperiam officia maiores accusamus veniam? Cum debitis eveniet dolores quisquam.
+                    </p>
+                </div>
+                <!-- background image on banner -->
+                <div class="header-block-graphic"></div>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- FILTER CONTROLS -->
+    <div id="filters-row" hidden>
+
+        <!-- select filter -->
+        <select name="capability" id="filter-select" class="filter-control">
+            <!-- values should match tag names of capabilities -->
+            <option selected value="all">All Products</option>
+            <option value="workflow">Workflow</option>
+            <option value="forms">Forms</option>
+            <option value="process mapping">Process Mapping</option>
+            <option value="docgen">DocGen</option>
+            <option value="rpa">RPA</option>
+        </select>
+
+        <!-- search filter -->
+        <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
+
+        <!-- filters reset -->
+        <a href="#" id="filter-reset" class="link-text">
+            <span class="link-icon">&#10005;</span> Reset filters
+        </a>
+    </div>
+
+</div>
+
+
+
 <style>
+
+    /* PAGE RESET */
+
+    /* eliminate gap on left side */
+    #main-container #skilljar-content {
+        margin-left: 0;
+    }
+
+    /* reduce padding between banner and cards */
+    #main-container #skilljar-content .top-row {
+        padding: 0;
+    }
+
+    #main-container #skilljar-content .catalog-header {
+        margin-top: 0;
+        padding-left: 0;
+    }
+
+    /* hide left nav button - search bar does not work on this page */
+    #left-nav-button {
+        display: none;
+    }
+
+
+    /* HEADER BANNER BLOCK */
+    #main-container #skilljar-content .header-block-wrapper {
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FOndemand-backg.1580927854336.jpg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    #main-container #skilljar-content #header-block {
+        color: #052332;
+        margin: auto;
+        margin-bottom: 4em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        max-width: 70%;
+    }
+
+    /* header title and paragraph */
+    #main-container #skilljar-content h1.section-header {
+        font-family: "Montserrat";
+        font-weight: 600;
+        font-size: 2em;
+        margin: 1.5em 0 1em 0;
+        color: #052332;
+    }
+
+    #main-container #skilljar-content #header-block p {
+        font-size: 1.1em;
+        font-weight: 400;
+    }
+
+    #skilljar-content #header-block .header-block-text {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
+        margin: 2.5em 4em 2em 0;
+        padding-bottom: 2em;
+        color: #052332;
+        font-weight: 700;
+        letter-spacing: .03em;
+    }
+
+    #header-block .header-block-text .btn-outline {
+        margin: auto;
+    }
+
+    #header-block .header-block-text .btn-outline:hover {
+        background-color: #ff6d00;
+    }
+
+    .header-block-text .btn-outline a {
+        color: #fff;
+    }
+
+    #skilljar-content #header-block .header-block-graphic {
+        width: 100em;
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fondemand-image.1580926582259.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* hide image on smaller screens */
+    @media only screen and (max-width: 1150px) {
+        #skilljar-content #header-block .header-block-graphic {
+            display: none;
+        }
+
+        #skilljar-content #header-block .header-block-text {
+            margin: 2.5em 0;
+        }
+    }
+
     /* hide nav links sooner when more breadcrumbs are shown */
     @media only screen and (max-width: 1238px) {
         #header #navbar #nav-links {
             display: none;
         }
     }
+
+    /* use wider container for nav on small screens */
+    @media only screen and (max-width: 600px) {
+        #header #navbar {
+            width: fit-content;
+            
+        }
+    }
+
+
+    /* FILTER CONTROLS ROW */
+
+    #filters-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: flex-start;
+        max-width: 70%;
+        margin: 2em auto;
+    }
+
+    @media only screen and (max-width: 1150) {
+        #filters-row {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+        }
+
+        #filters-row .filter-control {
+            margin-bottom: 1em;
+        }
+    }
+
+    /* each control/filter button */
+    #filters-row .filter-control {
+        width: 12em;
+        height: 2.4em;
+        font-size: inherit;
+        background-color: #fff;
+        color: #5f5f5f;
+        border-radius: 5px;
+        padding: 4px;
+        border: 1.4px solid #c0c0c0;
+        outline: none;
+        margin: 0 2em 1em 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    #filters-row a.filter-control:hover {
+        background: #ff6d00;
+        color: white;
+    }
+    /* remove left margin on leftmost filter control */
+    #vilt-section #filters-row:first-child {
+        margin-left: 0;
+    }
+
+    /* longer width for search filter */
+    #filter-search.filter-control {
+        width: 17em;
+    }
+
+    #filters-row select.filter-control {
+        cursor: pointer;
+    }
+
+    #filters-row input.filter-control {
+        text-indent: 4px;
+    }
+
+    #filters-row .link-text {
+        margin-bottom: 1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        color: #5f5f5f;
+    }
+
+    .link-text:hover .link-icon {
+        -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+
+    /* icon inside link */
+    #filters-row .link-text .link-icon {
+        font-size: 1.1em;
+        margin-right: .5em;
+        margin-top: 1px;
+        -webkit-transition: .4s ease;
+        -o-transition: .4s ease;
+        transition: .4s ease;
+    }
+
+
+
+    /* CATALOG COURSES CARDS SECTION */
+
+    /* cards container */
+    #catalog-content #catalog-courses {
+        width: 70%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    /* padding between each course card */
+    #catalog-content #catalog-courses .coursebox-container {
+        margin-right: 1.5em;
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+        -webkit-transition: .3s ease;
+        -o-transition: .3s ease;
+        transition: .3s ease;
+    }
+
+    /* card text and image */
+    #catalog-courses .coursebox-container.course .coursebox-image {
+        margin: -8px;
+        height: inherit;
+        margin-bottom: 1em;
+    }
+
+    #catalog-courses .coursebox-container .coursebox-text {
+        font-family: 'montserrat';
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    #catalog-courses .coursebox-container .coursebox-text-description {
+        color: #052332;
+    }
+
 </style>
 
+
+<!-- MINOR DOM EDITS/RESETS - CUSTOMIZE ON ALL SUBPAGES -->
 <script>
 
     // trigger DOM edits after DOM loaded
@@ -17,5 +333,83 @@
             ["Nintex Process Automation", "/series/test-series-process-automation"]
         ]);
     });
+
+    // attach all series cards to #catalog-content
+    function addCourseSeries() {
+        const catalog = document.querySelector('#catalog-courses');
+        const allSeries = document.querySelectorAll('.course');
+        for (series of allSeries) catalog.append(series);
+    }
+
+</script>
+
+<!-- FILTER AND SEARCH -->
+<script>
+    // event listeners for filter controls
+    const filterSelect = document.getElementById('filter-select');
+    const filterSearch = document.getElementById('filter-search');
+    const resetBtn = document.getElementById('filter-reset');
+
+    filterSelect.addEventListener('change', handleCourseFilters);
+    filterSearch.addEventListener('change', handleCourseFilters);
+    resetBtn.addEventListener('click', handleFilterReset);
+
+    // resets view by displaying all possible course cards
+    function displayCourses() {
+        const courseCards = document.querySelectorAll('.course');
+        for (card of courseCards) card.style.display = 'flex';
+    }
+
+    // handles all course filters on all cards
+    function handleCourseFilters(e) {
+        // reset view
+        displayCourses();  
+        
+        // pass cards through all filters
+        const courseCards = document.querySelectorAll('.course');
+        handleProductSelect(courseCards);
+        handleSearch(courseCards);
+    }
+
+    // filters and returns course cards by capability selection
+    function handleProductSelect(courseCards) {
+        // selected value
+        const select = document.getElementById('filter-select').value.toLowerCase();
+
+        // filter by capability stored on data-tag of each card
+        for (card of courseCards) {
+            // tag value
+            const productTag = card.dataset.product.toLowerCase();
+
+            if (productTag != select && select != "all") {
+                card.style.display = "none";
+            }
+        }
+        return courseCards;
+    }
+
+    // filters and returns course cards by name search
+    function handleSearch(courseCards) {
+        const input = document.getElementById('filter-search').value.toLowerCase();
+
+        // filter by name given in search input
+        for (card of courseCards) {
+            const name = card.lastElementChild.firstElementChild.innerText;
+            if (!name.toLowerCase().includes(input)) {
+                card.style.display = "none";
+            }
+        }
+        return courseCards
+    }
+
+    // displays all course cards and resets filter controls
+    function handleFilterReset() {
+        displayCourses();
+
+        const filterSelect = document.getElementById('filter-select');
+        const filterSearch = document.getElementById('filter-search');
+        filterSelect.value = 'all';
+        filterSearch.value = '';
+    }
 
 </script>

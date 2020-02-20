@@ -700,9 +700,9 @@
         const image = card.querySelector(".event-img");
 
         // get tags from event data (for filtering and rendering)
-        const productTag = getCapability(ev);
-        const levelTag = getLevel(ev);
-        const platformTag = getPlatform(ev);
+        const productTag = getEventCapability(ev);
+        const levelTag = getEventLevel(ev);
+        const platformTag = getEventPlatform(ev);
 
         // set data attributes
         card.dataset.product = productTag;  // product tag
@@ -726,7 +726,7 @@
     }
 
     // returns the product capability tag found in the event data
-    function getCapability(event) {
+    function getEventCapability(event) {
         const capabilities = [
             "Workflow", "Forms", "Process Mapping", "RPA", "DocGen", "eSign"
         ]
@@ -737,7 +737,7 @@
     }
 
     // returns the level tag found in the event data
-    function getLevel(event) {
+    function getEventLevel(event) {
         const levels = ["Practitioner", "Expert", "Master"];
 
         for (level of levels)
@@ -746,7 +746,7 @@
     }
 
     // returns the platform tag found in the event data
-    function getPlatform(event) {
+    function getEventPlatform(event) {
         const platforms = ["Office 365", "SharePoint", "NWC"];
 
         for (platform of platforms)
@@ -768,8 +768,14 @@
 
                 "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FWF+0365_icons.1580336933559.png"
             },
-            "sharepoint": {},
+            
+            "sharepoint": {
+                "forms": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FForms+SP_icons.1582155168456.png",
+                "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FWF+SP_icons.1582155256683.png"
+            },
+
             "nwc": {},
+
             "process mapping": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FPROCESS+MAPPING_icons.1580337008265.png",
 
             "RPA": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FRPA_icons.1580337081095.png"
