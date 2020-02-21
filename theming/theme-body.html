@@ -478,3 +478,49 @@
         return null;
     }
 </script>
+
+
+<!-- control subscription access to courses via user groups -->
+<script>
+
+    // if on a course page
+    if (typeof skilljarCourse !== 'undefined') {
+
+    }
+
+    // returns the access level of the user
+    function getUserAccessLevel() {
+
+        // if user is logged in
+        if (typeof skilljarUserStudentGroups !== 'undefined') {
+            
+            // return the subscription access if it exists
+            for (group of skilljarUserStudentGroups.values()) {
+                if (group.name == "Subscription - Basic" 
+                    || group.name == "Subscription - Premium") {
+                    return group.name;
+                }
+            }
+        }
+    }
+
+    // returns the access level of the course
+    function getCourseAccessLevel() {
+        for (tag of skilljarCourse.tags) {
+            if (tag == "Subscription - Basic" || tag == "Subscription - Premium")
+                return tag;
+        }
+    }
+
+    // converts button href to onclick event
+    function convertBtnToEvent() {
+        const purchaseBtn = document.querySelector('.purchase-button');
+        if (purchaseBtn) {
+            purchaseBtn.onclick = () => { 
+                location.href = purchaseBtn.href; 
+            }
+            purchaseBtn.href = '#';
+        }
+    }
+
+</script>
