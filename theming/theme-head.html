@@ -93,18 +93,67 @@
     }
 
 
-    /* reset default styling of course cards */
-    
-    #catalog-courses .coursebox-container .course.coursebox-text {
+    /* COURSE CARDS - when using searchbar and in subpages */
+    /* Not used for offerings tiles on homepage */
+
+    /* card container */
+    #catalog-content #catalog-courses .coursebox-container {
+        margin-right: 1.5em;
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+        -webkit-transition: .3s ease;
+        -o-transition: .3s ease;
+        transition: .3s ease;
+        overflow: hidden;
+    }
+
+    /* reset default img sizing */
+    /* image container */
+    #catalog-courses .coursebox-container .coursebox-image {
+        margin: -9px;
+        margin-bottom: 1em;
+        overflow: hidden;
+        float: none;
+    }
+    /* course image */
+    a.coursebox-container.course .coursebox-image img {
+        max-height: inherit;
+    }
+
+    /* course title */
+    #catalog-content #catalog-courses a.coursebox-container .coursebox-text {
         font-family: 'montserrat';
         font-weight: 500;
         font-size: 1.1em;
     }
 
-    .search #catalog-content a.coursebox-container .coursebox-image {
-        float: none;
+    /* course subtitle */
+    #catalog-content #catalog-courses a.coursebox-container .coursebox-text-description { 
+        display: block;
     }
 
+    /* duration */
+    #catalog-content #catalog-courses a.coursebox-container .course-time {
+        padding-bottom: 1em;
+    }
+
+    /* status ribbons */
+    #catalog-courses a.coursebox-container .sj-course-ribbon-wrapper {
+        width: 100%;
+    	bottom: -1.1em;
+	    top: initial;
+    	display: flex;
+	    justify-content: center;
+    	flex-flow: column nowrap;
+    }
+
+    a.coursebox-container .sj-course-ribbon-wrapper .sj-course-ribbon {
+        border: none;
+	    transform: none;
+    	width: 100%;
+	    left: .4px;
+	    border-radius: 0;
+    }
 
     /* LEFT NAV PANE STYLES */
     @media only screen and (min-width: 875px) {
@@ -219,10 +268,6 @@
 
     .grey-bg-d05 {
         background-color: white !important;
-    }
-
-    .coursebox-text-description {
-        display: block !important;
     }
 
 
@@ -1024,7 +1069,7 @@
 
     /* offerings training format tiles */
     #offerings+#catalog-courses a.coursebox-container,
-    #get-started .card-container.coursebox-container {
+    #get-started .sj-course-series.coursebox-container {
         background: -o-linear-gradient(to top right, #052332, grey);
         background: -webkit-gradient(linear, left bottom, right top, from(#052332), to(grey));
         background: -o-linear-gradient(bottom left, #052332, grey);
@@ -1043,7 +1088,7 @@
     }
 
     #offerings+#catalog-courses a.coursebox-container:hover,
-    #get-started .card-container.coursebox-container:hover {
+    #get-started .sj-course-series.coursebox-container:hover {
         -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
         box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
         -webkit-transform: translateY(-10px);
@@ -1052,7 +1097,7 @@
     }
 
     #offerings+#catalog-courses a.coursebox-container:active,
-    #get-started .card-container.coursebox-container:active {
+    #get-started .sj-course-series.coursebox-container:active {
         -webkit-box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.8);
         box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.8);
         -webkit-transform: translateY(-5px);
@@ -1065,31 +1110,40 @@
         content: none;
     }
 
-    #offerings+#catalog-courses .coursebox-image {
+    #offerings+#catalog-courses .sj-course-series .coursebox-image {
         height: auto;
+        margin: 1px;
+        margin-bottom: 1em;
     }
 
-    #offerings+#catalog-courses .coursebox-image>img {
+    #offerings+#catalog-courses .sj-course-series .coursebox-image>img {
         width: 100%;
         border-radius: 10px;
     }
 
-    #offerings+#catalog-courses .coursebox-text {
-        font-size: 1.4em;
+    #catalog-content #offerings+#catalog-courses .sj-course-series .coursebox-text {
+        font-size: 1.35em;
         color: white;
     }
 
-    #offerings+#catalog-courses .coursebox-text-description {
+    #offerings+#catalog-courses .sj-course-series .coursebox-text-description {
+        font-size: 1.1em;
         color: silver;
     }
 
-    /* when using searchbar on homepage render simple cards */
+    /* HOMEPAGE COURSES - when user uses searchbar */
+    /* hide lesson cards */
+  
+    /* .coursebox-text-description {
+        display: block !important;
+    } */
+    
     /* hide lesson cards */
     #offerings+#catalog-courses>a[data-type="-l"] {
         display: none;
     }
 
-    /* courses */
+    /* searched courses */
     #offerings+#catalog-courses>a.search-only[data-type="-c"] {
         background: #fff;
         border: 1px solid darkgray;
@@ -1098,6 +1152,7 @@
         color: #052332;
         overflow: hidden;
         width: 15.8em;
+        padding-bottom: 2em;
     }
 
     /* image */
@@ -1108,8 +1163,9 @@
         align-self: stretch;
     }
 
-    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image>img {
+    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image > img {
         border-radius: 3px;
+        width: 100%;
     }
 
     /* main title */
@@ -1123,8 +1179,16 @@
     #offerings+#catalog-courses a.search-only .coursebox-text-description {
         color: inherit;
         margin: 10px 5px;
+        padding-bottom: .6em;
     }
 
+    /* duration text */
+    #offerings+#catalog-courses a.search-only .course-time {
+        position: absolute;
+        bottom: .8em;
+        right: .5em;
+        color: #ff6d00;
+    }
 
     /* LIVE TRAINING BLOCK  */
 
