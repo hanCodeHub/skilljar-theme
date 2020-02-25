@@ -473,7 +473,7 @@
 
     // returns the platform tag found in given course element
     function getPlatform(course) {
-        const platforms = ["Office 365", "SharePoint", "NWC", "Salesforce"];
+        const platforms = ["Office-365", "SharePoint", "NWC", "Salesforce"];
 
         for (platform of platforms)
             if (course.tagArray.includes(platform.toLowerCase())) 
@@ -509,7 +509,7 @@
 
     // returns the access level of the course
     function getCourseAccessLevel() {
-        for (tag of skilljarCourse.tags) {
+        for (tag.toLowerCase() of skilljarCourse.tags) {
             if (tag == "Subscription - Basic" || tag == "Subscription - Premium")
                 return tag;
         }

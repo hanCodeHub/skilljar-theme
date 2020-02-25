@@ -7,7 +7,9 @@
                 <div class="header-block-text">
                     <h1 class="section-header">Nintex Process Automation</h1>
                     <p>
-                        Everything related to Workflow and Forms. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis in et est cumque quod, excepturi aperiam officia maiores accusamus veniam? Cum debitis eveniet dolores quisquam.
+                        Everything related to Workflow and Forms. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Officiis in et est cumque quod, excepturi aperiam officia maiores accusamus veniam? Cum
+                        debitis eveniet dolores quisquam.
                     </p>
                 </div>
                 <!-- background image on banner -->
@@ -16,13 +18,22 @@
         </div>
 
     </div>
-    
+
 
     <!-- FILTER CONTROLS -->
     <div id="filters-row" hidden>
 
-        <!-- select filter -->
-        <select name="capability" id="filter-select" class="filter-control">
+        <!-- select platform filter -->
+        <select name="platform" id="filter-select-platform" class="filter-control">
+            <!-- values should match tag names of platforms -->
+            <option selected value="all">All Platforms</option>
+            <option value="sharepoint">SharePoint</option>
+            <option value="office-365">Office 365</option>
+            <option value="nwc">Nintex Workflow Cloud</option>
+        </select>
+
+        <!-- select product filter -->
+        <select name="capability" id="filter-select-product" class="filter-control">
             <!-- values should match tag names of capabilities -->
             <option selected value="all">All Products</option>
             <option value="workflow">Workflow</option>
@@ -32,7 +43,8 @@
         </select>
 
         <!-- search filter -->
-        <input type="text" id="filter-search" class="filter-control" placeholder="Search class names">
+        <input type="text" id="filter-search" class="filter-control" 
+        placeholder="Search course names" />
 
         <!-- filters reset -->
         <a href="#" id="filter-reset" class="link-text">
@@ -45,7 +57,6 @@
 
 
 <style>
-
     /* PAGE RESET */
 
     /* eliminate gap on left side */
@@ -163,7 +174,7 @@
     @media only screen and (max-width: 600px) {
         #header #navbar {
             width: fit-content;
-            
+
         }
     }
 
@@ -176,11 +187,11 @@
         display: flex;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
-            -ms-flex-flow: row wrap;
-                flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: flex-start;
+        -ms-flex-pack: center;
+        justify-content: flex-start;
         max-width: 70%;
         margin: 2em auto;
     }
@@ -189,11 +200,11 @@
         #filters-row {
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
-                -ms-flex-flow: column nowrap;
-                    flex-flow: column nowrap;
+            -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
             -webkit-box-align: center;
-                -ms-flex-align: center;
-                    align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
         }
 
         #filters-row .filter-control {
@@ -203,7 +214,7 @@
 
     /* each control/filter button */
     #filters-row .filter-control {
-        width: 12em;
+        width: 13em;
         height: 2.4em;
         font-size: inherit;
         background-color: #fff;
@@ -217,19 +228,21 @@
         display: -ms-flexbox;
         display: flex;
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
         -webkit-transition: all .3s ease;
         -o-transition: all .3s ease;
         transition: all .3s ease;
     }
+
     #filters-row a.filter-control:hover {
         background: #ff6d00;
         color: white;
     }
+
     /* remove left margin on leftmost filter control */
     #vilt-section #filters-row:first-child {
         margin-left: 0;
@@ -254,15 +267,15 @@
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
         color: #5f5f5f;
     }
 
     .link-text:hover .link-icon {
         -webkit-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-                transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
     }
 
     /* icon inside link */
@@ -301,11 +314,16 @@
         transition: .3s ease;
     }
 
-    /* card text and image */
+
+    /* reset default img sizing */
     #catalog-courses .coursebox-container.course .coursebox-image {
-        margin: -8px;
-        height: inherit;
+        margin: -9px;
         margin-bottom: 1em;
+        overflow: hidden;
+    }
+
+    a.coursebox-container.course .coursebox-image img {
+        max-height: inherit;
     }
 
     #catalog-courses .coursebox-container .coursebox-text {
@@ -317,7 +335,6 @@
     #catalog-courses .coursebox-container .coursebox-text-description {
         color: #052332;
     }
-
 </style>
 
 
@@ -345,13 +362,28 @@
 <!-- FILTER AND SEARCH -->
 <script>
     // event listeners for filter controls
-    const filterSelect = document.getElementById('filter-select');
+    const filterSelectProduct = document.getElementById('filter-select-product');
+    const filterSelectPlatform = document.getElementById('filter-select-platform');
     const filterSearch = document.getElementById('filter-search');
     const resetBtn = document.getElementById('filter-reset');
 
-    filterSelect.addEventListener('change', handleCourseFilters);
+    filterSelectPlatform.addEventListener('change', handleCourseFilters);
+    filterSelectProduct.addEventListener('change', handleCourseFilters);
     filterSearch.addEventListener('change', handleCourseFilters);
+    
     resetBtn.addEventListener('click', handleFilterReset);
+
+    // handles all course filters on all cards
+    function handleCourseFilters() {
+        const courseCards = document.querySelectorAll('.course');
+
+        // reset view
+        displayCourses();
+        // pass cards through all filters
+        handlePlatformSelect(courseCards);
+        handleProductSelect(courseCards);
+        handleSearch(courseCards);
+    }
 
     // resets view by displaying all possible course cards
     function displayCourses() {
@@ -359,29 +391,36 @@
         for (card of courseCards) card.style.display = 'block';
     }
 
-    // handles all course filters on all cards
-    function handleCourseFilters(e) {
-        // reset view
-        displayCourses();  
-        
-        // pass cards through all filters
-        const courseCards = document.querySelectorAll('.course');
-        handleProductSelect(courseCards);
-        handleSearch(courseCards);
+    // filters and returns course cards by platform selection
+    function handlePlatformSelect(courseCards) {
+        // selected value
+        const select = document.getElementById('filter-select-platform').value.toLowerCase();
+
+        // filter by capability stored on data-tag of each card
+        for (card of courseCards) {
+            // tag value
+            const platformTag = getPlatform(card);
+
+            // hide course if tag don't match or 'all' is selected
+            if (!platformTag || platformTag.toLowerCase() != select && select != "all") {
+                card.style.display = "none";
+            }
+        }
+        return courseCards;
     }
 
     // filters and returns course cards by capability selection
     function handleProductSelect(courseCards) {
         // selected value
-        const select = document.getElementById('filter-select').value.toLowerCase();
+        const select = document.getElementById('filter-select-product').value.toLowerCase();
 
         // filter by capability stored on data-tag of each card
         for (card of courseCards) {
             // tag value
             const capaTag = getCapability(card);
-            
+
             // hide course if tag don't match or 'all' is selected
-            if (capaTag && capaTag.toLowerCase() != select && select != "all") {
+            if (!capaTag || capaTag.toLowerCase() != select && select != "all") {
                 card.style.display = "none";
             }
         }
@@ -408,9 +447,12 @@
     function handleFilterReset() {
         displayCourses();
 
-        const filterSelect = document.getElementById('filter-select');
+        const filterSelectProduct = document.getElementById('filter-select-product');
+        const filterSelectPlatform = document.getElementById('filter-select-platform');
         const filterSearch = document.getElementById('filter-search');
-        filterSelect.value = 'all';
+        
+        filterSelectPlatform.value = 'all';
+        filterSelectProduct.value = 'all';
         filterSearch.value = '';
     }
 

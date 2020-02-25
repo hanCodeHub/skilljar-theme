@@ -92,6 +92,20 @@
         font-size: 10px;
     }
 
+
+    /* reset default styling of course cards */
+    
+    #catalog-courses .coursebox-container .course.coursebox-text {
+        font-family: 'montserrat';
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    .search #catalog-content a.coursebox-container .coursebox-image {
+        float: none;
+    }
+
+
     /* LEFT NAV PANE STYLES */
     @media only screen and (min-width: 875px) {
         #catalog-left-nav {
@@ -229,6 +243,7 @@
     #header #header-left {
         padding-left: 15%;
     }
+
     #header #header-right {
         padding-right: 15%;
     }
@@ -238,7 +253,7 @@
         height: 61px;
     }
 
-    #header .header-link.login-link { 
+    #header .header-link.login-link {
         background: transparent;
         display: flex;
         align-items: center;
@@ -299,7 +314,7 @@
     }
 
     /* make last breadcrumb/current page text static */
-    #breadcrumbs > a.breadcrumb:last-child {
+    #breadcrumbs>a.breadcrumb:last-child {
         pointer-events: none;
     }
 
@@ -387,10 +402,10 @@
     }
 
     @media only screen and (max-width: 544px) {
-            .catalog-center-width.one-col-full {
-                padding: 0px;
-            }
+        .catalog-center-width.one-col-full {
+            padding: 0px;
         }
+    }
 
     .catalog-header {
         margin-left: 0px !important;
@@ -414,30 +429,33 @@
     }
 
     #header-right,
-    #header .headerheight { 
+    #header .headerheight {
         display: flex;
         align-items: center;
     }
 
     /* hide profile picture for small devices */
     @media only screen and (max-width: 500px) {
-        #header-right > div.headerheight.align-vertical img {
+        #header-right>div.headerheight.align-vertical img {
             display: none;
         }
 
         /* remove arrow from profile dropdown */
-        .f-dropdown::before, .f-dropdown::after {
+        .f-dropdown::before,
+        .f-dropdown::after {
             border: none;
-        } 
+        }
 
         /* shrink white space on each side */
         #header #header-left {
             padding-left: 7%;
         }
+
         #header #header-right {
             padding-right: 7%;
         }
-        #vilt-header > .header-block-wrapper > #header-block {
+
+        #vilt-header>.header-block-wrapper>#header-block {
             width: 86%;
         }
 
@@ -964,6 +982,7 @@
         text-align: center;
         box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
     }
+
     .btn-solid:hover {
         color: #fff;
     }
@@ -1066,11 +1085,12 @@
 
     /* when using searchbar on homepage render simple cards */
     /* hide lesson cards */
-    #offerings+#catalog-courses > a[data-type="-l"] {
+    #offerings+#catalog-courses>a[data-type="-l"] {
         display: none;
     }
+
     /* courses */
-    #offerings+#catalog-courses > a.search-only[data-type="-c"] {
+    #offerings+#catalog-courses>a.search-only[data-type="-c"] {
         background: #fff;
         border: 1px solid darkgray;
         border-radius: 3px;
@@ -1079,6 +1099,7 @@
         overflow: hidden;
         width: 15.8em;
     }
+
     /* image */
     #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image {
         margin: auto;
@@ -1086,16 +1107,18 @@
         margin-bottom: 1em;
         align-self: stretch;
     }
-    #offerings+#catalog-courses a.search-only[data-type="-c"] 
-    .coursebox-image > img{
+
+    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image>img {
         border-radius: 3px;
     }
+
     /* main title */
     #offerings+#catalog-courses a.search-only .coursebox-text {
         color: #052332;
         font-size: 1em;
         margin: 10px 5px;
     }
+
     /* subtitle */
     #offerings+#catalog-courses a.search-only .coursebox-text-description {
         color: inherit;
@@ -1156,11 +1179,11 @@
         }
 
         @supports (-ms-ime-align:auto) {
-        #skilljar-content #live-training {
-            padding-top: 100px;
-            padding-bottom: 450px;
+            #skilljar-content #live-training {
+                padding-top: 100px;
+                padding-bottom: 450px;
+            }
         }
-    }
     }
 
     /* private training card */
@@ -1315,7 +1338,7 @@
     }
 
     @supports (-ms-ime-align:auto) {
-        #skilljar-content .top-row #resources { 
+        #skilljar-content .top-row #resources {
             padding-top: 100px;
         }
     }
