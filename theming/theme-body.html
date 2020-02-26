@@ -547,3 +547,90 @@
     }
 
 </script>
+
+
+<!-- EVENT HANDLERS - for filters in ondemand subpages -->
+<script>
+        // handles all course filters on all cards
+        function handleCourseFilters() {
+        const courseCards = document.querySelectorAll('.course');
+
+        // reset view
+        displayCourses();
+        // pass cards through all filters
+        handlePlatformSelect(courseCards);
+        handleProductSelect(courseCards);
+        handleSearch(courseCards);
+    }
+
+    // resets view by displaying all possible course cards
+    function displayCourses() {
+        const courseCards = document.querySelectorAll('.course');
+        for (card of courseCards) card.style.display = 'block';
+    }
+
+    // filters and returns course cards by platform selection
+    function handlePlatformSelect(courseCards) {
+        // selected value
+        const select = document.getElementById('filter-select-platform').value.toLowerCase();
+
+        // filter by capability stored on data-tag of each card
+        for (card of courseCards) {
+            // tag value
+            const platformTag = getPlatform(card);
+
+            // hide course if tag don't match or 'all' is selected
+            if (!platformTag || platformTag.toLowerCase() != select && select != "all") {
+                card.style.display = "none";
+            }
+        }
+        return courseCards;
+    }
+
+    // filters and returns course cards by capability selection
+    function handleProductSelect(courseCards) {
+        // selected value
+        const select = document.getElementById('filter-select-product').value.toLowerCase();
+
+        // filter by capability stored on data-tag of each card
+        for (card of courseCards) {
+            // tag value
+            const capaTag = getCapability(card);
+
+            // hide course if tag don't match or 'all' is selected
+            if (!capaTag || capaTag.toLowerCase() != select && select != "all") {
+                card.style.display = "none";
+            }
+        }
+        return courseCards;
+    }
+
+    // filters and returns course cards by name search
+    function handleSearch(courseCards) {
+        const input = document.getElementById('filter-search').value.toLowerCase();
+
+        // filter by name given in search input
+        for (card of courseCards) {
+            const name = card.querySelector('.coursebox-text').innerText;
+
+            // hide course if its name does not include input
+            if (!name.toLowerCase().includes(input)) {
+                card.style.display = "none";
+            }
+        }
+        return courseCards
+    }
+
+    // displays all course cards and resets filter controls
+    function handleFilterReset() {
+        displayCourses();
+
+        const filterSelectProduct = document.getElementById('filter-select-product');
+        const filterSelectPlatform = document.getElementById('filter-select-platform');
+        const filterSearch = document.getElementById('filter-search');
+        
+        filterSelectPlatform.value = 'all';
+        filterSelectProduct.value = 'all';
+        filterSearch.value = '';
+    }
+</script>

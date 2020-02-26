@@ -26,6 +26,7 @@
 
     <!-- Course series cards on the ondemand page - insert here  -->
     <!-- each card is appended to #catalog-content -->
+    <!-- Title and subtitle of each card MUST be updated in Skilljar dashboard as well -->
 
     <!-- Process Automation -->
     <a href="/series/test-series-process-automation" title="Nintex Process Automation - TEST"
@@ -36,10 +37,10 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/1qbuqeobma082/promo-image.1580921240.png"
                 alt="Nintex Process Automation - TEST"></div>
         <div class="coursebox-text">
-            Nintex Process Automation - TEST
+            Nintex Drawloop DocGen - TEST
         </div>
         <div class="coursebox-text-description">
-            Description about how Process Automation helps your business and yourself and your dog.
+            Description about Nintex Process Automation courses that help your business.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -61,7 +62,7 @@
             Nintex RPA - TEST
         </div>
         <div class="coursebox-text-description">
-            Description about how Nintex RPA helps your business and yourself and your dog.
+            Description about Nintex RPA courses that help your business.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -72,7 +73,7 @@
 
 
     <!-- Drawloop -->
-    <a href="/series/test-series-drawloop" title="Nintex Drawloop Document Generation - TEST"
+    <a href="/series/test-series-drawloop" title="Nintex Drawloop DocGen - TEST"
         class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" data-type="-c"
         data-tags="" data-order="30" data-oid="" data-coid="" data-course-series="test-series-drawloop">
         <div class="coursebox-image"><img
@@ -80,10 +81,10 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2end7myk6pk6x/promo-image.1582652936.png"
                 alt="Nintex Drawloop Document Generation - TEST"></div>
         <div class="coursebox-text">
-            Nintex Drawloop Document Generation - TEST
+            Nintex Drawloop DocGen - TEST
         </div>
         <div class="coursebox-text-description">
-            Description about how Drawloop helps your business and yourself and your dog.
+            Description about Nintex Drawloop courses that help your business.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -104,7 +105,7 @@
             Nintex Process Mapping - TEST
         </div>
         <div class="coursebox-text-description">
-            Description about how Nintex Promapp helps your business and yourself and your dog.
+            Description about Nintex Process Mapping courses that help your business.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -283,11 +284,12 @@
 <script>
     // remove all search elements and reset searchbar
     document.querySelector('.search-container').remove();
-    // document.getElementById('filters-row').style.display = "none";
 
     // trigger DOM edits after DOM loaded
     document.addEventListener('DOMContentLoaded', () => {
         addCourseSeries();
+
+        // [name, link] for each breadcrumb - addBreadcrumbs() defined in global theme
         addBreadcrumbs([
             ["On-demand Training", "https://nintex.skilljar.com/series/ondemand"]
         ]);
@@ -327,7 +329,9 @@
     }
 
     // takes an array of course series objects (api) and adds course count to each existing series
+    // precondition: course series title attribute in HTML must match the one in Skilljar
     function addCourseCount(apiSeries) {
+
         // all course series currently on the webpage
         const domSeries = document.querySelectorAll('.sj-course-series');
         
