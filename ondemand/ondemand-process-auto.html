@@ -42,6 +42,16 @@
             <option value="docgen">DocGen</option>
         </select>
 
+        <!-- select level filter -->
+        <select name="level" id="filter-select-level" class="filter-control">
+            <!-- values should match tag names of levels -->
+            <option selected value="all">All Levels</option>
+            <option value="practitioner">Practitioner</option>
+            <option value="expert">Expert</option>
+            <option value="master">Master</option>
+            <option value="partner">Partner</option>
+        </select>
+
         <!-- search filter -->
         <input type="text" id="filter-search" class="filter-control" 
         placeholder="Search course names" />
@@ -224,16 +234,36 @@
     // after all scripts are loaded, add event listeners for filter controls
     // event handler functions defined in global theme
     document.addEventListener('DOMContentLoaded', () => {
+        
+        // get filter control elements
         const filterSelectProduct = document.getElementById('filter-select-product');
         const filterSelectPlatform = document.getElementById('filter-select-platform');
+        const filterSelectLevel = document.getElementById('filter-select-level');
         const filterSearch = document.getElementById('filter-search');
         const resetBtn = document.getElementById('filter-reset');
 
+        // add event listeners from event handlers in global theme
         filterSelectPlatform.addEventListener('change', handleCourseFilters);
         filterSelectProduct.addEventListener('change', handleCourseFilters);
+        filterSelectLevel.addEventListener('change', handleCourseFilters);
         filterSearch.addEventListener('change', handleCourseFilters);
-        
         resetBtn.addEventListener('click', handleFilterReset);
+
     })
+
+
+    // handles all course filters on all cards
+    function handleCourseFilters() {
+        const courseCards = document.querySelectorAll('.course');
+
+        // reset view
+        displayCourses();
+
+        // pass cards through all filters
+        handlePlatformSelect(courseCards);
+        handleProductSelect(courseCards);
+        handleLevelSelect(courseCards);
+        handleSearch(courseCards);
+    }
 
 </script>

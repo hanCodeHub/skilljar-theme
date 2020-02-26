@@ -483,7 +483,7 @@
 
     // returns the level tag found in given course element
     function getLevel(course) {
-        const levels = ["Practitioner", "Expert", "Master"];
+        const levels = ["Practitioner", "Expert", "Master", "Partner"];
 
         for (level of levels)
             if (course.tagArray.includes(level.toLowerCase())) 
@@ -551,17 +551,6 @@
 
 <!-- EVENT HANDLERS - for filters in ondemand subpages -->
 <script>
-        // handles all course filters on all cards
-        function handleCourseFilters() {
-        const courseCards = document.querySelectorAll('.course');
-
-        // reset view
-        displayCourses();
-        // pass cards through all filters
-        handlePlatformSelect(courseCards);
-        handleProductSelect(courseCards);
-        handleSearch(courseCards);
-    }
 
     // resets view by displaying all possible course cards
     function displayCourses() {
@@ -599,6 +588,25 @@
 
             // hide course if tag don't match or 'all' is selected
             if (!capaTag || capaTag.toLowerCase() != select && select != "all") {
+                card.style.display = "none";
+            }
+        }
+        return courseCards;
+    }
+
+    // filters and returns course cards by level selection
+    function handleLevelSelect(courseCards) {
+
+        // selected value
+        const select = document.getElementById('filter-select-level').value.toLowerCase();
+
+        // filter by capability stored on data-tag of each card
+        for (card of courseCards) {
+            // tag value
+            const levelTag = getLevel(card);
+
+            // hide course if tag don't match or 'all' is selected
+            if (!levelTag || levelTag.toLowerCase() != select && select != "all") {
                 card.style.display = "none";
             }
         }
