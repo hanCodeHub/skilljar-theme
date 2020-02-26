@@ -256,14 +256,18 @@
     }
 
     #catalog-courses .coursebox-container .coursebox-text {
-        font-family: 'montserrat';
+        font-family: 'montserrat', 'sans-serif';
         font-weight: 500;
         font-size: 1.1em;
     }
 
     #catalog-content #catalog-courses .coursebox-container .coursebox-text-description {
         color: #052332;
-        padding-bottom: 0;
+        padding-bottom: 1.3em;
+    }
+
+    #catalog-courses .coursebox-container .course-series-count {
+        color: #ff6d00;
     }
 
     /* remove stacked effect behind cards */
@@ -294,6 +298,50 @@
         const catalog = document.querySelector('#catalog-courses');
         const allSeries = document.querySelectorAll('.sj-course-series');
         for (series of allSeries) catalog.append(series);
+    }
+
+</script>
+
+<!-- API calls to Skilljar API -->
+<script>
+    
+    // main program flow of this script
+    try {       // change domain to location.host for production
+        getData("https://skilljar-api-test.azurewebsites.net/course-series/nintex.skilljar.com")
+            .then(res => res.data)
+            .then(data => addCourseCount(data.results))
+            .catch(err => console.log(err));
+    } catch (error) {
+        console.log(`Error getting data from api: ${error}`);
+    }
+
+    // generic fetch function
+    async function getData(url) {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return await response.json();
+    }
+
+    // takes an array of course series objects (api) and adds course count to each existing series
+    function addCourseCount(apiSeries) {
+        // all course series currently on the webpage
+        const domSeries = document.querySelectorAll('.sj-course-series');
+        
+        for (series of domSeries) {
+            // find the first occurrence of current series title matching api object title
+            const match = apiSeries.find(obj => series.title === obj.title);
+            
+            // display the published course count on current series
+            if (match) {
+                const countElement = series.querySelector('.course-series-count');
+                countElement.style.display = 'block';
+                countElement.innerText = `${match.published_course_count} Courses`;
+            }
+        }
     }
 
 </script>

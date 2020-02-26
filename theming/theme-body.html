@@ -449,8 +449,6 @@
     }
 
     // obtains the level of course appends the level text to the card 
-    document.addEventListener("DOMContentLoaded", () => addDifficulty());
-    
     function addDifficulty() {
         const courses = document.querySelectorAll('.course');
 
@@ -486,8 +484,6 @@
     // returns the level tag found in given course element
     function getLevel(course) {
         const levels = ["Practitioner", "Expert", "Master"];
-
-        console.log(course);
 
         for (level of levels)
             if (course.tagArray.includes(level.toLowerCase())) 
