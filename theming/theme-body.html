@@ -448,6 +448,28 @@
 
     }
 
+    // obtains the level of course appends the level text to the card 
+    document.addEventListener("DOMContentLoaded", () => addDifficulty());
+    
+    function addDifficulty() {
+        const courses = document.querySelectorAll('.course');
+
+        // get the level of each course
+        for (course of courses) {
+            const level = getLevel(course);
+
+            // if it's a course (has a data-course tag) and has level
+            if (course && course.dataset.course && level) {
+                // append a new element and style with .level-text class
+                const levelElement = document.createElement('div');
+                levelElement.classList.add('level-text');
+                levelElement.innerText = level;
+                course.appendChild(levelElement);
+            }
+        }
+    }
+
+    
     // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
 
     // returns the product capability tag found in given course element
@@ -464,6 +486,8 @@
     // returns the level tag found in given course element
     function getLevel(course) {
         const levels = ["Practitioner", "Expert", "Master"];
+
+        console.log(course);
 
         for (level of levels)
             if (course.tagArray.includes(level.toLowerCase())) 

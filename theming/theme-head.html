@@ -153,7 +153,23 @@
     	width: 100%;
 	    left: .4px;
 	    border-radius: 0;
+        padding: 7px 2px;
     }
+
+    .sj-course-ribbon-complete, .sj-course-ribbon-registered {
+        box-shadow: none !important;
+    }
+
+
+
+    /* difficulty text */
+    .level-text {
+        position: absolute;
+        bottom: 2em;
+        left: 1em;
+        color: #ff6d00;
+    }
+
 
     /* LEFT NAV PANE STYLES */
     @media only screen and (min-width: 875px) {
@@ -1033,7 +1049,7 @@
     }
 
     .outline-dark {
-        border: 2px solid #052332;
+        border: 1.5px solid #052332;
     }
 
     #skilljar-content .top-row span.btn-outline>a,
@@ -1067,7 +1083,8 @@
         width: 25%;
     }
 
-    /* offerings training format tiles */
+
+    /* OFFERINGS TILES */
     #offerings+#catalog-courses a.coursebox-container,
     #get-started .sj-course-series.coursebox-container {
         background: -o-linear-gradient(to top right, #052332, grey);
@@ -1179,13 +1196,13 @@
     #offerings+#catalog-courses a.search-only .coursebox-text-description {
         color: inherit;
         margin: 10px 5px;
-        padding-bottom: .6em;
+        margin-bottom: 2em;
     }
 
     /* duration text */
     #offerings+#catalog-courses a.search-only .course-time {
         position: absolute;
-        bottom: .8em;
+        bottom: 1em;
         right: .5em;
         color: #ff6d00;
     }
