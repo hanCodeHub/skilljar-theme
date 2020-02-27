@@ -467,7 +467,7 @@
         }
     }
 
-    
+
     // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
 
     // returns the product capability tag found in given course element
@@ -476,7 +476,7 @@
             "Workflow", "Forms", "Mobile", "Process Mapping", "RPA", "DocGen", "eSign"]
 
         for (capa of capabilities)
-            if (course.tagArray.includes(capa.toLowerCase())) 
+            if (course.tagArray.includes(capa.toLowerCase()))
                 return capa;
         return null;
     }
@@ -486,7 +486,7 @@
         const levels = ["Practitioner", "Expert", "Master", "Partner"];
 
         for (level of levels)
-            if (course.tagArray.includes(level.toLowerCase())) 
+            if (course.tagArray.includes(level.toLowerCase()))
                 return level;
         return null;
     }
@@ -496,8 +496,18 @@
         const platforms = ["Office-365", "SharePoint", "NWC", "Salesforce"];
 
         for (platform of platforms)
-            if (course.tagArray.includes(platform.toLowerCase())) 
+            if (course.tagArray.includes(platform.toLowerCase()))
                 return platform;
+        return null;
+    }
+
+    // returns the role tag found in given course element
+    function getRole(course) {
+        const roles = ["Everyday-User", "Process-Author", "Promaster"];
+
+        for (role of roles)
+            if (course.tagArray.includes(role.toLowerCase()))
+                return role;
         return null;
     }
 </script>
@@ -516,10 +526,10 @@
 
         // if user is logged in
         if (typeof skilljarUserStudentGroups !== 'undefined') {
-            
+
             // return the subscription access if it exists
             for (group of skilljarUserStudentGroups.values()) {
-                if (group.name == "Subscription - Basic" 
+                if (group.name == "Subscription - Basic"
                     || group.name == "Subscription - Premium") {
                     return group.name;
                 }
@@ -539,8 +549,8 @@
     function convertBtnToEvent() {
         const purchaseBtn = document.querySelector('.purchase-button');
         if (purchaseBtn) {
-            purchaseBtn.onclick = () => { 
-                location.href = purchaseBtn.href; 
+            purchaseBtn.onclick = () => {
+                location.href = purchaseBtn.href;
             }
             purchaseBtn.href = '#';
         }
@@ -558,87 +568,97 @@
         for (card of courseCards) card.style.display = 'block';
     }
 
-    // filters and returns course cards by platform selection
-    function handlePlatformSelect(courseCards) {
-        // selected value
-        const select = document.getElementById('filter-select-platform').value.toLowerCase();
 
-        // filter by capability stored on data-tag of each card
-        for (card of courseCards) {
-            // tag value
-            const platformTag = getPlatform(card);
-
-            // hide course if tag don't match or 'all' is selected
-            if (!platformTag || platformTag.toLowerCase() != select && select != "all") {
-                card.style.display = "none";
-            }
-        }
-        return courseCards;
+    // hides all existing course cards from view
+    function hideCourses() {
+        const courseCards = document.querySelectorAll('.course');
+        for (card of courseCards) card.style.display = 'none';
     }
 
-    // filters and returns course cards by capability selection
-    function handleProductSelect(courseCards) {
-        // selected value
-        const select = document.getElementById('filter-select-product').value.toLowerCase();
-
-        // filter by capability stored on data-tag of each card
-        for (card of courseCards) {
-            // tag value
-            const capaTag = getCapability(card);
-
-            // hide course if tag don't match or 'all' is selected
-            if (!capaTag || capaTag.toLowerCase() != select && select != "all") {
-                card.style.display = "none";
-            }
-        }
-        return courseCards;
-    }
-
-    // filters and returns course cards by level selection
-    function handleLevelSelect(courseCards) {
-
-        // selected value
-        const select = document.getElementById('filter-select-level').value.toLowerCase();
-
-        // filter by capability stored on data-tag of each card
-        for (card of courseCards) {
-            // tag value
-            const levelTag = getLevel(card);
-
-            // hide course if tag don't match or 'all' is selected
-            if (!levelTag || levelTag.toLowerCase() != select && select != "all") {
-                card.style.display = "none";
-            }
-        }
-        return courseCards;
-    }
-
-    // filters and returns course cards by name search
-    function handleSearch(courseCards) {
-        const input = document.getElementById('filter-search').value.toLowerCase();
-
-        // filter by name given in search input
-        for (card of courseCards) {
-            const name = card.querySelector('.coursebox-text').innerText;
-
-            // hide course if its name does not include input
-            if (!name.toLowerCase().includes(input)) {
-                card.style.display = "none";
-            }
-        }
-        return courseCards
-    }
 
     // displays all course cards and resets filter controls
-    function handleFilterReset() {
-        displayCourses();
+    function handleFilterReset(filters) {
 
-        const filterSelectProduct = document.getElementById('filter-select-product');
-        const filterSelectPlatform = document.getElementById('filter-select-platform');
-        const filterSearch = document.getElementById('filter-search');
-        
-        filterSelectPlatform.value = 'all';
-        filterSelectProduct.value = 'all';
-        filterSearch.value = '';
+        return () => { // returns inner func to event listener
+
+            displayCourses();
+
+            // reset filters to default value
+            for (filter of filters) {
+                if (filter.tagName === "SELECT")
+                    filter.value = 'all';
+                else if (filter.tagName === "INPUT")
+                    filter.value = '';
+            }
+        }
+
+    }
+
+
+    // handles all course filters on all cards 
+    // makes all filter elements available to inner anonymous func
+    function handleCourseFilters(filters) {
+
+        return () => { // returns inner func to event listener
+
+            // gets an array of all available courses (not just filtered ones)
+            const courseCards = document.querySelectorAll('.course');
+            let courses = Array.from(courseCards);
+
+            // hides courses before each filtering event - defined in global theme
+            hideCourses();
+
+            // pass courses array and filter through all filter functions 
+            for (filter of filters) {
+                if (filter.tagName === "SELECT")
+                    courses = filterCoursesOnSelect(courses, filter);
+                else if (filter.tagName === "INPUT")
+                    courses = filterCoursesOnSearch(courses, filter);
+            }
+
+            // show the remaining filtered courses
+            for (course of courses) course.style.display = 'block';
+        }
+    }
+
+
+    // filters and returns an array of course elements that match the selected filter
+    // handles all types of select filters - must include getter in selectorSwitch
+    function filterCoursesOnSelect(courses, select) {
+
+        // returns all courses if 'all' is selected for the given filter
+        if (select.value === 'all') return courses;
+
+        // filters out the courses with tags that don't match the selected value
+        const filteredCourses = courses.filter(course => {
+
+            // gets tag value of current course by switching on the name of selector
+            const selectorSwitch = {
+                "level": getLevel(course),
+                "capability": getCapability(course),
+                "platform": getPlatform(course),
+                "role": getRole(course),
+            }
+            const tag = selectorSwitch[select.name];  // tag is null if course doesn't have it
+
+            // returns the course if it has a matching tag
+            if (tag && tag.toLowerCase() === select.value.toLowerCase())
+                return course;
+        })
+
+        return filteredCourses;
+    }
+
+
+    // filters and returns an array of course elements that match the search input
+    function filterCoursesOnSearch(courses, search) {
+
+        // filters out courses with titles that don't include the search input
+        const filteredCourses = courses.filter(course => {
+            const title = course.title;
+            return title.toLowerCase().includes(search.value);
+        })
+
+        return filteredCourses;
     }
 </script>

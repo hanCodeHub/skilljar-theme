@@ -53,8 +53,7 @@
         </select>
 
         <!-- search filter -->
-        <input type="text" id="filter-search" class="filter-control" 
-        placeholder="Search course names" />
+        <input type="text" id="filter-search" class="filter-control" placeholder="Search course names" />
 
         <!-- filters reset -->
         <a href="#" id="filter-reset" class="link-text">
@@ -203,10 +202,9 @@
         margin: auto;
     }
 
-    #catalog-courses a.coursebox-container .coursebox-text-description { 
+    #catalog-courses a.coursebox-container .coursebox-text-description {
         margin-bottom: 3em;
     }
-
 </style>
 
 
@@ -215,7 +213,7 @@
 
     // trigger DOM edits after DOM loaded
     document.addEventListener('DOMContentLoaded', () => {
-        
+
         // [name, link] for each breadcrumb - addBreadcrumbs() defined in global theme
         addBreadcrumbs([
             ["On-demand Training", "/series/ondemand"],
@@ -230,40 +228,28 @@
 
 <!-- FILTER AND SEARCH -->
 <script>
-    
+
     // after all scripts are loaded, add event listeners for filter controls
     // event handler functions defined in global theme
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // get filter control elements
-        const filterSelectProduct = document.getElementById('filter-select-product');
-        const filterSelectPlatform = document.getElementById('filter-select-platform');
-        const filterSelectLevel = document.getElementById('filter-select-level');
-        const filterSearch = document.getElementById('filter-search');
-        const resetBtn = document.getElementById('filter-reset');
 
-        // add event listeners from event handlers in global theme
-        filterSelectPlatform.addEventListener('change', handleCourseFilters);
-        filterSelectProduct.addEventListener('change', handleCourseFilters);
-        filterSelectLevel.addEventListener('change', handleCourseFilters);
-        filterSearch.addEventListener('change', handleCourseFilters);
-        resetBtn.addEventListener('click', handleFilterReset);
+        // get filter control elements specific to this page
+        const filters = [
+            document.getElementById('filter-select-product'),
+            document.getElementById('filter-select-platform'),
+            document.getElementById('filter-select-level'),
+            document.getElementById('filter-search')
+        ]
+
+        // handle course filters - passing in all filter elements
+        for (filter of filters) {
+            filter.addEventListener('change', handleCourseFilters(filters));
+        }
+
+        // handle filter reset - passing in all filter elements
+        const resetBtn = document.getElementById('filter-reset');
+        resetBtn.addEventListener('click', handleFilterReset(filters));
 
     })
-
-
-    // handles all course filters on all cards
-    function handleCourseFilters() {
-        const courseCards = document.querySelectorAll('.course');
-
-        // reset view
-        displayCourses();
-
-        // pass cards through all filters
-        handlePlatformSelect(courseCards);
-        handleProductSelect(courseCards);
-        handleLevelSelect(courseCards);
-        handleSearch(courseCards);
-    }
 
 </script>
