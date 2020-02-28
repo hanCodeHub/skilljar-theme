@@ -467,6 +467,18 @@
         }
     }
 
+    // removes default elements and styles injected into subpages by Skilljar
+    function removeDefaultElements() {
+        // remove everything with class .catalog-center-width
+        const elements = document.querySelectorAll('.catalog-center-width');
+        for (el of elements) 
+            if (el) el.classList.remove('catalog-center-width');
+
+        // remove back button
+        const backBtn = document.querySelector('.back-to-catalog');
+        if (backBtn) backBtn.remove();
+    }
+
 
     // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
 

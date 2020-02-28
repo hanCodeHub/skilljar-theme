@@ -5,9 +5,10 @@
         <div class="header-block-wrapper">
             <div id="header-block">
                 <div class="header-block-text">
-                    <h1 class="section-header">Nintex Process Automation</h1>
+                    <h1 class="section-header">Nintex Drawloop Document Generation</h1>
                     <p>
-                        Everything related to Workflow and Forms. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis in et est cumque quod, excepturi aperiam officia maiores accusamus veniam? Cum debitis eveniet dolores quisquam.
+                        Everything related to generating documents in Salesforce. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Officiis in et est cumque quod, excepturi aperiam officia maiores accusamus veniam.
                     </p>
                 </div>
                 <!-- background image on banner -->
@@ -16,11 +17,36 @@
         </div>
 
     </div>
-    
+
+
+    <!-- FILTER CONTROLS -->
+    <div id="filters-row" hidden>
+
+        <!-- select level filter -->
+        <select name="level" id="filter-select-level" class="filter-control">
+            <!-- values should match tag names of levels -->
+            <option selected value="all">All Levels</option>
+            <option value="practitioner">Practitioner</option>
+            <option value="expert">Expert</option>
+            <option value="master">Master</option>
+            <option value="partner">Partner</option>
+        </select>
+
+        <!-- search filter -->
+        <input type="text" id="filter-search" class="filter-control" 
+        placeholder="Search course names" />
+
+        <!-- filters reset -->
+        <a href="#" id="filter-reset" class="link-text">
+            <span class="link-icon">&#10005;</span> Reset filters
+        </a>
+    </div>
+
 </div>
 
-<style>
 
+
+<style>
     /* PAGE RESET */
 
     /* eliminate gap on left side */
@@ -111,7 +137,7 @@
 
     #skilljar-content #header-block .header-block-graphic {
         width: 100em;
-        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fondemand-image.1580926582259.jpg");
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fdocument_automation.1582848734039.png");
         background-size: cover;
         background-position: center;
     }
@@ -138,13 +164,14 @@
     @media only screen and (max-width: 600px) {
         #header #navbar {
             width: fit-content;
-            
+
         }
     }
 
 
     /* CATALOG COURSES CARDS SECTION */
 
+    /* cards container */
     #catalog-content #catalog-courses {
         width: 70%;
         display: -webkit-box;
@@ -156,17 +183,56 @@
         margin: auto;
     }
 
+    #catalog-courses a.coursebox-container .coursebox-text-description { 
+        margin-bottom: 3em;
+    }
+
 </style>
 
+
+<!-- MINOR DOM EDITS/RESETS - CUSTOMIZE ON ALL SUBPAGES -->
 <script>
 
     // trigger DOM edits after DOM loaded
     document.addEventListener('DOMContentLoaded', () => {
-        // [name, link] for each breadcrumb
+        
+        // [name, link] for each breadcrumb - addBreadcrumbs() defined in global theme
         addBreadcrumbs([
             ["On-demand Training", "/series/ondemand"],
-            ["Nintex Drawloop DocGen", "/series/test-series-drawloop"]
+            ["Nintex Drawloop DocGen", "/series/test-series-process-mapping"]
         ]);
+
+        // adds difficulty/level to course cards - addDifficulty() defined in global theme
+        addDifficulty();
+
+        // remove default elements/styling
+        removeDefaultElements();
     });
+
+</script>
+
+<!-- FILTER AND SEARCH -->
+<script>
+
+    // after all scripts are loaded, add event listeners for filter controls
+    // event handler functions defined in global theme
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // get filter control elements specific to this page
+        const filters = [
+            document.getElementById('filter-select-level'),
+            document.getElementById('filter-search')
+        ]
+
+        // handle course filters - passing in all filter elements
+        for (filter of filters) {
+            filter.addEventListener('change', handleCourseFilters(filters));
+        }
+
+        // handle filter reset - passing in all filter elements
+        const resetBtn = document.getElementById('filter-reset');
+        resetBtn.addEventListener('click', handleFilterReset(filters));
+
+    })
 
 </script>
