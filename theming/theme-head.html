@@ -139,25 +139,35 @@
 
     /* status ribbons */
     #catalog-courses a.coursebox-container .sj-course-ribbon-wrapper {
-        width: 100%;
+        width: 102%;
     	bottom: -1.1em;
 	    top: initial;
+    	display: -webkit-box;
+    	display: -ms-flexbox;
     	display: flex;
-	    justify-content: center;
-    	flex-flow: column nowrap;
+	    -webkit-box-pack: center;
+	        -ms-flex-pack: center;
+	            justify-content: center;
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: normal;
+    	    -ms-flex-flow: column nowrap;
+    	        flex-flow: column nowrap;
     }
 
     a.coursebox-container .sj-course-ribbon-wrapper .sj-course-ribbon {
         border: none;
-	    transform: none;
+	    -webkit-transform: none;
+	        -ms-transform: none;
+	            transform: none;
     	width: 100%;
-	    left: .4px;
+	    left: 3px;
 	    border-radius: 0;
         padding: 7px 2px;
     }
 
     .sj-course-ribbon-complete, .sj-course-ribbon-registered {
-        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+                box-shadow: none !important;
     }
 
 
@@ -290,9 +300,16 @@
     /* HEADER STYLES */
 
     #header {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
         /* background color defined in Skilljar Theme */
     }
 
@@ -316,8 +333,12 @@
 
     #header .header-link.login-link {
         background: transparent;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     #ep-footer {
@@ -339,12 +360,17 @@
         width: 100%;
         height: 50%;
         background-color: #fff;
-        box-shadow: 0px 10px 10px -10px grey;
+        -webkit-box-shadow: 0px 10px 10px -10px grey;
+                box-shadow: 0px 10px 10px -10px grey;
     }
 
     #header #navbar {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         width: 70%;
         height: 100%;
         margin: auto;
@@ -358,6 +384,8 @@
         font-size: .85em;
         font-weight: 600;
         color: #052332;
+        width: -webkit-max-content;
+        width: -moz-max-content;
         width: max-content;
     }
 
@@ -380,8 +408,12 @@
     }
 
     #header #navbar #breadcrumbs {
-        flex: 1;
-        flex-grow: 2;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -webkit-box-flex: 2;
+            -ms-flex-positive: 2;
+                flex-grow: 2;
         font-style: italic;
     }
 
@@ -394,8 +426,14 @@
     }
 
     #header #navbar #nav-links {
-        flex: 2;
-        flex-grow: 1;
+        -webkit-box-flex: 2;
+            -ms-flex: 2;
+                flex: 2;
+        -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
 
@@ -491,8 +529,12 @@
 
     #header-right,
     #header .headerheight {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     /* hide profile picture for small devices */
@@ -685,13 +727,9 @@
         border-color: #09894e !important;
         background: #DCF3E7 !important;
         color: black !important;
-        -webkit-box-shadow: 0px 2px 2px 0px #403838 !important;
-        box-shadow: 0px 2px 2px 0px #403838 !important;
     }
 
     .sj-course-ribbon-registered {
-        -webkit-box-shadow: 0px 2px 2px 0px #652a0d !important;
-        box-shadow: 0px 2px 2px 0px #652a0d !important;
         color: black !important;
     }
 
@@ -718,10 +756,16 @@
     }
 </style>
 
-<style>
-    /* Container holding the image and the text */
 
-    .container {
+
+
+
+
+
+<style>
+ /* Container holding the image and the text */
+
+ .container {
         height: 16%;
         width: 100%;
         position: relative;
@@ -888,6 +932,15 @@
     }
 </style>
 
+
+
+
+
+
+
+
+
+
 <style>
     .modal {
         display: none;
@@ -976,8 +1029,8 @@
     #skilljar-content .top-row .section-body-light {
         color: black;
         background: -o-linear-gradient(to left, #bbc3cc, #fff);
-        background: -webkit-gradient(linear, right top, left top, from(#bbc3cc), to(#fff));
         background: -o-linear-gradient(right, #bbc3cc, #fff);
+        background: -webkit-gradient(linear, right top, left top, from(#bbc3cc), to(#fff));
         background: linear-gradient(to left, #bbc3cc, #fff);
         padding: 260px 0 100px 0;
         margin: -250px 0 -50px 0;
@@ -1049,7 +1102,8 @@
         padding: .7em;
         width: 15em;
         text-align: center;
-        box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
+        -webkit-box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
+                box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
     }
 
     .btn-solid:hover {
@@ -1096,8 +1150,8 @@
     #offerings+#catalog-courses a.coursebox-container,
     #get-started .sj-course-series.coursebox-container {
         background: -o-linear-gradient(to top right, #052332, grey);
-        background: -webkit-gradient(linear, left bottom, right top, from(#052332), to(grey));
         background: -o-linear-gradient(bottom left, #052332, grey);
+        background: -webkit-gradient(linear, left bottom, right top, from(#052332), to(grey));
         background: linear-gradient(to top right, #052332, grey);
         border-radius: 10px;
         width: 20em;
@@ -1173,7 +1227,8 @@
         background: #fff;
         border: 1px solid darkgray;
         border-radius: 3px;
-        box-shadow: none;
+        -webkit-box-shadow: none;
+                box-shadow: none;
         color: #052332;
         overflow: hidden;
         width: 15.8em;
@@ -1185,7 +1240,9 @@
         margin: auto;
         width: 100%;
         margin-bottom: 1em;
-        align-self: stretch;
+        -ms-flex-item-align: stretch;
+            -ms-grid-row-align: stretch;
+            align-self: stretch;
     }
 
     #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image > img {
@@ -1472,6 +1529,18 @@
     }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
 /* FILTER STYLES FOR ALL SUBPAGES */
     /* FILTER CONTROLS ROW */
@@ -1576,7 +1645,6 @@
         -o-transition: .4s ease;
         transition: .4s ease;
     }
-
 </style>
 
 
