@@ -692,42 +692,71 @@
     })
 
 
-    // modifies course page with given classPrefix depending on enroll status
+    // MAIN METHOD FOR RENDERING/RESTYLING COURSE PAGE
+    // given classPrefix depends on enroll page or registered/completed page
     function modifyCoursePage(classPrefix) {
 
-        // HEADERS
-        document.getElementById('header-left').classList.add('course-page-header-left');
-        document.getElementById('header-right').classList.add('course-page-header-right');
-
-        // NAV BAR
-        document.getElementById('nav-section').remove();
-
-        // BANNER AND PROMO IMAGE
-        const banner = document.querySelector("#skilljar-content > div.top-row-grey.padding-side");
+        // reset headers
+        resetHeader();
 
         // loads the promo image into the background of the banner
+        loadPromoImage(classPrefix);
+
+        // MAIN SUMMARY BLOCK
+        modifySummary(classPrefix);
+
+        // title
+        document.querySelector('.break-word').classList.add('course-page-title');  
+
+        // subtitle elements
+        const subtitle = document.querySelector(`.${classPrefix}-summary-wrapper h2`);
+        addSubtitleLevel(subtitle);
+        addCourseTime(classPrefix, subtitle);
+
+        // extra links and buttons
+        modifyLinks();
+
+        // progress bar
+        modifyProgress();
+    }
+
+
+    // loads promo image into the banner
+    function loadPromoImage(classPrefix) {
         const promoImage = document.querySelector(`.${classPrefix}-promo-image > img`);
-        
+        const banner = document.querySelector("#skilljar-content > div.top-row-grey.padding-side");
+
+        // set banner background to promo image
         banner.style.background = `linear-gradient(rgba(3, 22, 30, 0.85), rgba(3, 22, 30, .7)), 
         url(${promoImage.src}) right/cover no-repeat`;
         banner.classList.add('course-page-banner');
 
         // removes promo image along with its container column
         document.querySelector(`.${classPrefix}-promo-image-wrapper`).remove();
+    }
 
-        // MAIN SUMMARY BLOCK
+    // styles summary block
+    function modifySummary(classPrefix) {
         const summary = document.querySelector(`.${classPrefix}-summary-wrapper`);
-        // only .course-page-summary class is non-skilljar defined in global theme
+
+        // only .course-page-summary is non-skilljar class defined in global theme
         summary.classList.add('course-page-summary', 'large-10');
         summary.classList.remove('push-4');
         summary.parentElement.classList.add('padded-side-bottom');
+    }
 
+    // resets navbar and top ribbon
+    function resetHeader() {
+        // HEADERS
+        document.getElementById('header-left').classList.add('course-page-header-left');
+        document.getElementById('header-right').classList.add('course-page-header-right');
 
-        // TITLE
-        document.querySelector('.break-word').classList.add('course-page-title');  
+        // NAV BAR
+        document.getElementById('nav-section').remove();
+    }
 
-        // SUBTTILE
-        const subtitle = document.querySelector(`.${classPrefix}-summary-wrapper h2`);
+    // adds difficulty level inside subtitle element
+    function addSubtitleLevel(subtitle) {
         // clears the subtitle (in case no level is found), then reads in level
         subtitle.innerText = '';
         // getLevel() does not work here, **replace hardcoded levels in future release**
@@ -737,16 +766,24 @@
         }
         subtitle.classList.add('course-page-subtitle');  // defined in theme
         subtitle.classList.remove('cp-lessons');
+    }
 
+    // adds course time before subtitle element
+    function addCourseTime(classPrefix, subtitle) {
         // COURSE TIME - reads course time into subtitle
         const oldTime = document.querySelector('.sj-course-time');  // old course time element
         const courseTime = document.createElement('h2');  // new course time element
+
         subtitle.parentElement.insertBefore(courseTime, subtitle);
         courseTime.innerText = oldTime.innerHTML;
         courseTime.classList.add('course-page-subtitle'); // defined in theme
-        if (classPrefix === 'dp') courseTime.classList.add('course-page-time') // defined in theme
+        
+        if (classPrefix === 'dp') courseTime.classList.add('course-page-time'); // defined in theme
         oldTime.remove();
+    }
 
+    // modifies links and buttons
+    function modifyLinks() {
         // SIGN IN TEXT
         const signIn = document.querySelector('.signin')
         if (signIn) signIn.remove();
@@ -755,14 +792,17 @@
         const enrollBtn = document.querySelector('.purchase-button');
         if (enrollBtn) enrollBtn.classList.add('course-page-enroll-btn');  // defined in theme
 
+        
+    }
+
+    // modifies progress bar
+    function modifyProgress() {
         // PROGRESS BAR
         const progress = document.querySelector('.progress-bar');
         if (progress) {
             progress.classList.add('course-page-progress');  // defined in theme
             progress.removeAttribute('style');  // remove inline styles
         } 
-
     }
-
 
 </script>

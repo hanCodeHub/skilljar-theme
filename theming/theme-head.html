@@ -1675,8 +1675,13 @@
 
     /* added to summary block on course page */
     #skilljar-content .course-page-summary {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: column nowrap;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column nowrap;
+                flex-flow: column nowrap;
     }
 
     /* stuff within the summary block */
