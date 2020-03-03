@@ -5,6 +5,9 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+
+<!-- TEMPLATES TO BE CLONED AND RENDERED -->
+
 <!-- NAV BLOCK - attaches to #header - for breadcrumbs and links in subpages -->
 <nav id="nav-section" hidden>
     <div id="navbar">
@@ -140,6 +143,15 @@
     </div>
 
 </section>
+
+<!-- LEVEL INDICATOR ICONS ON COURSE PAGES AND TILES -->
+<div class="course-level-container" hidden>
+    <!-- number of icons filled based on level of course -->
+    <span class="course-level-icon" > &nbsp; </span>
+    <span class="course-level-icon" > &nbsp; </span>
+    <span class="course-level-icon" > &nbsp; </span>
+</div>
+
 
 <!-- ADDING NEW BLOCKS -->
 <script>
@@ -759,13 +771,39 @@
     function addSubtitleLevel(subtitle) {
         // clears the subtitle (in case no level is found), then reads in level
         subtitle.innerText = '';
+
         // getLevel() does not work here, **replace hardcoded levels in future release**
         for (tag of skilljarCourse.tags) {
-            if (["Practitioner", "Expert", "Master", "Partner"].includes(tag))
+            // render text and icons if level tag is provided
+            if (["Practitioner", "Expert", "Master", "Partner"].includes(tag)) {
                 subtitle.innerText = tag;
+                addLevelIcons(subtitle, tag);
+            }
         }
         subtitle.classList.add('course-page-subtitle');  // defined in theme
         subtitle.classList.remove('cp-lessons');
+    }
+
+    // adds difficulty level icons to level text
+    // HTML template for icons defined at top of this file
+    function addLevelIcons(levelText, levelTag) {
+        // levels assigned to number of blocks to be filled
+        const levels = { 
+            "Practitioner": 1,
+            "Expert": 2,
+            "Master": 3
+        }
+
+        // places icons behind text (within h2 text element)
+        const levelContainer = document.querySelector('.course-level-container');
+        const levelIcons = levelContainer.querySelectorAll('.course-level-icon');
+        levelText.appendChild(levelContainer);
+        levelContainer.hidden = false;
+
+        // render level icons up to the level on the tag
+        for (i = 0; i < levels[levelTag]; i++) {
+            levelIcons[i].classList.add('course-level-fill-orange');
+        }
     }
 
     // adds course time before subtitle element

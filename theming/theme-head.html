@@ -1658,11 +1658,12 @@
     /* Course Detail/Overview Page */
 
     /* header ribbon */
-    #main-container #header > .course-page-header-left {
+    #main-container #header>.course-page-header-left {
         padding-left: 0;
         margin-left: 6em;
     }
-    #main-container #header > .course-page-header-right {
+
+    #main-container #header>.course-page-header-right {
         padding-right: 0;
         margin-right: 6em;
     }
@@ -1680,12 +1681,12 @@
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-            -ms-flex-flow: column nowrap;
-                flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
     }
 
     /* stuff within the summary block */
-    #skilljar-content .course-page-summary > * {
+    #skilljar-content .course-page-summary>* {
         text-align: left;
     }
 
@@ -1698,15 +1699,16 @@
     /* sub title */
     #skilljar-content .course-page-subtitle {
         color: #fff;
-        display: inline-block;
+        display: inline-flex;
         margin: .5em 0;
         font-size: 1.1em;
     }
 
     /* course time */
-    #skilljar-content .course-page-time { 
+    #skilljar-content .course-page-time {
         margin-right: 1em;
     }
+
     #skilljar-content .course-page-time::after {
         content: '|';
         margin-left: 1em;
@@ -1729,7 +1731,7 @@
     /* center summary for small screens */
     @media only screen and (max-width: 767px) {
 
-        #skilljar-content .course-page-summary > * {
+        #skilljar-content .course-page-summary>* {
             text-align: center;
         }
 
@@ -1737,16 +1739,46 @@
             text-align: center;
         }
 
-        #main-container #header > .course-page-header-left {
+        #main-container #header>.course-page-header-left {
             margin-left: 2em;
         }
-        #main-container #header > .course-page-header-right {
+
+        #main-container #header>.course-page-header-right {
             margin-right: 1.5em;
         }
 
-        #skilljar-content .course-page-progress { 
+        #skilljar-content .course-page-progress {
             margin: 1em auto;
         }
+    }
+
+    /* event levels */
+    .course-level-container {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        height: 1em;
+
+        display: inline-flex;
+        margin-top: .4rem;
+        margin-left: .7em;
+    }
+
+    .course-level-text {
+        margin-right: .5em;
+        color: inherit;
+    }
+
+    .course-level-icon {
+        width: .7em;
+        height: .7em;
+        margin-right: .25em;
+        background-color: #ccc;
+        border-radius: 10px;
+    }
+
+    .course-level-fill-orange {
+        background-color: #ff6d00;
     }
 </style>
 
