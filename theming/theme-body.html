@@ -679,14 +679,21 @@
 <!-- COURSE OVERVIEW/DETAILS PAGE -->
 <script>
 
-    // if on course page but status is unenrolled
-    if (typeof skilljarCourse !== 'undefined' &&
-        typeof skilljarCourseProgress === 'undefined') 
-        modifyCoursePage();
-    
+    document.addEventListener('DOMContentLoaded', () => {
+        // if on course page but status is unenrolled
+        if (typeof skilljarCourse !== 'undefined' &&
+            typeof skilljarCourseProgress === 'undefined') 
+            // unenrolled course pages have class names starting with dp-
+            modifyCoursePage("dp");
 
-    // modifies DOM of course overview page
-    function modifyCoursePage() {
+        else if (typeof skilljarCourseProgress !== 'undefined')
+            // registered/completed course pages have class names starting with cp-
+            modifyCoursePage("cp");
+    })
+
+
+    // modifies course page with given classPrefix depending on enroll status
+    function modifyCoursePage(classPrefix) {
 
         // HEADERS
         document.getElementById('header-left').classList.add('course-page-header-left');
@@ -699,34 +706,46 @@
         const banner = document.querySelector("#skilljar-content > div.top-row-grey.padding-side");
 
         // loads the promo image into the background of the banner
-        const promoImage = document.querySelector(".dp-promo-image > img");
+        const promoImage = document.querySelector(`.${classPrefix}-promo-image > img`);
         
-        banner.style.background = `linear-gradient( rgba(5, 35, 50, .9), rgba(5, 35, 50, .7) ), 
+        banner.style.background = `linear-gradient(rgba(3, 22, 30, 0.85), rgba(3, 22, 30, .7)), 
         url(${promoImage.src}) right/cover no-repeat`;
         banner.classList.add('course-page-banner');
 
         // removes promo image along with its container column
-        document.querySelector('.dp-promo-image-wrapper').remove();
+        document.querySelector(`.${classPrefix}-promo-image-wrapper`).remove();
 
         // MAIN SUMMARY BLOCK
-        const summary = document.querySelector('.dp-summary-wrapper');
+        const summary = document.querySelector(`.${classPrefix}-summary-wrapper`);
         // only .course-page-summary class is non-skilljar defined in global theme
         summary.classList.add('course-page-summary', 'large-10');
+        summary.classList.remove('push-4');
         summary.parentElement.classList.add('padded-side-bottom');
+
 
         // TITLE
         document.querySelector('.break-word').classList.add('course-page-title');  
 
         // SUBTTILE
-        const subtitle = document.querySelector(".dp-summary-wrapper h2");
+        const subtitle = document.querySelector(`.${classPrefix}-summary-wrapper h2`);
         // clears the subtitle (in case no level is found), then reads in level
         subtitle.innerText = '';
+        // getLevel() does not work here, **replace hardcoded levels in future release**
         for (tag of skilljarCourse.tags) {
             if (["Practitioner", "Expert", "Master", "Partner"].includes(tag))
                 subtitle.innerText = tag;
         }
-
         subtitle.classList.add('course-page-subtitle');  // defined in theme
+        subtitle.classList.remove('cp-lessons');
+
+        // COURSE TIME - reads course time into subtitle
+        const oldTime = document.querySelector('.sj-course-time');  // old course time element
+        const courseTime = document.createElement('h2');  // new course time element
+        subtitle.parentElement.insertBefore(courseTime, subtitle);
+        courseTime.innerText = oldTime.innerHTML;
+        courseTime.classList.add('course-page-subtitle'); // defined in theme
+        if (classPrefix === 'dp') courseTime.classList.add('course-page-time') // defined in theme
+        oldTime.remove();
 
         // SIGN IN TEXT
         const signIn = document.querySelector('.signin')
@@ -734,7 +753,14 @@
 
         // ENROLL BUTTON
         const enrollBtn = document.querySelector('.purchase-button');
-        if (enrollBtn) enrollBtn.classList.add('course-page-enroll-btn');
+        if (enrollBtn) enrollBtn.classList.add('course-page-enroll-btn');  // defined in theme
+
+        // PROGRESS BAR
+        const progress = document.querySelector('.progress-bar');
+        if (progress) {
+            progress.classList.add('course-page-progress');  // defined in theme
+            progress.removeAttribute('style');  // remove inline styles
+        } 
 
     }
 

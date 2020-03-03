@@ -1675,17 +1675,8 @@
 
     /* added to summary block on course page */
     #skilljar-content .course-page-summary {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-flow: column nowrap;
         flex-flow: column nowrap;
-        -webkit-box-align: start;
-        -ms-flex-align: start;
-        align-items: flex-start;
-
     }
 
     /* stuff within the summary block */
@@ -1702,19 +1693,39 @@
     /* sub title */
     #skilljar-content .course-page-subtitle {
         color: #fff;
+        display: inline-block;
+        margin: .5em 0;
+        font-size: 1.1em;
     }
 
+    /* course time */
+    #skilljar-content .course-page-time { 
+        margin-right: 1em;
+    }
+    #skilljar-content .course-page-time::after {
+        content: '|';
+        margin-left: 1em;
+    }
+
+    /* enroll button only for unenrolled page */
     #skilljar-content .course-page-enroll-btn {
         font-size: initial;
         padding: .6em 1.2em;
+        margin-top: 2em;
+    }
+
+    /* progress bar only for enrolled/completed page */
+    #skilljar-content .course-page-progress {
+        max-width: 20em;
+        margin-top: 1em;
+        visibility: visible;
     }
 
     /* center summary for small screens */
     @media only screen and (max-width: 767px) {
-        #skilljar-content .course-page-summary {
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
+
+        #skilljar-content .course-page-summary > * {
+            text-align: center;
         }
 
         #skilljar-content .course-page-title {
@@ -1726,6 +1737,10 @@
         }
         #main-container #header > .course-page-header-right {
             margin-right: 1.5em;
+        }
+
+        #skilljar-content .course-page-progress { 
+            margin: 1em auto;
         }
     }
 </style>
