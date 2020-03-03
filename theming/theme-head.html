@@ -36,7 +36,7 @@
 
     h1.break-word {
         color: white;
-        font-family: Montserrat, "Open Sans";
+        font-family: "Montserrat", "Open Sans";
         margin-top: 30px;
         margin-bottom: -10px;
         padding: 10px;
@@ -115,6 +115,7 @@
         overflow: hidden;
         float: none;
     }
+
     /* course image */
     a.coursebox-container.course .coursebox-image img {
         max-height: inherit;
@@ -122,13 +123,13 @@
 
     /* course title */
     #catalog-content #catalog-courses a.coursebox-container .coursebox-text {
-        font-family: 'montserrat', 'sans-serif';
+        font-family: 'montserrat', 'open sans';
         font-weight: 500;
         font-size: 1.1em;
     }
 
     /* course subtitle */
-    #catalog-content #catalog-courses a.coursebox-container .coursebox-text-description { 
+    #catalog-content #catalog-courses a.coursebox-container .coursebox-text-description {
         display: block;
     }
 
@@ -140,34 +141,35 @@
     /* status ribbons */
     #catalog-courses a.coursebox-container .sj-course-ribbon-wrapper {
         width: 102%;
-    	bottom: -1.1em;
-	    top: initial;
-    	display: -webkit-box;
-    	display: -ms-flexbox;
-    	display: flex;
-	    -webkit-box-pack: center;
-	        -ms-flex-pack: center;
-	            justify-content: center;
-    	-webkit-box-orient: vertical;
-    	-webkit-box-direction: normal;
-    	    -ms-flex-flow: column nowrap;
-    	        flex-flow: column nowrap;
+        bottom: -1.1em;
+        top: initial;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
     }
 
     a.coursebox-container .sj-course-ribbon-wrapper .sj-course-ribbon {
         border: none;
-	    -webkit-transform: none;
-	        -ms-transform: none;
-	            transform: none;
-    	width: 100%;
-	    left: 3px;
-	    border-radius: 0;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        width: 100%;
+        left: 3px;
+        border-radius: 0;
         padding: 7px 2px;
     }
 
-    .sj-course-ribbon-complete, .sj-course-ribbon-registered {
+    .sj-course-ribbon-complete,
+    .sj-course-ribbon-registered {
         -webkit-box-shadow: none !important;
-                box-shadow: none !important;
+        box-shadow: none !important;
     }
 
 
@@ -275,7 +277,8 @@
     }
 
     #header #header-left .back-to-catalog {
-        background: black;
+        background: #03161E;
+        margin-top: .5em;
     }
 
     #header #header-left .back-to-catalog .fa-arrow-left {
@@ -305,11 +308,11 @@
         display: flex;
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
-            -ms-flex-flow: row wrap;
-                flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
         -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
         /* background color defined in Skilljar Theme */
     }
 
@@ -337,8 +340,8 @@
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
     }
 
     #ep-footer {
@@ -361,7 +364,7 @@
         height: 50%;
         background-color: #fff;
         -webkit-box-shadow: 0px 10px 10px -10px grey;
-                box-shadow: 0px 10px 10px -10px grey;
+        box-shadow: 0px 10px 10px -10px grey;
     }
 
     #header #navbar {
@@ -369,8 +372,8 @@
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
         width: 70%;
         height: 100%;
         margin: auto;
@@ -409,11 +412,11 @@
 
     #header #navbar #breadcrumbs {
         -webkit-box-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
+        -ms-flex: 1;
+        flex: 1;
         -webkit-box-flex: 2;
-            -ms-flex-positive: 2;
-                flex-grow: 2;
+        -ms-flex-positive: 2;
+        flex-grow: 2;
         font-style: italic;
     }
 
@@ -427,11 +430,11 @@
 
     #header #navbar #nav-links {
         -webkit-box-flex: 2;
-            -ms-flex: 2;
-                flex: 2;
+        -ms-flex: 2;
+        flex: 2;
         -webkit-box-flex: 1;
-            -ms-flex-positive: 1;
-                flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -533,8 +536,8 @@
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
     }
 
     /* hide profile picture for small devices */
@@ -763,9 +766,9 @@
 
 
 <style>
- /* Container holding the image and the text */
+    /* Container holding the image and the text */
 
- .container {
+    .container {
         height: 16%;
         width: 100%;
         position: relative;
@@ -1103,7 +1106,7 @@
         width: 15em;
         text-align: center;
         -webkit-box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
-                box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
+        box-shadow: 2px 3px 8px 0px rgba(46, 61, 73, 0.5);
     }
 
     .btn-solid:hover {
@@ -1212,11 +1215,11 @@
 
     /* HOMEPAGE COURSES - when user uses searchbar */
     /* hide lesson cards */
-  
+
     /* .coursebox-text-description {
         display: block !important;
     } */
-    
+
     /* hide lesson cards */
     #offerings+#catalog-courses>a[data-type="-l"] {
         display: none;
@@ -1228,7 +1231,7 @@
         border: 1px solid darkgray;
         border-radius: 3px;
         -webkit-box-shadow: none;
-                box-shadow: none;
+        box-shadow: none;
         color: #052332;
         overflow: hidden;
         width: 15.8em;
@@ -1241,11 +1244,11 @@
         width: 100%;
         margin-bottom: 1em;
         -ms-flex-item-align: stretch;
-            -ms-grid-row-align: stretch;
-            align-self: stretch;
+        -ms-grid-row-align: stretch;
+        align-self: stretch;
     }
 
-    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image > img {
+    #offerings+#catalog-courses a.search-only[data-type="-c"] .coursebox-image>img {
         border-radius: 3px;
         width: 100%;
     }
@@ -1542,7 +1545,7 @@
 
 
 <style>
-/* FILTER STYLES FOR ALL SUBPAGES */
+    /* FILTER STYLES FOR ALL SUBPAGES */
     /* FILTER CONTROLS ROW */
 
     #filters-row {
@@ -1646,6 +1649,87 @@
         transition: .4s ease;
     }
 </style>
+
+
+
+
+
+<style>
+    /* Course Detail/Overview Page */
+
+    /* header ribbon */
+    #main-container #header > .course-page-header-left {
+        padding-left: 0;
+        margin-left: 6em;
+    }
+    #main-container #header > .course-page-header-right {
+        padding-right: 0;
+        margin-right: 6em;
+    }
+
+    /* banner jumbotron */
+    #skilljar-content .course-page-banner {
+        margin-bottom: 2em;
+    }
+
+
+    /* added to summary block on course page */
+    #skilljar-content .course-page-summary {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+
+    }
+
+    /* stuff within the summary block */
+    #skilljar-content .course-page-summary > * {
+        text-align: left;
+    }
+
+    /* main title */
+    #skilljar-content .course-page-title {
+        padding-left: 0;
+        text-align: left;
+    }
+
+    /* sub title */
+    #skilljar-content .course-page-subtitle {
+        color: #fff;
+    }
+
+    #skilljar-content .course-page-enroll-btn {
+        font-size: initial;
+        padding: .6em 1.2em;
+    }
+
+    /* center summary for small screens */
+    @media only screen and (max-width: 767px) {
+        #skilljar-content .course-page-summary {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        #skilljar-content .course-page-title {
+            text-align: center;
+        }
+
+        #main-container #header > .course-page-header-left {
+            margin-left: 2em;
+        }
+        #main-container #header > .course-page-header-right {
+            margin-right: 1.5em;
+        }
+    }
+</style>
+
 
 
 <!-- Google Tag Manager -->
