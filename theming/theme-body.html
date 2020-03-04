@@ -491,6 +491,13 @@
         if (backBtn) backBtn.remove();
     }
 
+    // opens all course cards in a new tab
+    function openCoursesNewTab() {
+        const courses = document.querySelectorAll('.course');
+        for (course of courses) 
+            course.target = '_blank';
+    }
+
 
     // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
 
@@ -723,7 +730,10 @@
         // subtitle elements
         const subtitle = document.querySelector(`.${classPrefix}-summary-wrapper h2`);
         addSubtitleLevel(subtitle);
-        addCourseTime(classPrefix, subtitle);
+
+        // course duration if provided
+        if (document.querySelector('.sj-course-time'))
+            addCourseTime(classPrefix, subtitle);
 
         // extra links and buttons
         modifyLinks();
