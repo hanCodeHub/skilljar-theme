@@ -1694,6 +1694,7 @@
     #skilljar-content .course-page-title {
         padding-left: 0;
         text-align: left;
+        font-size: 1.8em;
     }
 
     /* sub title */
@@ -1710,28 +1711,54 @@
     #skilljar-content .course-page-time {
         margin-right: 1em;
     }
-
     #skilljar-content .course-page-time::after {
         content: '|';
         margin-left: 1em;
     }
 
-    /* enroll button only for unenrolled page */
-    #skilljar-content .course-page-enroll-btn {
+    /* enroll/resume button for nonpassed/unregistered page */
+    #skilljar-content .course-page-action-btn {
         font-size: initial;
         padding: .6em 1.2em;
         margin-top: 2em;
     }
+    /* addition style for resume button */
+    #skilljar-content .resume-btn {
+        margin-top: 3em;
+        margin-bottom: 0;
+    }
 
     /* progress bar only for enrolled/completed page */
     #skilljar-content .course-page-progress {
-        max-width: 20em;
+        max-width: 18em;
         margin-top: 1em;
         visibility: visible;
+        height: .8em;
+        border-radius: 2px;
+        border: none;
+        background: #ccc;
+        position: relative;
+        left: 5.16em;
+    }
+    /* inner bar highlights the % progress of user */
+    #skilljar-content .progress-bar-inner {
+        height: 100%;
+    }
+    /* adds label for progress bar */
+    .course-page-progress::before {
+        content: 'Progress';
+        color: #fff;
+        position: absolute;
+        left: -4.72em;
+        top: -.3em;
+        font-size: 1.1em;
     }
 
     /* center summary for small screens */
     @media only screen and (max-width: 767px) {
+        #skilljar-content .course-page-summary {
+            align-items: center;
+        }
 
         #skilljar-content .course-page-summary>* {
             text-align: center;
@@ -1751,6 +1778,11 @@
 
         #skilljar-content .course-page-progress {
             margin: 1em auto;
+            left: 2.1em;
+        }
+
+        #skilljar-content .resume-btn {
+            margin-top: 2em;
         }
     }
 

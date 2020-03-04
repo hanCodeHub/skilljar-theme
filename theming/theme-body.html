@@ -356,7 +356,7 @@
         // change button text first
         document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
         // change on hover text to 'Next'
-        nextLabel.innerText = 'Next Module';
+        nextLabel.innerText = 'Next lesson';
     }
 
 </script>
@@ -699,14 +699,17 @@
 <script>
 
     document.addEventListener('DOMContentLoaded', () => {
-        // if on course page but status is unenrolled
+        // render with different class prefix depending on enrollment status
+
+        // not yet enrolled/not signed in 
         if (typeof skilljarCourse !== 'undefined' &&
             typeof skilljarCourseProgress === 'undefined') 
-            // unenrolled course pages have class names starting with dp-
+            // class names starting with dp-
             modifyCoursePage("dp");
 
+        // registered/completed
         else if (typeof skilljarCourseProgress !== 'undefined')
-            // registered/completed course pages have class names starting with cp-
+            // class names starting with cp-
             modifyCoursePage("cp");
     })
 
@@ -731,8 +734,8 @@
         const subtitle = document.querySelector(`.${classPrefix}-summary-wrapper h2`);
         addSubtitleLevel(subtitle);
 
-        // course duration if provided
-        if (document.querySelector('.sj-course-time'))
+        // move course duration to banner if provided
+        if (document.querySelector('.sj-course-time').innerHTML !== "")
             addCourseTime(classPrefix, subtitle);
 
         // extra links and buttons
@@ -838,9 +841,13 @@
 
         // ENROLL BUTTON
         const enrollBtn = document.querySelector('.purchase-button');
-        if (enrollBtn) enrollBtn.classList.add('course-page-enroll-btn');  // defined in theme
+        if (enrollBtn) enrollBtn.classList.add('course-page-action-btn');  // defined in theme
 
-        
+        const resumeBtn = document.querySelector('.button[title="Resume"]'); 
+        if (resumeBtn) {
+            resumeBtn.classList.add('course-page-action-btn', 'resume-btn');
+            resumeBtn.parentElement.classList.remove('row');
+        }       
     }
 
     // modifies progress bar
