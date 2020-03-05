@@ -144,13 +144,6 @@
 
 </section>
 
-<!-- LEVEL INDICATOR ICONS ON COURSE PAGES AND TILES -->
-<div class="course-level-container" hidden>
-    <!-- number of icons filled based on level of course -->
-    <span class="course-level-icon" > &nbsp; </span>
-    <span class="course-level-icon" > &nbsp; </span>
-    <span class="course-level-icon" > &nbsp; </span>
-</div>
 
 
 <!-- ADDING NEW BLOCKS -->
@@ -735,7 +728,8 @@
         addSubtitleLevel(subtitle);
 
         // move course duration to banner if provided
-        if (document.querySelector('.sj-course-time').innerHTML !== "")
+        const courseTime = document.querySelector('.sj-course-time')
+        if (courseTime && courseTime.innerHTML !== "")
             addCourseTime(classPrefix, subtitle);
 
         // extra links and buttons
@@ -798,24 +792,30 @@
     }
 
     // adds difficulty level icons to level text
-    // HTML template for icons defined at top of this file
     function addLevelIcons(levelText, levelTag) {
-        // levels assigned to number of blocks to be filled
+        // maps levels to number of blocks to be filled
         const levels = { 
             "Practitioner": 1,
             "Expert": 2,
             "Master": 3
         }
 
-        // places icons behind text (within h2 text element)
-        const levelContainer = document.querySelector('.course-level-container');
-        const levelIcons = levelContainer.querySelectorAll('.course-level-icon');
+        // creates add level container to text
+        const levelContainer = document.createElement('div');
+        levelContainer.classList.add('course-level-container');
         levelText.appendChild(levelContainer);
-        levelContainer.hidden = false;
 
-        // render level icons up to the level on the tag
-        for (i = 0; i < levels[levelTag]; i++) {
-            levelIcons[i].classList.add('course-level-fill-orange');
+        // creates and add level icons to container
+        for (let i = 0; i < 3; i++) {
+            const levelIcon = document.createElement('span');
+            levelIcon.innerHTML = "&nbsp;";
+            levelIcon.classList.add('course-level-icon');
+            levelContainer.appendChild(levelIcon);
+        }
+
+        // fills level icons up to the level on the tag
+        for (let i = 0; i < levels[levelTag]; i++) {
+            levelContainer.children[i].classList.add('course-level-fill-orange');
         }
     }
 
@@ -830,7 +830,11 @@
         courseTime.classList.add('course-page-subtitle'); // defined in theme
         
         if (classPrefix === 'dp') courseTime.classList.add('course-page-time'); // defined in theme
+
+        // remove old course time and lesson times
         oldTime.remove();
+        const lessonTimes = document.querySelectorAll('.sj-lesson-time');
+        for (time of lessonTimes) time.remove();
     }
 
     // modifies links and buttons
