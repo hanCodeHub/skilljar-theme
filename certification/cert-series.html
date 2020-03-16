@@ -1,57 +1,273 @@
 <div>
-    <style>
-    #skilljar-content {
+    <!-- BANNER HEADER BLOCK -->
+    <div id="header-banner">
+
+        <div class="header-block-wrapper">
+            <div id="header-block">
+                <div class="header-block-text">
+                    <h1 class="section-header">Nintex Certification</h1>
+                    <p>
+                        You have learned new skills and capabilities with the Nintex Process Platform and have applied those skills in your day-to-day work. Now is the time to validate your level of Nintex proficiency!
+                    </p>
+                </div>
+                <!-- background image on banner -->
+                <div class="header-block-graphic"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- FILTER CONTROLS -->
+    <div id="filters-row" hidden>
+
+        <!-- select platform filter -->
+        <select name="platform" id="filter-select-platform" class="filter-control">
+            <!-- values should match tag names of platforms -->
+            <option selected value="all">All Platforms</option>
+            <option value="sharepoint">SharePoint</option>
+            <option value="office-365">Office 365</option>
+            <option value="nwc">Nintex Workflow Cloud</option>
+            <option value="salesforce">Salesforce</option>
+        </select>
+
+        <!-- select product filter -->
+        <select name="capability" id="filter-select-product" class="filter-control">
+            <!-- values should match tag names of capabilities -->
+            <option selected value="all">All Products</option>
+            <option value="workflow">Workflow</option>
+            <option value="forms">Forms</option>
+            <option value="mobile">Mobile</option>
+            <option value="docgen">DocGen</option>
+            <option value="rpa">RPA</option>
+            <option value="process-mapping">Process Mapping</option>
+        </select>
+
+        <!-- select level filter -->
+        <select name="level" id="filter-select-level" class="filter-control">
+            <!-- values should match tag names of levels -->
+            <option selected value="all">All Levels</option>
+            <option value="practitioner">Practitioner</option>
+            <option value="expert">Expert</option>
+            <option value="master">Master</option>
+            <option value="partner">Partner</option>
+        </select>
+
+        <!-- search filter -->
+        <input type="text" id="filter-search" class="filter-control" placeholder="Search certifications" />
+
+        <!-- filters reset -->
+        <a href="#" id="filter-reset" class="link-text">
+            <span class="link-icon">&#10005;</span> Reset filters
+        </a>
+    </div>
+
+</div>
+
+
+
+<style>
+    /* PAGE RESET */
+
+    /* eliminate gap on left side */
+    #main-container #skilljar-content {
         margin-left: 0;
     }
-    
-    .top-row {
+
+    /* reduce padding between banner and cards */
+    #main-container #skilljar-content .top-row {
         padding: 0;
     }
 
-    .cert-header {
-    padding-left: 20px;
-    margin-top: 0px;
-    background-color: #f5f5f5;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column nowrap;
+    #main-container #skilljar-content .catalog-header {
+        margin-top: 0;
+        padding-left: 0;
     }
-    
-    #catalog-filter-menu {
-    display: none;
+
+    /* hide left nav button - search bar does not work on this page */
+    #left-nav-button {
+        display: none;
     }
-    
-    #lpLeftNavBackground {
-    display: none;
-    } 
-    
-    #catalog-courses.course-listing [data-course="obtain-certificate-wp-sharepoint"]{
-    display:none;
+
+
+    /* HEADER BANNER BLOCK */
+    #main-container #skilljar-content .header-block-wrapper {
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FOndemand-backg.1580927854336.jpg");
+        background-position: center;
+        background-size: cover;
     }
-    
-    #catalog-courses.course-listing [data-course="obtain-certificate-wp-o365"]{
-    display:none;
+
+    #main-container #skilljar-content #header-block {
+        color: #052332;
+        margin: auto;
+        margin-bottom: 4em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        max-width: 70%;
     }
-    
-    #catalog-courses.course-listing [data-course="obtain-certificate-ctp-sharepoint"]{
-    display:none;
+
+    /* header title and paragraph */
+    #main-container #skilljar-content h1.section-header {
+        font-family: "Montserrat";
+        font-weight: 600;
+        font-size: 2em;
+        margin: 1.5em 0 1em 0;
+        color: #052332;
     }
-    
-    #catalog-courses.course-listing [data-course="certificate-certified-solutions-professional-office-365"]{
-    display:none;
+
+    #main-container #skilljar-content #header-block p {
+        font-size: 1.1em;
+        font-weight: 400;
     }
-    
-    #catalog-courses.course-listing [data-course="certificate-certified-solutions-professional-salesforce"]{
-    display:none;
+
+    #skilljar-content #header-block .header-block-text {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
+        margin: 2.5em 4em 2em 0;
+        padding-bottom: 2em;
+        color: #052332;
+        font-weight: 700;
+        letter-spacing: .03em;
     }
-    </style>
-    </div>
-    <div class="cert-header">
-    <h3>Nintex Process Platform Certification</h3>
-    <p><span style="color: #1d1c1d; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; font-variant-ligatures: common-ligatures;">You have learned new skills and capabilities with the Nintex Process Platform and have applied those skills in your day-to-day work. Now is the time to validate your level of Nintex proficiency!</span></p>
-    <p><span style="color: #1d1c1d; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; font-variant-ligatures: common-ligatures;">Nintex Process Platform certifications are categorized by <strong>Capability&nbsp;</strong>and <strong>Proficiency Level</strong>.<br style="box-sizing: inherit;" /></span></p>
-    <p><span style="color: #1d1c1d; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; font-variant-ligatures: common-ligatures;"><span style="text-decoration: underline;">Capabilities:</span><br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<strong>Nintex Process Automation:</strong>&nbsp;<wbr style="box-sizing: inherit;" />Nintex Workflow<sup>&reg;</sup> and Nintex Forms<sup>&reg;</sup><br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<strong>Nintex Document Generation:</strong>&nbsp;<wbr style="box-sizing: inherit;" />Nintex Drawloop DocGen<sup>&reg;</sup><br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<strong>Nintex Robotic Process Automation:</strong> Nintex RPA<sup>&reg;</sup><br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" /><strong>&nbsp;Nintex Process Mapping:</strong>&nbsp;<wbr style="box-sizing: inherit;" />Nintex Promapp<sup>&reg;</sup></span></p>
-    <p><span style="color: #1d1c1d; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; font-variant-ligatures: common-ligatures;"><span style="text-decoration: underline;">Proficiency Levels:</span><br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" /><strong>Practitioner</strong> &ndash; this certification level focuses on the breadth of your understanding of the Nintex Process Platform,&nbsp; and requires that you can apply the core end-to-end features of the tested capability.<br style="box-sizing: inherit;" />&bull;&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" />&nbsp;<wbr style="box-sizing: inherit;" /><strong>Expert</strong> &ndash; aimed at people with more proficiency, Expert level certifications require a deep understanding of all out-of-the-box features of the tested capability.</span></p>
-    </div>
+
+    #header-block .header-block-text .btn-outline {
+        margin: auto;
+    }
+
+    #header-block .header-block-text .btn-outline:hover {
+        background-color: #ff6d00;
+    }
+
+    .header-block-text .btn-outline a {
+        color: #fff;
+    }
+
+    #skilljar-content #header-block .header-block-graphic {
+        width: 100em;
+        background: url("https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fwoman-graduate.1584383338945.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* hide image on smaller screens */
+    @media only screen and (max-width: 1150px) {
+        #skilljar-content #header-block .header-block-graphic {
+            display: none;
+        }
+
+        #skilljar-content #header-block .header-block-text {
+            margin: 2.5em 0;
+        }
+    }
+
+    /* hide nav links sooner when more breadcrumbs are shown */
+    @media only screen and (max-width: 1238px) {
+        #header #navbar #nav-links {
+            display: none;
+        }
+    }
+
+    /* use wider container for nav on small screens */
+    @media only screen and (max-width: 600px) {
+        #header #navbar {
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+
+        }
+    }
+
+
+    /* CATALOG COURSES CARDS SECTION */
+
+    /* cards container */
+    #catalog-content #catalog-courses {
+        width: 70%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    #catalog-courses .coursebox-container .coursebox-image {
+        margin: -14px;
+        margin-bottom: .5em;
+    }
+
+    #catalog-courses a.coursebox-container .coursebox-text {
+        margin-bottom: 1.8em;
+    }
+
+    #catalog-content #catalog-courses a.coursebox-container .course-time {
+        padding: 0;
+    }
+
+</style>
+
+
+<!-- MINOR DOM EDITS/RESETS - CUSTOMIZE ON ALL SUBPAGES -->
+<script>
+
+    // trigger DOM edits after DOM loaded
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // [name, link] for each breadcrumb - addBreadcrumbs() defined in global theme
+        addBreadcrumbs([
+            ["Certification Exams", "/certifications"],
+        ]);
+
+        // adds difficulty/level to course cards - addDifficulty() defined in global theme
+        removeSubtitles();
+
+        // remove default elements/styling
+        removeDefaultElements();
+
+        // allows courses to open in new tab
+        openCoursesNewTab()
+    });
+
+</script>
+
+<!-- FILTER AND SEARCH -->
+<script>
+
+    // after all scripts are loaded, add event listeners for filter controls
+    // event handler functions defined in global theme
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // get filter control elements specific to this page
+        const filters = [
+            document.getElementById('filter-select-product'),
+            document.getElementById('filter-select-platform'),
+            document.getElementById('filter-select-level'),
+            document.getElementById('filter-search')
+        ]
+
+        // handle course filters - passing in all filter elements
+        for (filter of filters) {
+            filter.addEventListener('change', handleCourseFilters(filters));
+        }
+
+        // handle filter reset - passing in all filter elements
+        const resetBtn = document.getElementById('filter-reset');
+        resetBtn.addEventListener('click', handleFilterReset(filters));
+
+    })
+
+</script>

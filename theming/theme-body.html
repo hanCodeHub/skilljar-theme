@@ -488,7 +488,18 @@
     function openCoursesNewTab() {
         const courses = document.querySelectorAll('.course');
         for (course of courses) 
-            course.target = '_blank';
+            if (course) course.target = '_blank';
+    }
+
+    // removes subtitle from course cards
+    function removeSubtitles() {
+        const courses = document.querySelectorAll('.course');
+        for (course of courses) {
+            if (course) {
+                const subtitle = document.querySelector('.coursebox-text-description');
+                if (subtitle) subtitle.remove();
+            }
+        }
     }
 
 
