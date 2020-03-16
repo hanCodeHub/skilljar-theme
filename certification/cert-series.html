@@ -7,7 +7,9 @@
                 <div class="header-block-text">
                     <h1 class="section-header">Nintex Certification</h1>
                     <p>
-                        You have learned new skills and capabilities with the Nintex Process Platform and have applied those skills in your day-to-day work. Now is the time to validate your level of Nintex proficiency!
+                        You have learned new skills and capabilities with the Nintex Process Platform and have applied
+                        those skills in your day-to-day work. Now is the time to validate your level of Nintex
+                        proficiency!
                     </p>
                 </div>
                 <!-- background image on banner -->
@@ -35,9 +37,7 @@
         <select name="capability" id="filter-select-product" class="filter-control">
             <!-- values should match tag names of capabilities -->
             <option selected value="all">All Products</option>
-            <option value="workflow">Workflow</option>
-            <option value="forms">Forms</option>
-            <option value="mobile">Mobile</option>
+            <option value="workflow">Workflow and Forms</option>
             <option value="docgen">DocGen</option>
             <option value="rpa">RPA</option>
             <option value="process-mapping">Process Mapping</option>
@@ -205,6 +205,10 @@
         margin: auto;
     }
 
+    #catalog-content #catalog-courses a.coursebox-container {
+        text-align: center;
+    }
+
     #catalog-courses .coursebox-container .coursebox-image {
         margin: -14px;
         margin-bottom: .5em;
@@ -214,10 +218,21 @@
         margin-bottom: 1.8em;
     }
 
-    #catalog-content #catalog-courses a.coursebox-container .course-time {
-        padding: 0;
+    #catalog-courses a.coursebox-container .storefront-price {
+        color: #ff6d00;
+        display: inline;
+        position: absolute;
+        bottom: 1em;
+        left: 1em;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
     }
 
+    #catalog-content #catalog-courses a.coursebox-container .course-time {
+        padding: 0;
+        right: 1em;
+    }
 </style>
 
 
