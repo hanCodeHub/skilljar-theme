@@ -105,6 +105,7 @@
         -o-transition: .3s ease;
         transition: .3s ease;
         overflow: hidden;
+        border-width: .5px;
     }
 
     /* reset default img sizing */
@@ -125,12 +126,13 @@
     #catalog-content #catalog-courses a.coursebox-container .coursebox-text {
         font-family: 'montserrat', 'open sans';
         font-weight: 500;
-        font-size: 1.1em;
+        font-size: 1.05em;
     }
 
     /* course subtitle */
     #catalog-content #catalog-courses a.coursebox-container .coursebox-text-description {
         display: block;
+        font-size: .97em;
     }
 
     /* duration */
@@ -1670,6 +1672,11 @@
 
     /* banner jumbotron */
     #skilljar-content .course-page-banner {
+        /* 
+        generic background replaced by course promo image for ondemand courses 
+        by loadPromoImage() in theme body
+        */
+        background: linear-gradient(rgba(3, 22, 30, 0.85), rgba(3, 22, 30, .7));
         margin-bottom: 2em;
     }
 

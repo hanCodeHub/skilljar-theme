@@ -173,23 +173,6 @@
         }
     }
 
-    /* hide nav links sooner when more breadcrumbs are shown */
-    @media only screen and (max-width: 1238px) {
-        #header #navbar #nav-links {
-            display: none;
-        }
-    }
-
-    /* use wider container for nav on small screens */
-    @media only screen and (max-width: 600px) {
-        #header #navbar {
-            width: -webkit-fit-content;
-            width: -moz-fit-content;
-            width: fit-content;
-
-        }
-    }
-
 
     /* CATALOG COURSES CARDS SECTION */
 
@@ -215,14 +198,14 @@
     }
 
     #catalog-courses a.coursebox-container .coursebox-text {
-        margin-bottom: 1.8em;
+        margin-bottom: 2.8em;
     }
 
     #catalog-courses a.coursebox-container .storefront-price {
         color: #ff6d00;
         display: inline;
         position: absolute;
-        bottom: 1em;
+        bottom: 2em;
         left: 1em;
         width: -webkit-fit-content;
         width: -moz-fit-content;
@@ -232,6 +215,29 @@
     #catalog-content #catalog-courses a.coursebox-container .course-time {
         padding: 0;
         right: 1em;
+        bottom: 2em;
+    }
+
+
+    /* Adjustments for small viewports */
+        /* hide nav links sooner when more breadcrumbs are shown */
+        @media only screen and (max-width: 1238px) {
+        #header #navbar #nav-links {
+            display: none;
+        }
+    }
+
+    /* use wider container for nav on small screens */
+    @media only screen and (max-width: 600px) {
+        #header #navbar {
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+        }
+
+        #catalog-courses .coursebox-container .coursebox-image {
+            margin-bottom: 0;
+        }
     }
 </style>
 

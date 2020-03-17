@@ -336,12 +336,6 @@
     if (privateLink && getUser())
         privateLink.href += '?userEmail='.concat(skilljarUser.email);
 
-    // Hides the ribbons of each tile on certification page
-    if (window.location.pathname.endsWith('/certifications')) {
-        const ribbons = document.querySelectorAll('.sj-course-ribbon-wrapper')
-        ribbons.forEach(e => e.style.display = 'none')
-    }
-
     // reads next lesson title from on hover text into button
     const nextBtn = document.querySelector(".next-lesson-button");
     if (nextBtn) {
@@ -508,7 +502,7 @@
     // returns the product capability tag found in given course element
     function getCapability(course) {
         const capabilities = [
-            "Workflow", "Forms", "Mobile", "Process Mapping", "RPA", "DocGen", "eSign"]
+            "Workflow", "Forms", "Mobile", "Process-Mapping", "RPA", "DocGen", "eSign"]
 
         for (capa of capabilities)
             if (course.tagArray.includes(capa.toLowerCase()))
@@ -756,10 +750,12 @@
         const promoImage = document.querySelector(`.${classPrefix}-promo-image > img`);
         const banner = document.querySelector("#skilljar-content > div.top-row-grey.padding-side");
 
-        // set banner background to promo image
-        banner.style.background = `linear-gradient(rgba(3, 22, 30, 0.85), rgba(3, 22, 30, .7)), 
-        url(${promoImage.src}) right/cover no-repeat`;
+        // set banner background to promo image - except for certification pages
         banner.classList.add('course-page-banner');
+        if (!location.pathname.includes("certifications")) {
+            banner.style.background = `linear-gradient(rgba(3, 22, 30, 0.85), rgba(3, 22, 30, .7)), 
+                    url(${promoImage.src}) right/cover no-repeat`;
+        }
 
         // removes promo image along with its container column
         document.querySelector(`.${classPrefix}-promo-image-wrapper`).remove();
