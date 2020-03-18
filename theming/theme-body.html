@@ -205,7 +205,7 @@
         try {
             user = skilljarUser;
         } catch (error) {
-            console.log("user needs to sign in to see skilljar data.")
+            // console.log("User needs to sign in to see personalized info.")
         }
         return user;
     }
@@ -242,9 +242,9 @@
             const strPrice = price.substring(0, price.length - 3);
             thisRowCols[4].innerText = `USD $${strPrice}`;
 
-            // URL added to row
+            // URL added to row - opens in new tab
             tableRows[i].addEventListener('click', (e) => {
-                location = thisEvent.vilt_session.lesson.course.course_url;
+                window.open(thisEvent.vilt_session.lesson.course.course_url, '_blank');
             })
         }
         // reveal table and remove spinner
