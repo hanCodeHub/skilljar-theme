@@ -397,7 +397,7 @@
     /* card image */
     #vilt-section #vilt-events .img-container {
         overflow: hidden;
-        max-width: 28%;
+        width: 17em;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -412,6 +412,7 @@
     #vilt-section #vilt-events .card-wide img {
         max-width: initial;  /* reset skilljar default */
         height: 11em;
+        max-height: 15em;
         -webkit-transform: scale(1.3);
         -ms-transform: scale(1.3);
         transform: scale(1.3);
@@ -711,7 +712,7 @@
         title.innerText = ev.vilt_session.lesson.course.title;
         subtitle.innerText = ev.short_description;
         // image depends on product and platform
-        image.src = getImageUrl(productTag, platformTag); 
+        image.src = getImageUrl(productTag); 
 
         renderEventTime(ev, card);
         renderLevel(card);
@@ -752,37 +753,33 @@
     }
 
     // returns the image URL based on product capability
-    function getImageUrl(product, platform) {
+    function getImageUrl(product) {
 
         // images stored in Skilljar Image Respository course series
         imageUrls = {
-            "office 365": {
-                "docgen": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FDOCGEN+O365_icons.1580336195540.png",
+  
+            "docgen": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fdocument_automation.1582848734039.png",
 
-                "esign": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FESIGN+O365_icons.1580336759398.png",
+            "esign": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fmobile-esign.1584643326811.jpg",
 
-                "forms": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FForms+0ffice+365_icons.1580336836091.png",
+            "forms": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fforms_drawing.1584644083793.jpg",
 
-                "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FWF+0365_icons.1580336933559.png"
-            },
-            
-            "sharepoint": {
-                "forms": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FForms+SP_icons.1582155168456.png",
-                "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FWF+SP_icons.1582155256683.png"
-            },
+            "mobile": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fholding-phone-laptop.1584644268414.jpg",
 
-            "nwc": {},
+            "workflow": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fondemand-process_automation.1582574671330.jpg",
 
-            "process mapping": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FPROCESS+MAPPING_icons.1580337008265.png",
+            "process mapping": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FstickyNote_whiteboard.1582758125621.jpg",
 
-            "RPA": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FRPA_icons.1580337081095.png"
+            "rpa": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fbrowser_charts_typing.1584644432070.jpg",
+
+            "default": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Flaptop-typing.1584644505690.jpg"
         }
 
-        // if both platform and product tags exist
-        if (platform && product)
-            return imageUrls[platform.toLowerCase()][product.toLowerCase()];
-        // if only product (RPA, Process Mapping, etc)
-        return imageUrls[product.toLowerCase()];
+        // returns image url for product if tag can be matched
+        if (product && imageUrls[product.toLowerCase()]) {
+            return imageUrls[product.toLowerCase()];
+        } // else return default image url
+        return imageUrls["default"];
     }       
 
     // renders the level blocks of given card based on difficulty
