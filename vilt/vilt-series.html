@@ -470,8 +470,12 @@
 
     .card-wide-content .card-wide-subtitle {
         color: #052332;
-        font-weight: 600;
+        font-weight: 400;
         margin: 0 .5em .5em 0;
+    }
+    /* add $ before price */
+    p.card-wide-subtitle::before {
+        content: '$';
     }
     /* add | after price */
     p.card-wide-subtitle::after {
@@ -691,6 +695,7 @@
     // renders a single event card to the vilt-events section
     // ev: event data, viltCard: card template, viltEvents: DOM section
     function renderEvent(ev, viltCard, viltEvents) {
+
         // copy template card and get its child elements
         const card = viltCard.cloneNode(true);
         const title = card.querySelector(".card-wide-title");
@@ -710,8 +715,8 @@
 
         // populate text and image with API data
         title.innerText = ev.vilt_session.lesson.course.title;
-        subtitle.innerText = ev.short_description;
-        // image depends on product and platform
+        subtitle.innerText = ev.vilt_session.lesson.course.price;
+        // image depends on product tag
         image.src = getImageUrl(productTag); 
 
         renderEventTime(ev, card);
