@@ -179,23 +179,13 @@
     if (location.pathname === '/') {
 
         try {  // change domain to location.host for production
-            getData("https://skilljar-api-test.azurewebsites.net/events/learn.nintex.com?count=4")
+            getData("https://appdevapi.nintextest.com/spx/events/learn.nintex.com?count=4")
                 .then(res => addLocalDatesToEvents(res.data))
                 .then(events => renderEvents(events))
                 .catch(err => console.log(err));
         } catch (error) {
             console.log(`Error getting data from api: ${error}`);
         }
-
-        // // FOR LOCAL DEBUGGING
-        // try {
-        //     getData("http://127.0.0.1:5000/events/learn.nintex.com?count=4")
-        //         .then(res => addLocalDatesToEvents(res.data))
-        //         .then(events => renderEvents(events))
-        //         .catch(err => console.log(err));
-        // } catch (error) {
-        //     console.log(`Error getting data from api: ${error}`);
-        // }
 
     }
 
@@ -411,6 +401,16 @@
     });
 </script>
 
+
+<!-- Calendar page scripts -->
+<script>
+    if (location.pathname === '/calendar') {
+        const pageContent = document.querySelector("#skilljar-content");
+        if (pageContent) {
+            pageContent.classList.add('calendar-view');
+        }
+    }
+</script>
 
 <!-- Enables navbar on subpages -->
 <script>
