@@ -29,9 +29,9 @@
     <!-- Title and subtitle of each card MUST be updated in Skilljar dashboard as well -->
 
     <!-- Process Automation -->
-    <a href="/series/test-series-process-automation" title="Nintex Process Automation"
+    <a href="/series/process-automation" title="Nintex Process Automation"
         class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" data-type="-c"
-        data-tags="" data-order="28" data-oid="" data-coid="" data-course-series="test-series-process-automation">
+        data-tags="" data-order="28" data-oid="" data-coid="" data-course-series="process-automation">
         <div class="coursebox-image"><img
                 src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/1qbuqeobma082/promo-image.1580921240.png"
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/1qbuqeobma082/promo-image.1580921240.png"
@@ -40,7 +40,7 @@
             Nintex Process Automation
         </div>
         <div class="coursebox-text-description">
-            Description about Nintex Process Automation courses that help your business.
+            Drag-and-drop automation platform that transforms processes and connects business systems.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -51,9 +51,9 @@
 
 
     <!-- RPA -->
-    <a href="/series/test-series-rpa" title="Nintex RPA"
+    <a href="/series/rpa" title="Nintex RPA"
         class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" data-type="-c"
-        data-tags="" data-order="29" data-oid="" data-coid="" data-course-series="test-series-rpa">
+        data-tags="" data-order="29" data-oid="" data-coid="" data-course-series="rpa">
         <div class="coursebox-image"><img
                 src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2e5nyn5vv8jyn/promo-image.1580921367.png"
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2e5nyn5vv8jyn/promo-image.1580921367.png"
@@ -62,7 +62,7 @@
             Nintex RPA
         </div>
         <div class="coursebox-text-description">
-            Description about Nintex RPA courses that help your business.
+            Leverage trained bots to perform routine tasks without the use of code.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -73,9 +73,9 @@
 
 
     <!-- Drawloop -->
-    <a href="/series/test-series-drawloop" title="Nintex Drawloop DocGen"
+    <a href="/series/drawloop" title="Nintex Drawloop DocGen"
         class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" data-type="-c"
-        data-tags="" data-order="30" data-oid="" data-coid="" data-course-series="test-series-drawloop">
+        data-tags="" data-order="30" data-oid="" data-coid="" data-course-series="drawloop">
         <div class="coursebox-image"><img
                 src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2end7myk6pk6x/promo-image.1582652936.png"
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2end7myk6pk6x/promo-image.1582652936.png"
@@ -84,7 +84,7 @@
             Nintex Drawloop DocGen
         </div>
         <div class="coursebox-text-description">
-            Description about Nintex Drawloop courses that help your business.
+            Generate documents for business functions like sales proposals, contracts, and more.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -94,18 +94,18 @@
     </a>
 
     <!-- Process Management -->
-    <a href="/series/test-series-process-mapping" title="Nintex Process Management"
+    <a href="/series/process-mapping" title="Nintex Process Mapping"
         class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover" data-type="-c"
-        data-tags="" data-order="31" data-oid="" data-coid="" data-course-series="nintex-process-mapping">
+        data-tags="" data-order="31" data-oid="" data-coid="" data-course-series="process-mapping">
         <div class="coursebox-image"><img
                 src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2lh16q6pu8wcv/promo-image.1581015746.png"
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2lh16q6pu8wcv/promo-image.1581015746.png"
                 alt="Nintex Process Mapping"></div>
         <div class="coursebox-text">
-            Nintex Process Management
+            Nintex Process Mapping
         </div>
         <div class="coursebox-text-description">
-            Description about Nintex Process Mapping courses that help your business.
+            Map and share business processes enabling quality assurance and continuous improvement.
         </div>
         <div class="storefront-price"><span></span></div>
         <div class="course-series-count">
@@ -290,7 +290,7 @@
 
         // [name, link] for each breadcrumb - addBreadcrumbs() defined in global theme
         addBreadcrumbs([
-            ["On-demand Training", "https://nintex.skilljar.com/series/ondemand"]
+            ["On-demand Training", "https://learn.nintex.com/series/ondemand"]
         ]);
     });
 
@@ -308,7 +308,7 @@
     
     // main program flow of this script
     try {       // change domain to location.host for production
-        getData("https://appdevapi.nintextest.com/spx/course-series/nintex.skilljar.com")
+        getData("https://appdevapi.nintex.com/spx/course-series/learn.nintex.com")
             .then(res => res.data)
             .then(data => addCourseCount(data.results))
             .catch(err => console.log(err));

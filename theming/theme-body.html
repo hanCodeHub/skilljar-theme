@@ -14,12 +14,12 @@
         <!-- subpages must implement additional breadcrumbs -->
         <div id="breadcrumbs">
             <!-- change link addresses for each domain -->
-            <a href="https://nintex.skilljar.com">Home</a>
+            <a href="https://learn.nintex.com">Home</a>
         </div>
         <div id="nav-links">
-            <a href="https://nintex.skilljar.com/series/ondemand">On-demand Training</a>
-            <a href="https://nintex.skilljar.com/series/vilt">Instructor-led Training</a>
-            <a href="https://nintex.skilljar.com/series/certifications">Certification Exams</a>
+            <a href="https://learn.nintex.com/series/ondemand">On-demand Training</a>
+            <a href="https://learn.nintex.com/series/vilt">Instructor-led Training</a>
+            <a href="https://learn.nintex.com/series/certifications">Certification Exams</a>
         </div>
 
     </div>
@@ -36,7 +36,7 @@
     <div id="live-training-header" class="row catalog-center-width">
         <h1 class="section-header text-center">Reserve a seat in an upcoming live training event</h1>
         <span class="text-center btn-outline">
-            <a href="http://nintex.skilljar.com/calendar" target="_blank">
+            <a href="https://learn.nintex.com/calendar" target="_blank">
                 view calendar
             </a>
         </span>
@@ -179,7 +179,7 @@
     if (location.pathname === '/') {
 
         try {  // change domain to location.host for production
-            getData("https://appdevapi.nintextest.com/spx/events/learn.nintex.com?count=4")
+            getData("https://appdevapi.nintex.com/spx/events/learn.nintex.com?count=4")
                 .then(res => addLocalDatesToEvents(res.data))
                 .then(events => renderEvents(events))
                 .catch(err => console.log(err));
@@ -284,12 +284,6 @@
     // Insert profile dropdown links
     $('#header-drop li:nth-child(1)').after('<li><a href="https://nintex-it.workflowcloud.com/forms/6e677242-5448-421d-a957-4811fccb0572" target="_blank">Provide Feedback</a></li>');
     $('#header-drop li:nth-child(2)').after('<li><a href= "https://nintex-training.workflowcloud.com/forms/b013dd22-6173-4298-b48f-852ba1bd3a16" target="_blank">Request Content</a></li>');
-
-    // Hide placeholder course
-    let course = document.querySelector('a[data-course="wp01-intro-to-nintex"]')
-    if (window.location.pathname === '/series/products') {
-        course.setAttribute('style', 'display: none')
-    }
 
     // changes start/enroll button for all courses
     const startBtn = document.querySelector('.purchase-button-full-text');
@@ -419,7 +413,7 @@
     const navSection = document.querySelector('#nav-section');
 
     // edits to subpages if not homepage
-    if (location.href != "https://nintex.skilljar.com/") {
+    if (location.href != "https://learn.nintex.com/") {
         navSection.hidden = false;
         header.appendChild(navSection);
         // remove all search elements and reset searchbar
@@ -742,6 +736,9 @@
 
         // progress bar
         modifyProgress();
+
+        // course overview description
+        modifyLongDescription();
     }
 
 
@@ -870,5 +867,30 @@
             progress.removeAttribute('style');  // remove inline styles
         } 
     }
+
+    // modifies course description
+    function modifyLongDescription() {
+        // in-progress description
+        const parasInProgress = document.querySelectorAll("#cp-content .content > p");
+        // unenrolled description
+        const parasNewProgress = document.querySelectorAll('.dp-long-description *');
+        
+        // reset styles for all paragraphs
+        if (typeof parasInProgress !== 'undefined' && parasInProgress.length > 0) {
+            for (p of parasInProgress) {
+                p.removeAttribute('style');
+                p.classList.add('course-overview-descrip');
+            }
+        }
+
+        if (typeof parasNewProgress !== 'undefined' && parasNewProgress.length > 0) {
+            for (p of parasNewProgress) {
+                p.removeAttribute('style');
+                p.classList.add('course-overview-descrip');
+            }
+        }
+
+    }
+
 
 </script>

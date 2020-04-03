@@ -1,0 +1,172 @@
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFHWFX" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script>
+    // Link to profile page
+    const profileLink = document.querySelector('.profile-link');
+    if (profileLink) {
+        profileLink.addEventListener('click', toProfile);
+    };
+
+    function toProfile(e) {
+        e.preventDefault();
+        let reg = /https:\/\/\w*.nintex.com/
+        let url = window.location.href
+        let urlDomain = url.match(reg)[0]
+        let profilePage = `${urlDomain}/accounts/profile/?next=/`
+        window.location.assign(profilePage)
+    };
+
+    // Insert profile dropdown links
+    $('#header-drop li:nth-child(1)').after('<li><a href="https://nintex-it.workflowcloud.com/forms/6e677242-5448-421d-a957-4811fccb0572" target="_blank">Feedback</a></li>');
+    $('#header-drop li:nth-child(2)').after('<li><a href= "https://nintex-training.workflowcloud.com/forms/b013dd22-6173-4298-b48f-852ba1bd3a16" target="_blank">Request Content</a></li>');
+
+    // Animate homepage button
+    $("#hero-cta-button").css("transition-duration", ".3s");
+    $("#hero-cta-button").css("-webkit-transition-duration", ".3s");
+
+    // Hide placeholder course
+    let course = document.querySelector('a[data-course="wp01-intro-to-nintex"]')
+    if (window.location.pathname === '/series/products') {
+        course.setAttribute('style', 'display: none')
+    } else { }
+
+    // Beamr Config
+    const urlArr = window.location.href;
+    const checkId = /\d{6}/;
+
+    if (!checkId.test(urlArr)) {
+        var beamer_config = {
+            product_id: 'rEnQcjEg3705', //DO NOT CHANGE
+            button_position: 'bottom-right',
+            filter: 'nintexLearn'
+        }
+    } else { }
+
+</script>
+
+<script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
+
+<script>
+    // Display "Hello " + Student Name on the homepage
+    const getStudent = () => {
+        const resScript = document.scripts[9].innerHTML;
+        const res = resScript.match("(?<=firstName\: \').*(?=')");
+        helloMsg = res ? `Hello ${res}!` : "Hello!"
+        $('#hero-header').html(helloMsg);
+    }
+
+    window.addEventListener('load', getStudent);
+</script>
+
+
+
+<!-- legal T&C link and currency additions on purchase page -->
+<script>
+
+    const controlPayment = () => {
+        // select and hide purchase button onload
+        let btnPurchase = document
+            .querySelector("#payment-form > div:nth-child(3) > div > button")
+        btnPurchase.style.display = 'none'
+
+        // create and append new link to li, and new li to list
+        let parentDiv = document.querySelector("#payment-form > div:nth-child(3) > div")
+        let newLine = document.createElement('p')
+        let legalLink = document.createElement('a')
+        parentDiv.prepend(newLine)
+        newLine.appendChild(legalLink)
+        newLine.style.textAlign = 'center'
+
+        // set link properties and content
+        legalLink.innerHTML = 'I agree to Nintex Terms & Conditions'
+        legalLink.href = 'https://www.nintex.com/legal/nintex-training-terms-and-conditions/'
+        legalLink.target = '_blank'
+
+        // create, prepend, and style checkbox
+        let checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        newLine.prepend(checkbox)
+        checkbox.style.width = '1.5rem'
+        checkbox.style.height = '1.0rem'
+
+        // listen for checks and display/hide purchase button
+        checkbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                btnPurchase.style.display = 'inline-block'
+            } else {
+                btnPurchase.style.display = 'none'
+            }
+        })
+    }
+
+    // Add USD to unitPrice
+    const addCurrencyUnitPrice = () => {
+        const unitPrice = document.querySelector(
+            "#purchaseReview > div.white-bg.grey-bottom-border > div > div > div:nth-child(3) > div:nth-child(3) > div.item")
+        unitPrice.prepend('USD ')
+    }
+
+    // Add USD to subPrice and totalPrice
+    const addCurrencySubAndTotal = () => {
+        const subPrice = document.querySelector("#subtotal")
+        const totalPrice = document.querySelector("#total-price")
+        subPrice.prepend('USD ')
+        totalPrice.prepend('USD ')
+    }
+
+    // Adds currency and legal elements on first load
+    document.addEventListener("DOMContentLoaded", () => {
+        if (window.location.pathname.startsWith('/purchase/')) {
+            controlPayment();
+            addCurrencyUnitPrice();
+            addCurrencySubAndTotal();
+        }
+    });
+
+</script>
+
+<!-- Hides the ribbons of each tile on certification page -->
+<script>
+    if (window.location.pathname.endsWith('/certifications')) {
+        const ribbons = document.querySelectorAll('.sj-course-ribbon-wrapper')
+        ribbons.forEach(e => e.style.display = 'none')
+    }
+</script>
+
+<!-- reads the title label for the Next button into the button text -->
+<script>
+    // reads next lesson title from on hover text into button
+    const nextBtn = document.querySelector(".next-lesson-button");
+    if (nextBtn) {
+        const nextLabel = nextBtn.firstElementChild.firstElementChild;
+        // change button text first
+        document.querySelector(".next-lesson-link").innerText = nextLabel.innerText;
+        // change on hover text to 'Next'
+        nextLabel.innerText = 'Next lesson';
+    }
+</script>
+
+<!-- OUTAGE MESSAGE -->
+<script>
+
+    document.addEventListener("DOMContentLoaded", showHeaderRibbon);
+
+    function showHeaderRibbon() {
+        if (location.pathname === '/') {
+            const header = document.querySelector('#header');
+            const ribbon = document.createElement('div');
+            const text = document.createElement('p');
+
+            text.innerText = "nintexU will undergo maintenance from April 4, 9:00am to 11:00pm US Pacific Time. We're updating the site to bring you an improved learning experience."
+
+            ribbon.appendChild(text);
+            header.appendChild(ribbon);
+            ribbon.classList.add('header-ribbon');
+            text.classList.add('ribbon-text');
+        }
+    }
+
+</script>
