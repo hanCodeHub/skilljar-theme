@@ -581,9 +581,16 @@
 
     // add breadcrumbs for this page
     document.addEventListener('DOMContentLoaded', () => {
+        // adds breadcrumbs to nav bar
         addBreadcrumbs([
             ["Instructor-led Training", "/series/vilt"]
         ]);
+
+        // allows courses to open in new tab
+        openCoursesNewTab()
+
+        // removes default elements - back button and page padding
+        removeDefaultElements();
     });
 
     
