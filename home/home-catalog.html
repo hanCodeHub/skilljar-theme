@@ -153,12 +153,12 @@
 
 
 
-        /*----- Hidden Courses List -----*/
+        /*----- Hidden Course Series List -----*/
+        /* individual courses are hidden by hideCoursesHomePage() function below */
         #catalog-courses.course-listing [data-course-series="process-automation"],
         #catalog-courses.course-listing [data-course-series="rpa"],
         #catalog-courses.course-listing [data-course-series="process-mapping"],
-        #catalog-courses.course-listing [data-course-series="drawloop"]
-         {
+        #catalog-courses.course-listing [data-course-series="drawloop"] {
             display: none;
         }
 
@@ -197,5 +197,27 @@
             justify-content: center;
         }
     </style>
+
+
+    <!-- scripts for modifying homepage -->
+    <script>
+        // hides all courses from homepage once it loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const allCourses = document.querySelectorAll('.course');
+            if (allCourses) {
+                hideCoursesHomePage(allCourses);
+            }
+        })
+
+        // hides only course objects, and not course series
+        // course series are hidden individually using css above
+        function hideCoursesHomePage(courses) {
+            for (course of courses) {
+                if (!course.classList.contains("sj-course-series")) {
+                    course.remove();
+                }
+            }
+        }
+    </script>
 
 </div>

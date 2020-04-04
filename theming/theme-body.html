@@ -53,15 +53,7 @@
                     <td></td>
                     <td></td>
                     <td class="events-course-name"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr class="events-table-row">
-                    <td></td>
-                    <td></td>
-                    <td class="events-course-name"></td>
-                    <td></td>
+                    <!-- <td></td> seats count -->
                     <td></td>
                 </tr>
 
@@ -69,7 +61,7 @@
                     <td></td>
                     <td></td>
                     <td class="events-course-name"></td>
-                    <td></td>
+                    <!-- <td></td> seats count -->
                     <td></td>
                 </tr>
 
@@ -77,7 +69,15 @@
                     <td></td>
                     <td></td>
                     <td class="events-course-name"></td>
+                    <!-- <td></td> seats count -->
                     <td></td>
+                </tr>
+
+                <tr class="events-table-row">
+                    <td></td>
+                    <td></td>
+                    <td class="events-course-name"></td>
+                    <!-- <td></td> seats count -->
                     <td></td>
                 </tr>
 
@@ -225,13 +225,16 @@
             thisRowCols[0].innerText = thisEvent.local_starts_at.date;
             thisRowCols[1].innerText = thisEvent.local_starts_at.time;
             thisRowCols[2].innerText = thisEvent.vilt_session.display_name;
-            thisRowCols[3].innerText = String(thisEvent.vilt_session.seats_total -
-                thisEvent.vilt_session.registration_count) + ' seats';
+            
+            // ENABLE SEATS COUNT IN FUTURE RELEASE
+            // thisRowCols[3].innerText = String(thisEvent.vilt_session.seats_total -
+            //     thisEvent.vilt_session.registration_count) + ' seats';
 
             // course price with decimals truncated
             const price = thisEvent.vilt_session.lesson.course.price;
             const strPrice = price.substring(0, price.length - 3);
-            thisRowCols[4].innerText = `USD $${strPrice}`;
+            // update this column index once seats count is re-enabled
+            thisRowCols[3].innerText = `USD $${strPrice}`;  
 
             // URL added to row - opens in new tab
             tableRows[i].addEventListener('click', (e) => {
@@ -307,6 +310,7 @@
 </script>
 
 <script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
+
 
 
 <script>
