@@ -509,6 +509,8 @@
 
     // returns the product capability tag found in given course element
     function getCapability(course) {
+        if (!course) return null;
+
         const capabilities = [
             "Workflow", "Forms", "Mobile", "Process-Mapping", "RPA", "DocGen", "eSign"]
 
@@ -520,6 +522,8 @@
 
     // returns the level tag found in given course element
     function getLevel(course) {
+        if (!course) return null;
+
         const levels = ["Practitioner", "Expert", "Master", "Partner"];
 
         for (level of levels)
@@ -530,6 +534,8 @@
 
     // returns the platform tag found in given course element
     function getPlatform(course) {
+        if (!course) return null;
+
         const platforms = ["Office-365", "SharePoint", "NWC", "Salesforce"];
 
         for (platform of platforms)
@@ -540,6 +546,8 @@
 
     // returns the role tag found in given course element
     function getRole(course) {
+        if (!course) return null;
+
         const roles = ["Everyday-User", "Process-Author", "Promaster"];
 
         for (role of roles)
@@ -552,11 +560,6 @@
 
 <!-- control subscription access to courses via user groups -->
 <script>
-
-    // if on a course page
-    if (typeof skilljarCourse !== 'undefined') {
-
-    }
 
     // returns the access level of the user
     function getUserAccessLevel() {
@@ -706,7 +709,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         // render with different class prefix depending on enrollment status
-
         // must first detect if current page is
         try {
             // not yet enrolled/not signed in 

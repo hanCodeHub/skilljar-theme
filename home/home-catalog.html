@@ -1,3 +1,6 @@
+<!-- HOME CATALOG MUST HAVE A FILTER GROUP WITH TAGS -->
+<!-- ALL ITEMS TO APPEAR ON HOMEPAGE MUST BE TAGGED WITH 'homepage' -->
+
 <div class="catalog-header">
     <div id="hero-content">
         <div id="hero-welcome">
@@ -153,18 +156,6 @@
 
 
 
-        /*----- Hidden Course Series List -----*/
-        /* individual courses are hidden by hideCoursesHomePage() function below */
-        #catalog-courses.course-listing [data-course-series="process-automation"],
-        #catalog-courses.course-listing [data-course-series="rpa"],
-        #catalog-courses.course-listing [data-course-series="process-mapping"],
-        #catalog-courses.course-listing [data-course-series="drawloop"] {
-            display: none;
-        }
-
-
-
-
         /* BANNER IMAGE FOR HOMEPAGE */
         .catalog-header {
             text-align: center;
@@ -201,6 +192,7 @@
 
     <!-- scripts for modifying homepage -->
     <script>
+        // HOMEPAGE COURSES/SERIES MUST BE TAGGED WITH 'homepage'
         // hides all courses from homepage once it loads
         document.addEventListener('DOMContentLoaded', () => {
             const allCourses = document.querySelectorAll('.course');
@@ -209,12 +201,11 @@
             }
         })
 
-        // hides only course objects, and not course series
-        // course series are hidden individually using css above
+        // hides all courses and course series not tagged with homepage
         function hideCoursesHomePage(courses) {
             for (course of courses) {
-                if (!course.classList.contains("sj-course-series")) {
-                    course.remove();
+                if (!course.tagArray.includes("homepage")) {
+                    course.style.display = 'none';
                 }
             }
         }
