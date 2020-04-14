@@ -84,6 +84,7 @@
             </table>
         </div>
 
+        <!-- Private Training Card -->
         <div id="private-training-section" class="text-center" hidden>
             <div class="card-container">
                 <a id="private-training-link"
@@ -113,6 +114,20 @@
         <h1 class="section-header text-center">Take advantage of additional resources</h1>
     </div>
     <div class="tile-row">
+
+        <!-- Training Catalog -->
+        <div class="image-link-container">
+            <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Ftraining-catalog-icon.1586889447218.png"
+                id="training-catalog-icon" class="image-link-icon" alt="training catalog icon">
+            <span class="text-center btn-outline outline-dark">
+                <!-- this direct download link is managed in box -->
+                <a href="https://app.box.com/shared/static/43kzptrwynwo27phm0k3c1fmmf8m5qqn.pdf" target="_blank">
+                    Training Catalog
+                </a>
+            </span>
+        </div>
+
+        <!-- How-to Youtube -->
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fplay-icon.1574190756692.png"
                 id="how-to-icon" class="image-link-icon" alt="how-to videos icon">
@@ -122,6 +137,8 @@
                 </a>
             </span>
         </div>
+
+        <!-- Community -->
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fcommunity-icon.1574190793235.png"
                 id="community-icon" class="image-link-icon" alt="community icon">
@@ -131,6 +148,8 @@
                 </a>
             </span>
         </div>
+
+        <!-- Help Docs -->
         <div class="image-link-container">
             <img src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2Fhelp-docs-icon.1574190820917.png"
                 id="helpdoc-icon" class="image-link-icon" alt="help documentation icon">
@@ -225,7 +244,7 @@
             thisRowCols[0].innerText = thisEvent.local_starts_at.date;
             thisRowCols[1].innerText = thisEvent.local_starts_at.time;
             thisRowCols[2].innerText = thisEvent.vilt_session.display_name;
-            
+
             // ENABLE SEATS COUNT IN FUTURE RELEASE
             // thisRowCols[3].innerText = String(thisEvent.vilt_session.seats_total -
             //     thisEvent.vilt_session.registration_count) + ' seats';
@@ -234,7 +253,7 @@
             const price = thisEvent.vilt_session.lesson.course.price;
             const strPrice = price.substring(0, price.length - 3);
             // update this column index once seats count is re-enabled
-            thisRowCols[3].innerText = `USD $${strPrice}`;  
+            thisRowCols[3].innerText = `USD $${strPrice}`;
 
             // URL added to row - opens in new tab
             tableRows[i].addEventListener('click', (e) => {
