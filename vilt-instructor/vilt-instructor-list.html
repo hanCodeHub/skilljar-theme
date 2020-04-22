@@ -1,0 +1,99 @@
+<table class="fc-list-table">
+    <tbody id="events-table-body">
+
+        <!-- <tr class="fc-list-heading" data-date="2020-04-08">
+            <td class="fc-widget-header" colspan="3"><span class="fc-list-heading-main">April 8, 2020</span></td>
+        </tr> -->
+
+        <tr class="fc-list-item sj-calendar-registered-event fc-has-url" hidden>
+            <td class="fc-list-item-date fc-widget-content">April 23</td>
+            
+            <td class="fc-list-item-time fc-widget-content">12:00am - 1:00am</td>
+
+            <td class="fc-list-item-title fc-widget-content">
+                <a href="/rpa-central-management/481639">Test Event</a>
+            </td>
+
+            <td class="fc-list-item-instructor fc-widget-content">Instructor's name</td>
+
+            <td class="fc-list-item-seats fc-widget-content">seats remaining</td>
+        </tr>
+        
+    </tbody>
+</table>
+
+
+<style>
+    .fc-list-table {
+        margin-top: 5em;
+    }
+
+    .fc-list-item-seats {
+        text-align: right;
+    }
+</style>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        getViltEvents();
+    })
+
+    // gets the unique events data from proxy api
+    function getViltEvents() {
+        try { // getData() defined in earlier script tag
+            getData("https://appdevapi.nintex.com/spx/events/learn.nintex.com")
+                .then(res => res.data)
+                .then(events => renderEventsList(events))
+                .catch(err => console.log(err));
+        } catch (error) {
+            console.log(`Error getting data from api: ${error}`);
+        }
+    }
+
+    // renders the list of event times and instructors
+    function renderEventsList(events) {
+        const tableBody = document.getElementById("events-table-body");
+        const eventRowTemplate = document.querySelector(".fc-list-item");
+
+        // for each event clones the template row and pass both to renderSingleEvent()
+        for (event of events) {
+            const template = eventRowTemplate.cloneNode(true);
+            template.hidden = false;
+            renderSingleEvent(event, template);
+            tableBody.appendChild(template);
+        }
+    }
+
+    // populates an event
+    function renderSingleEvent(event, template) {
+        
+        // start date
+        const startDateTime = new Date(event.starts_at);
+        const startDate = startDateTime.toDateString().substring(0,10);
+        
+        // time span
+        const endDateTime = new Date(event.ends_at);
+        let startTime = startDateTime.toLocaleTimeString();
+        let endTime = endDateTime.toLocaleTimeString();
+        startTime = startTime.replace(":00 ","");
+        endTime = endTime.replace(":00 ","");
+        const timeString = startTime + " - " + endTime;
+
+        // remaining seats
+        const totalSeats = event.vilt_session.seats_total;
+        const registered = event.vilt_session.registration_count;
+        const seatsString = registered + "/" + totalSeats + " seats"
+
+        // insert values
+        template.children[0].innerText = startDate;
+        template.children[1].innerText = timeString;
+        template.children[2].firstChild.innerText = event.vilt_session.lesson.course.title;
+        template.children[2].href = event.vilt_session.lesson.course.course_url;
+        template.children[3].innerText = event.vilt_session.instructor_name;
+        template.children[4].innerText = seatsString;
+    }
+
+</script>

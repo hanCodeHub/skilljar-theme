@@ -675,6 +675,7 @@
 
     // renders all VILT event cards with data from API
     function renderVilt(events) {
+
         // remove loader animation and empty top row
         document.getElementById('events-loader').remove();
         document.querySelector('.top-row').style.height = 0;
@@ -688,17 +689,13 @@
         const viltCard = document.querySelector('.card-wide');
         const viltEvents = document.getElementById('vilt-events');
 
-
-        // -------------- CHANGE NEEDED --------------------
         // for each event copy viltCard template and fill with ev data
         events.forEach(ev => {
-            // skips private ev using title - CHANGE TO USING HIDDEN PROPERTY ON ev
-            if (ev.vilt_session.lesson.course.title.startsWith("Private"))
+            // skips events if hidden is true - for private events
+            if (ev.hidden)
                 return;
             renderEvent(ev, viltCard, viltEvents);  
         });
-        // -------------- CHANGE NEEDED --------------------
-
 
         // unhide real elements and hide template card
         viltEvents.hidden = false;
@@ -827,18 +824,22 @@
     function renderEventTime(event, card) {
         // render each event start time + date in local time
         const viltPill = card.querySelector(".pill-outline");
+        let renderedCount = 0;
+
         event.starts_at.forEach(eventTime => {
-            if (eventTime.seats <= 0) return; // skip if no available seats
+            // skip rendering ev if no seats, else increment counter
+            if (eventTime.seats_remaining <= 0) return; 
+            renderedCount++;
 
             const dateTime = new Date(eventTime.time);
-            // format as Nov 26, 2019
+            // format date as Nov 26, 2019
             let localDate = dateTime.toDateString().slice(4);
             localDate = localDate.substring(0, 6) + ', ' + localDate.substring(7);
-            // format time as 13:00
-            let localTime = dateTime.toTimeString().slice(0, 5);
+            // format time as 09:00AM
+            let localTime = dateTime.toLocaleTimeString().slice(0, 4);
+            localTime = localTime + dateTime.toLocaleTimeString().slice(-2);
 
             // datetime pill is cloned and populated for each start time
-
             const dtPill = viltPill.cloneNode(true);
             dtPill.querySelector(".pill-date").innerText = localDate;
             dtPill.querySelector(".pill-time").innerText = localTime;
@@ -846,7 +847,12 @@
             // pill added to times section
             card.querySelector(".event-times").append(dtPill);
         });
-        viltPill.style.display = "none";
+        // displays text to show no available seats for this class
+        if (renderedCount === 0) {
+            const timesText = card.querySelector('h6');
+            timesText.innerText = "There are currently no sessions with available seats for this course."
+        }
+        viltPill.style.display = "none"; // hides original time pill template
     }
 
     // unhides a registered/completed progress pill on applicable event cards
