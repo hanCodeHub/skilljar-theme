@@ -204,7 +204,7 @@
         // hides all courses and course series not tagged with homepage
         function hideCoursesHomePage(courses) {
             for (course of courses) {
-                if (!course.tagArray.includes("homepage")) {
+                if (course.tagArray && !course.tagArray.includes("homepage")) {
                     course.style.display = 'none';
                 }
             }

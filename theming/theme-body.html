@@ -534,7 +534,7 @@
             "Workflow", "Forms", "Mobile", "Process-Mapping", "RPA", "DocGen", "eSign"]
 
         for (capa of capabilities)
-            if (course.tagArray.includes(capa.toLowerCase()))
+            if (course.tagArray && course.tagArray.includes(capa.toLowerCase()))
                 return capa;
         return null;
     }
@@ -546,7 +546,7 @@
         const levels = ["Practitioner", "Expert", "Master", "Partner"];
 
         for (level of levels)
-            if (course.tagArray.includes(level.toLowerCase()))
+            if (course.tagArray && course.tagArray.includes(level.toLowerCase()))
                 return level;
         return null;
     }
@@ -558,7 +558,7 @@
         const platforms = ["Office-365", "SharePoint", "NWC", "Salesforce"];
 
         for (platform of platforms)
-            if (course.tagArray.includes(platform.toLowerCase()))
+            if (course.tagArray && course.tagArray.includes(platform.toLowerCase()))
                 return platform;
         return null;
     }
@@ -570,7 +570,7 @@
         const roles = ["Everyday-User", "Process-Author", "Promaster"];
 
         for (role of roles)
-            if (course.tagArray.includes(role.toLowerCase()))
+            if (course.tagArray && course.tagArray.includes(role.toLowerCase()))
                 return role;
         return null;
     }
@@ -937,3 +937,37 @@
 
 
 </script>
+
+<!-- Global overrides for every page -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const allHide = document.querySelectorAll('.hide');
+        const allNotFound = document.querySelectorAll('.not-found');
+        allHide.forEach(element => element.style.display = 'none');
+        allNotFound.forEach(element => element.style.display = 'none');
+    })
+
+</script>
+
+<!-- SKILLJAR QUIZZES -->
+<!-- <script>
+    const quizAnswerList = document.querySelector("#id_answer");
+    if (quizAnswerList) {
+        const answerLabels = quizAnswerList.querySelectorAll('label');
+        const answerRadios = quizAnswerList.querySelectorAll('input[type=radio]')
+    }
+
+    if (answerLabels && answerLabels.length > 0) {
+        for (label of answerLabels) {
+            label.classList.add('answer-label')
+        }
+    }
+    
+    if (answerRadios && answerRadios.length > 0) {
+        for (radio of answerRadios) {
+            label.classList.add('answer-radio')
+        }
+    }   
+        
+</script> -->

@@ -79,7 +79,7 @@
                 <!-- available times -->
                 <div class="event-times-container">
                     <h6>
-                        Available times:
+                        <span class="available-label">Available times:</span>
                         <!-- status badges -->
                         <span class="badge badge-register" hidden>Registered</span>
                         <span class="badge badge-success" hidden>Completed</span>
@@ -849,8 +849,8 @@
         });
         // displays text to show no available seats for this class
         if (renderedCount === 0) {
-            const timesText = card.querySelector('h6');
-            timesText.innerText = "There are currently no sessions with available seats for this course."
+            const availText = card.querySelector('.available-label');
+            availText.innerText = "There are currently no sessions with available seats for this course."
         }
         viltPill.style.display = "none"; // hides original time pill template
     }

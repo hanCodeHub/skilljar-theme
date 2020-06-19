@@ -1714,6 +1714,7 @@
     #skilljar-content .course-page-time {
         margin-right: 1em;
     }
+
     #skilljar-content .course-page-time::after {
         content: '|';
         margin-left: 1em;
@@ -1725,6 +1726,7 @@
         padding: .6em 1.2em;
         margin-top: 2em;
     }
+
     /* addition style for resume button */
     #skilljar-content .resume-btn {
         margin-top: 3em;
@@ -1743,10 +1745,12 @@
         position: relative;
         left: 5.16em;
     }
+
     /* inner bar highlights the % progress of user */
     #skilljar-content .progress-bar-inner {
         height: 100%;
     }
+
     /* adds label for progress bar */
     .course-page-progress::before {
         content: 'Progress';
@@ -1832,35 +1836,41 @@
     /* curriculum lessons */
     .sj-curriculum-wrapper {
         -webkit-box-shadow: 0px 5px 10px 1px #CCC;
-                box-shadow: 0px 5px 10px 1px #CCC;
+        box-shadow: 0px 5px 10px 1px #CCC;
     }
-
 </style>
 
 
 
 <!-- Calendar Page -->
 <style>
-
     #main-container #skilljar-content.calendar-view {
         background: #e1e1e1;
         padding-top: 7em;
     }
-
 </style>
 
 
 
 <!-- STYLES INSIDE A COURSE - WHEN ENROLLED -->
 <style>
- 
- /* Live event selection */
- .month-day-widget .date .day {
-    color: #2a2a2a;
- }
-
+    /* Live event selection */
+    .month-day-widget .date .day {
+        color: #2a2a2a;
+    }
 </style>
 
+
+
+<!-- SKILLJAR QUIZZES -->
+<style>
+    /* Completion of quiz review answers page */
+    .quiz .completed-quiz .question-responses .answer-icon i,
+    .quiz .quiz-grading-required .question-responses .answer-icon i,
+    .quiz .completed-quiz .question-responses .incorrect .answer-text {
+        color: #fff;
+    }
+</style>
 
 
 
