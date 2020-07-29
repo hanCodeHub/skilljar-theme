@@ -1,0 +1,37 @@
+<!-- SCRIPT INSERTED IN SUBSCRIPTION PURCHASE COURSE OBJECT -->
+
+<div>
+    <button id="sub-btn">Activate your subscription</button>
+</div>
+
+<script>
+
+    document.getElementById('sub-btn').addEventListener('click', activateSubscription)
+
+    // checks if user is logged in before calling API with id's
+    function activateSubscription() {
+        if (!skilljarUser) {
+            console.log('user must be signed in to purchase subscription')
+        } else {
+            const baseUrl = 'https://appdevapi.nintextest.com/spx/groups/';
+            const subGroupId = '17j0b5svr4425'; // subscription group id
+            const userId = skilljarUser.id
+
+            callGroupUserApi(baseUrl, subGroupId, userId)
+                .then(data => console.log(data))
+        }
+    }
+
+    // calls API for creating user within group
+    async function callGroupUserApi(url, groupId, userId) {
+        const response = await fetch(url + groupId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userId)
+        });
+        return await response.json();
+    }
+
+</script>

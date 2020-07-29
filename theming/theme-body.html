@@ -523,13 +523,26 @@
         }
     }
 
+</script>
 
-    // GETTING DATA-TAG FROM COURSES - USE IN ONDEMAND PAGES
+
+<script>
+    // USE THESE FUNCTIONS FOR SELECTING COURSE BASED ON TAGS
+
+    // returns the content type tag found in given course element
+    function getContentType(course) {
+        if (!course) return null;
+        const contentTypes = ["Certification", "VILT", "Ondemand"]
+
+        for (type of contentTypes)
+            if (course.tagArray && course.tagArray.includes(type.toLowerCase()))
+                return type;
+        return null;
+    }
 
     // returns the product capability tag found in given course element
     function getCapability(course) {
         if (!course) return null;
-
         const capabilities = [
             "Workflow", "Forms", "Mobile", "Process-Mapping", "RPA", "DocGen", "eSign"]
 
@@ -542,8 +555,7 @@
     // returns the level tag found in given course element
     function getLevel(course) {
         if (!course) return null;
-
-        const levels = ["Practitioner", "Expert", "Master", "Partner"];
+        const levels = ["Practitioner", "Expert", "Master"];
 
         for (level of levels)
             if (course.tagArray && course.tagArray.includes(level.toLowerCase()))
@@ -554,7 +566,6 @@
     // returns the platform tag found in given course element
     function getPlatform(course) {
         if (!course) return null;
-
         const platforms = ["Office-365", "SharePoint", "NWC", "Salesforce"];
 
         for (platform of platforms)
@@ -566,12 +577,23 @@
     // returns the role tag found in given course element
     function getRole(course) {
         if (!course) return null;
-
         const roles = ["Everyday-User", "Process-Author", "Promaster"];
 
         for (role of roles)
             if (course.tagArray && course.tagArray.includes(role.toLowerCase()))
                 return role;
+        return null;
+    }
+
+    // returns the partner certificate tag found in given course element
+    function getPartnerCert(course) {
+        if (!course) return null;
+        const partnerCerts = ["Foxtrot-RPA-Sales", "Certified-Sales-Pro", "Nintex-N4"];
+        
+        for (cert of partnerCerts) {
+            if (course.tagArray && course.tagArray.includes(cert.toLowerCase()))
+                return cert;
+        }
         return null;
     }
 </script>
@@ -697,6 +719,7 @@
                 "capability": getCapability(course),
                 "platform": getPlatform(course),
                 "role": getRole(course),
+                "partner-cert": getPartnerCert(course)
             }
             const tag = selectorSwitch[select.name];  // tag is null if course doesn't have it
 

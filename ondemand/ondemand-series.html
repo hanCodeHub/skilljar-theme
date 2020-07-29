@@ -31,8 +31,7 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/1qbuqeobma082/promo-image.1580921240.png" />
         </div>
         <div class="coursebox-text">Nintex Process Automation</div>
-        <div class="coursebox-text-description">Description about Nintex Process Automation courses that help your
-            business.</div>
+        <div class="coursebox-text-description">Learn the skills you need to automate your end-to-end business processes with Nintex.</div>
         <div class="storefront-price">&nbsp;</div>
         <div class="course-series-count">
             <!-- dynamically inserted by addCourseCount() -->
@@ -50,7 +49,7 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2e5nyn5vv8jyn/promo-image.1580921367.png" />
         </div>
         <div class="coursebox-text">Nintex RPA</div>
-        <div class="coursebox-text-description">Description about Nintex RPA courses that help your business.</div>
+        <div class="coursebox-text-description">Learn how to use Nintex Robotic Process Automation to automate everyday routine tasks.</div>
         <div class="storefront-price">&nbsp;</div>
         <div class="course-series-count">
             <!-- dynamically inserted by addCourseCount() -->
@@ -68,7 +67,7 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2end7myk6pk6x/promo-image.1582652936.png" />
         </div>
         <div class="coursebox-text">Nintex Drawloop DocGen</div>
-        <div class="coursebox-text-description">Description about Nintex Drawloop courses that help your business.</div>
+        <div class="coursebox-text-description">Learn how to instantly build and share documents with just a few clicks.</div>
         <div class="storefront-price">&nbsp;</div>
         <div class="course-series-count">
             <!-- dynamically inserted by addCourseCount() -->
@@ -86,8 +85,26 @@
                 data-src="https://cc.sj-cdn.net/instructor/286gsk1f0uvf6-nintex/course_series/2lh16q6pu8wcv/promo-image.1581015746.png" />
         </div>
         <div class="coursebox-text">Nintex Process Mapping</div>
-        <div class="coursebox-text-description">Description about Nintex Process Mapping courses that help your
-            business.</div>
+        <div class="coursebox-text-description">Learn about process mapping capabilities to establish total visibility of your enterprise processes.</div>
+        <div class="storefront-price">&nbsp;</div>
+        <div class="course-series-count">
+            <!-- dynamically inserted by addCourseCount() -->
+        </div>
+        <div class="coursebox-tags">&nbsp;</div>
+    </a>
+
+    
+    <!-- Partner Training -->
+    <a class="coursebox-container course sj-course-series theme-color-border-hover theme-no-hover"
+        title="Nintex Sales Training" href="/page/nintex-sales-training" data-type="-c" data-tags=""
+        data-order="32" data-oid="" data-coid="" data-course-series="nintex-partner-training">
+        <div class="coursebox-image"><img
+                src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FPartner.1591123680071.png"
+                alt="Nintex Partner Training"
+                data-src="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fhan_xu_nintex_com_9jmvc3%2Fpublic%2FPartner.1591123680071.png" />
+        </div>
+        <div class="coursebox-text">Nintex Sales Training</div>
+        <div class="coursebox-text-description">Learn sales and marketing strategies, pricing information, and more.</div>
         <div class="storefront-price">&nbsp;</div>
         <div class="course-series-count">
             <!-- dynamically inserted by addCourseCount() -->
@@ -95,6 +112,7 @@
         <div class="coursebox-tags">&nbsp;</div>
     </a>
 </div>
+
 
 
 <!-- STYLES -->
@@ -279,6 +297,9 @@
 
         // removes default elements - back button and page padding
         removeDefaultElements();
+
+        // hides/shows sales training based on group
+        displaySalesCard();
     });
 
     // attach all series cards to #catalog-content
@@ -333,6 +354,17 @@
                 countElement.style.display = 'block';
                 countElement.innerText = `${match.published_course_count} Courses`;
             }
+        }
+    }
+
+    // only displays sales training card for users in Partner group
+    function displaySalesCard() {
+        const salesCard = document.querySelector(".course[title='Nintex Sales Training']");
+        salesCard.style.display = 'none';
+
+        if (!skilljarUserStudentGroups) return null;
+        for (val of skilljarUserStudentGroups) {
+            if (val.name === 'Partner') salesCard.style.display = 'inline-block';
         }
     }
 
