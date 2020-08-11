@@ -1,0 +1,99 @@
+<!-- SCRIPT INSERTED IN SUBSCRIPTION PURCHASE COURSE OBJECT -->
+
+<div id='sub-section'>
+    <h2 id='sub-header'>Thank You For Purchasing A NintexU Subscription</h2>
+    <p id='sub-text'>Please click the button below to activate your subscription. You will only need to do this once,
+        after which you will have access to all the premium content within Nintex University.</p>
+
+    <button id='sub-btn' hidden>Activate Subscription</button>
+    <p id='sub-msg'>Please sign into NintexU in order to activate subscription.</p>
+</div>
+
+<style>
+    div#sub-section {
+        padding: 2em 5em;
+    }
+
+    h2#sub-header {
+        margin-bottom: 1em;
+    }
+
+    p#sub-text {
+        font-size: 1.2em;
+    }
+</style>
+
+<script>
+    // shows subscription button if user signed in
+    if (skilljarUser) {
+        document.getElementById('sub-btn').hidden = false
+        document.getElementById('sub-msg').hidden = true
+    } else {
+        document.getElementById('sub-btn').hidden = true
+        document.getElementById('sub-msg').hidden = false
+    }
+</script>
+
+<script>
+    const baseUrl = 'https://appdevapi.nintextest.com/spx/groups/';
+    // const baseUrl = 'http://127.0.0.1:5000/groups/'  // for local testing
+    const subGroupId = '17j0b5svr4425'; // subscription group id
+    const userId = skilljarUser.id;
+
+    document.addEventListener('DOMContentLoaded', checkSubscription);
+    const subBtn = document.getElementById('sub-btn');
+    subBtn.addEventListener('click', activateSubscription);
+
+    // checks if user is subscribed to subscription group
+    function checkSubscription() {
+        if (!skilljarUser) {
+            return null  // don't check if not signed in
+        } else {
+            getGroupUser(baseUrl, subGroupId, userId)
+                .then(data => {
+                    // disables subscription button if user is found in group
+                    if (data.user) disableSubBtn(subBtn);
+                })
+        }
+    }
+
+    // puts a user in the subscription group
+    function activateSubscription() {
+        if (!skilljarUser) {
+            console.log('user must be signed in to purchase subscription')
+        } else {
+            postGroupUser(baseUrl, subGroupId, userId)
+                .then(data => {
+                    // disables subscription button if successful
+                    if (data.user) disableSubBtn(subBtn);
+                })
+        }
+    }
+
+    // calls API for creating user within group
+    async function postGroupUser(url, groupId, userId) {
+        const response = await fetch(url + groupId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userId)
+        });
+        return await response.json();
+    }
+
+    // calls API for checking if user exists within group
+    async function getGroupUser(url, groupId, userId) {
+        const response = await fetch(`${url + groupId}?userId=${userId}`);
+        return await response.json();
+    }
+
+    // toggles subscription button to read-only
+    function disableSubBtn(button) {
+        if (!button) return null;
+        button.hidden = false;
+        button.innerHTML = 'Subscription Activated';
+        button.disabled = true;
+    }
+
+</script>
