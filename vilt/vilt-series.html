@@ -692,8 +692,8 @@
         // for each event copy viltCard template and fill with ev data
         events.forEach(ev => {
             // skips events if hidden is true - for private events
-            if (ev.hidden)
-                return;
+            // if (ev.hidden)
+            //     return;
             renderEvent(ev, viltCard, viltEvents);  
         });
 

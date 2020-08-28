@@ -311,7 +311,7 @@
     $('#header-drop li:nth-child(2)').after('<li><a href= "https://nintex-training.workflowcloud.com/forms/b013dd22-6173-4298-b48f-852ba1bd3a16" target="_blank">Request Content</a></li>');
 
     // uncomment to add subscription link
-    //  $('#header-drop li:nth-child(3)').after('<li><a href= "https://nintex.skilljar.com/nintexu-subscription-plan" target="_blank">NintexU Subscription</a></li>');
+     $('#header-drop li:nth-child(3)').after('<li><a href= "https://learn.nintex.com/nintexu-subscription-plan" target="_blank">NintexU Subscription</a></li>');
 
     // changes start/enroll button for all courses
     const startBtn = document.querySelector('.purchase-button-full-text');
@@ -997,3 +997,10 @@
     }   
         
 </script> -->
+
+<script>
+    // redirects user to homepage if accessing 404 page (when access restricted)
+    if (document.querySelector('.sj-text-page-not-found')) {
+        location = '/'
+    }
+</script>

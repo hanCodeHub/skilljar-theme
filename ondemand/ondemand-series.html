@@ -362,7 +362,7 @@
         const salesCard = document.querySelector(".course[title='Nintex Sales Training']");
         salesCard.style.display = 'none';
 
-        if (!skilljarUserStudentGroups) return null;
+        if (typeof skilljarUserStudentGroups === 'undefined') return null;
         for (val of skilljarUserStudentGroups) {
             if (val.name === 'Partner') salesCard.style.display = 'inline-block';
         }
